@@ -1,25 +1,34 @@
 /*
  * @Author: wangtao
- * @Date: 2020-10-10 18:10:25
+ * @Date: 2022-04-10 17:38:30
  * @LastEditors: 汪滔
- * @LastEditTime: 2020-10-10 18:12:11
+ * @LastEditTime: 2022-04-10 22:45:59
  * @Description: file content
  */
-import {
-  fetchGet, fetchPostUrl,
-} from './AxiosApi';
-// 用户管理
-export default {
-  // 获取角色列表
-  getUserInfo(params) {
-    return fetchGet('user-api/api/v1/user/getUserInfo', params);
-  },
-  // 登录
-  smsLogin(params) {
-    return fetchPostUrl('user-api/api/v1/login/smsLogin', params);
-  },
-  requireSmsCode(params) {
-    return fetchPostUrl('user-api/api/v1/login/requireSmsCode', params);
-  },
+import axiosApi from "./AxiosApi.js";
 
+const apiList = {
+  login: {
+    method: "post",
+    url: "passport-app-api/smsLogin"
+  },
+  getConfigValue: {
+    method: "get",
+    url: "basicdata-api/system/getConfigValue"
+  }
+};
+
+export default {
+  login(data) {
+    return axiosApi({
+      ...apiList.login,
+      data
+    });
+  },
+  getConfigValue(data) {
+    return axiosApi({
+      ...apiList.getConfigValue,
+      data
+    });
+  }
 };

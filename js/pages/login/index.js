@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-02-19 21:24:21
+ * @LastEditTime: 2022-04-10 17:48:03
  * @Description: 登录
  */
 
@@ -11,6 +11,7 @@ import { StyleSheet, View, Text, Image, TextInput, PixelRatio, TouchableOpacity,
 import { logo, iconLeftWhite } from "@/images";
 import { Button, _, isAndroid, msg, XMSafeAreaView } from "@/common";
 import { px2dp, mainBgColorWhite, fontColorBlack, fontColorLightGray, screenWidth } from "@/styles";
+import api from "@/api";
 
 const { SendButton, Submit } = Button;
 
@@ -86,6 +87,16 @@ export default class Login extends Component {
       </XMSafeAreaView>
     );
   }
+
+  login = () => {
+    const { mobile, code } = this.state;
+    console.log("🚀🚀🚀wimi======>>>mobile,code", mobile, code);
+    api.user.login({ mobile, code }).then(res => {
+      if (res.success) {
+        console.log("🚀🚀🚀wimi======>>>success", res);
+      }
+    });
+  };
 }
 
 const styles = StyleSheet.create({

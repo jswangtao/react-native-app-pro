@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 15:43:52
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 17:12:19
+ * @LastEditTime: 2022-04-10 22:09:53
  * @Description: 路由管理文件
  */
 import React from "react";
@@ -142,7 +142,7 @@ const AppNavigator = createStackNavigator(
       // headerTitleStyle: {
       //   fontWeight: 'bold',
       // },
-      headerLeft: <BackImageOn />,
+      headerLeft: () => <BackImageOn />,
       headerBackTitle: null,
       // 将安卓的跳转动画改成iOS
       transitionSpec: {
@@ -150,14 +150,12 @@ const AppNavigator = createStackNavigator(
         close: TransitionSpecs.TransitionIOSSpec
       },
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-    },
+    }
     // // 用于屏幕的默认导航选项
     // navigationOptions: {
     //     headerBackTitle: null,
     //     header: null
     // },
-    //  当切换动画结束时调用的函数
-    onTransitionEnd: async () => {}
   }
 );
 

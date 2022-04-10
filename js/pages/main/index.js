@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2020-10-12 11:28:44
+ * @LastEditTime: 2022-04-10 22:29:46
  * @Description: 首页
  */
 
@@ -10,6 +10,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { iconHomeCoffee, iconHomeGray } from "@/images";
 import { Button, msg } from "@/common";
+import api from "@/api";
 
 const { LongButton } = Button;
 
@@ -26,7 +27,9 @@ export default class Main extends Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.getCustomService();
+  }
 
   render() {
     return (
@@ -42,6 +45,17 @@ export default class Main extends Component {
       </View>
     );
   }
+
+  // 获取客服电话
+  getCustomService = () => {
+    const params = {
+      code: "ydxlmkfdh"
+    };
+    api.user.getConfigValue(params).then(res => {
+      if (res.success) {
+      }
+    });
+  };
 }
 
 const styles = StyleSheet.create({
