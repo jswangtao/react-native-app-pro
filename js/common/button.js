@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 23:37:16
+ * @LastEditTime: 2022-04-10 23:48:26
  * @Description: Button公共组件
  */
 
@@ -177,7 +177,6 @@ export class LongButton extends Button {
 
   render() {
     const { text } = this.props;
-    console.log("🚀🚀🚀wimi======>>>color_primary", color_primary);
     return (
       <View style={this.getBoxStyle()}>
         <TouchableOpacity style={this.getBtnStyle()} onPress={this._handleClick} disabled={this.props.disabled}>
