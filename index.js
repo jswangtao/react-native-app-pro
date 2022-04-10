@@ -1,6 +1,13 @@
-import {AppRegistry, LogBox} from 'react-native';
-import App from './js';
-import {name as appName} from './app.json';
+/*
+ * @Author: wangtao
+ * @Date: 2022-04-08 23:21:03
+ * @LastEditors: 汪滔
+ * @LastEditTime: 2022-04-10 16:25:40
+ * @Description: file content
+ */
+import { AppRegistry, LogBox } from "react-native";
+import App from "./js";
+import { name as appName } from "./app.json";
 
 AppRegistry.registerComponent(appName, () => {
   // 去warning
