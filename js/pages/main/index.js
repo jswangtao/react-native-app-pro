@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-11 09:59:14
+ * @LastEditTime: 2022-04-11 10:39:13
  * @Description: 首页
  */
 
@@ -35,7 +35,7 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Icon name={"icon_edit"} size={24} color={"#999"} />
+        <Icon name={"icon_setting"} size={24} color={"#999"} />
 
         <Text>this is Main</Text>
         <LongButton

@@ -1,0 +1,127 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 1822171 */
+  src: url('iconfont.woff2?t=1649639892839') format('woff2'),
+       url('iconfont.woff?t=1649639892839') format('woff'),
+       url('iconfont.ttf?t=1649639892839') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconicon_edit:before {
+  content: "\e6c0";
+}
+
+.iconicon_setting:before {
+  content: "\e6bf";
+}
+
+.iconcircle:before {
+  content: "\e6bc";
+}
+
+.iconicon_bank_card:before {
+  content: "\e6b7";
+}
+
+.iconicon_guangfa:before {
+  content: "\e6b8";
+}
+
+.iconicon_Offline_payments:before {
+  content: "\e6b9";
+}
+
+.iconicon_right:before {
+  content: "\e6ba";
+}
+
+.iconicon_ok1:before {
+  content: "\e6bb";
+}
+
+.iconicon_notice:before {
+  content: "\e6b5";
+}
+
+.iconicon_selected:before {
+  content: "\e6b6";
+}
+
+.iconicon_ok:before {
+  content: "\e6b4";
+}
+
+.iconLivingbody1:before {
+  content: "\e6b1";
+}
+
+.iconLivingbody:before {
+  content: "\e6b2";
+}
+
+.iconIdentity:before {
+  content: "\e6b3";
+}
+
+.iconicon_lock:before {
+  content: "\e6ac";
+}
+
+.iconicon_Agreement:before {
+  content: "\e6ad";
+}
+
+.iconicon_version:before {
+  content: "\e6ae";
+}
+
+.iconicon_oilcard:before {
+  content: "\e6af";
+}
+
+.iconicon_WeChat:before {
+  content: "\e6b0";
+}
+
+.iconicon_Order:before {
+  content: "\e6ab";
+}
+
+.iconmine1:before {
+  content: "\e6a3";
+}
+
+.iconpetrol:before {
+  content: "\e6a4";
+}
+
+.iconmine:before {
+  content: "\e6a5";
+}
+
+.iconmall:before {
+  content: "\e6a6";
+}
+
+.iconhome:before {
+  content: "\e6a7";
+}
+
+.iconmall1:before {
+  content: "\e6a8";
+}
+
+.iconhome1:before {
+  content: "\e6a9";
+}
+
+.iconpetrol1:before {
+  content: "\e6aa";
+}
+
