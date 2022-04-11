@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 23:18:39
+ * @LastEditTime: 2022-04-11 09:58:04
  * @Description: 公共模块管理   兼容1.0版本的组件 colors, dashLine, navigationBar, svgs, theme
  */
 
@@ -21,6 +21,7 @@ import FormInput from "./form/form-input"; // 表单输入
 import FormSelect from "./form/form-select"; // 表单选择
 import FormItem from "./form/form-item"; // 表单普通展示项目
 import XMSafeAreaView from "./safe-area-view"; //沉浸式安全区
+import Icon from "./icons"; //沉浸式安全区
 export {
   Button,
   msg,
@@ -36,5 +37,6 @@ export {
   FormInput,
   FormSelect,
   FormItem,
-  XMSafeAreaView
+  XMSafeAreaView,
+  Icon
 };

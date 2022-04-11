@@ -83,6 +83,16 @@ project.ext.react = [
 
 apply from: "../../node_modules/react-native/react.gradle"
 
+
+// 自定义的字体文件需要在这里赋值声明，如果有多个都需要添加到数组中
+project.ext.vectoricons = [
+    iconFontNames: [ 'iconfont.ttf' ]
+]
+
+// 如果只是使用react-native-vector-icons中的图标，只添加下面这行就行了，上面那段配置可以不写
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
