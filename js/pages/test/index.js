@@ -2,14 +2,13 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 16:44:01
+ * @LastEditTime: 2022-04-12 18:11:55
  * @Description: 个人中心
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, msg, cache } from "@/common";
-import AsyncStorage from "@react-native-community/async-storage";
+import { StyleSheet, View, SafeAreaView, StatusBar } from "react-native";
+import { Button, msg, AsyncStorage, cache, XMHeader } from "@/common";
 import userApi from "@/api/user";
 
 const { LongButton } = Button;
@@ -20,42 +19,47 @@ export default class User extends Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log("🚀🚀🚀wimi======>>>StatusBar.currentHeight", StatusBar.currentHeight);
+  }
 
   render() {
     return (
-      <View style={styles.container}>
-        <LongButton
-          text="测试同步存储和异步存储"
-          boxStyle={{ marginTop: 20 }}
-          onClick={() => {
-            this.testStorage();
-          }}
-        />
-        <LongButton
-          text="测试cookie是否丢失（iOS需要特殊处理）"
-          boxStyle={{ marginTop: 20 }}
-          onClick={() => {
-            this.testCookie();
-          }}
-        />
-        <LongButton
-          text="测试tip"
-          boxStyle={{ marginTop: 20 }}
-          onClick={() => {
-            this.testTip();
-          }}
-        />
-        <LongButton
-          text="ListViewDemo"
-          boxStyle={{ marginTop: 20 }}
-          onClick={() => {
-            msg.emit("router: goToNext", {
-              routeName: "ListViewDemo"
-            });
-          }}
-        />
-      </View>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "red" }}>
+        <XMHeader title="测试页面" />
+        <View style={styles.container}>
+          <LongButton
+            text="测试同步存储和异步存储"
+            boxStyle={{ marginTop: 20 }}
+            onClick={() => {
+              this.testStorage();
+            }}
+          />
+          <LongButton
+            text="测试cookie是否丢失（iOS需要特殊处理）"
+            boxStyle={{ marginTop: 20 }}
+            onClick={() => {
+              this.testCookie();
+            }}
+          />
+          <LongButton
+            text="测试tip"
+            boxStyle={{ marginTop: 20 }}
+            onClick={() => {
+              this.testTip();
+            }}
+          />
+          <LongButton
+            text="ListViewDemo"
+            boxStyle={{ marginTop: 20 }}
+            onClick={() => {
+              msg.emit("router: goToNext", {
+                routeName: "ListViewDemo"
+              });
+            }}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 
