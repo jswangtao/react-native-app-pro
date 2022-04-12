@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 15:43:52
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 17:31:22
+ * @LastEditTime: 2022-04-12 22:12:02
  * @Description: 路由管理文件
  */
 import React from "react";
@@ -10,7 +10,7 @@ import { Platform, PixelRatio, StatusBar } from "react-native";
 import { createAppContainer, NavigationActions } from "react-navigation";
 import { createStackNavigator, TransitionSpecs, CardStyleInterpolators } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { BackImageOn } from "@/common";
+import { BackImageOn, _ } from "@/common";
 import { px2dp } from "@/styles";
 import Main from "./pages/main";
 import User from "./pages/user";
@@ -121,11 +121,19 @@ const AppNavigator = createStackNavigator(
     // // screen：每个页面都有各自的标题栏，并且伴随着页面切换一起淡入淡出。这是 Android 上的常见模式。
     headerMode: "screen",
     defaultNavigationOptions: {
-      headerStyle: {
-        elevation: 0,
-        borderBottomWidth: 1 / PixelRatio.get(),
-        borderBottomColor: "#F0EFEF"
-      },
+      headerStyle: isAndroid
+        ? {
+            elevation: 0,
+            borderBottomWidth: 2 / PixelRatio.get(),
+            borderBottomColor: "#F0EFEF",
+            height: px2dp(88) + StatusBar.currentHeight
+          }
+        : {
+            elevation: 0,
+            borderBottomWidth: 2 / PixelRatio.get(),
+            borderBottomColor: "#F0EFEF",
+            height: px2dp(88) + _.getStatusBarHeight()
+          },
       headerTintColor: "#000",
       // headerTitleStyle: {
       //   fontWeight: 'bold',

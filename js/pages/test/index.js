@@ -2,12 +2,12 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 18:11:55
+ * @LastEditTime: 2022-04-12 22:01:07
  * @Description: 个人中心
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, SafeAreaView, StatusBar } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Button, msg, AsyncStorage, cache, XMHeader } from "@/common";
 import userApi from "@/api/user";
 
@@ -19,13 +19,11 @@ export default class User extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    console.log("🚀🚀🚀wimi======>>>StatusBar.currentHeight", StatusBar.currentHeight);
-  }
+  componentDidMount() {}
 
   render() {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "red" }}>
+      <View style={{ flex: 1, backgroundColor: "red" }}>
         <XMHeader title="测试页面" />
         <View style={styles.container}>
           <LongButton
@@ -59,7 +57,7 @@ export default class User extends Component {
             }}
           />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 

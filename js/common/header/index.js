@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, PixelRatio } from "react-native";
 import msg from "../msg";
 import { screenWidth, px2dp } from "../styles";
 import BackImageOn from "../back-image-on";
+import { getStatusBarHeight } from "../util";
 
 /**
  * 公共header组件
@@ -16,11 +17,14 @@ export default class Header extends Component {
   render() {
     const { style } = this.props;
     return (
-      <View style={[styles.container, style]}>
-        {this._renderLeft()}
-        {this._renderTitle()}
-        {this._renderRight()}
-      </View>
+      <>
+        <View style={[styles.statusBar, { height: getStatusBarHeight() }]}></View>
+        <View style={[styles.container, style]}>
+          {this._renderLeft()}
+          {this._renderTitle()}
+          {this._renderRight()}
+        </View>
+      </>
     );
   }
 
@@ -88,6 +92,9 @@ export default class Header extends Component {
 }
 
 const styles = StyleSheet.create({
+  statusBar: {
+    backgroundColor: "rgba(255,255,255,1)"
+  },
   container: {
     flexDirection: "row",
     justifyContent: "center",
@@ -119,7 +126,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: "#000",
     fontSize: px2dp(36),
-    fontWeight: "400"
+    fontWeight: "600"
   },
   rightContainer: {
     // height: isAndroid ? 50 : 45,
