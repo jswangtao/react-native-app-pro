@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 17:14:39
+ * @LastEditTime: 2022-04-12 23:40:22
  * @Description: 首页
  */
 
@@ -52,6 +52,7 @@ export default class Main extends Component {
       code: "ydxlmkfdh"
     };
     api.user.getConfigValue(params).then(res => {
+      console.log("🚀🚀🚀wimi======>>>res", res);
       if (res.success) {
       }
     });

@@ -34,7 +34,7 @@ axios.interceptors.response.use(
     if (__DEV__) {
       console.log("wangtao🚚featch:返回结果---->", response.data);
     }
-    return response;
+    return response.data;
   },
   error => {
     return Promise.reject(error);
