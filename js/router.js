@@ -121,6 +121,7 @@ const AppNavigator = createStackNavigator(
     // // screen：每个页面都有各自的标题栏，并且伴随着页面切换一起淡入淡出。这是 Android 上的常见模式。
     headerMode: "screen",
     defaultNavigationOptions: {
+      // 这段代码有点绕，主要是为了保持Android和iOS以及自定义头部的一致性
       headerStyle: isAndroid
         ? {
             elevation: 0,
@@ -128,12 +129,14 @@ const AppNavigator = createStackNavigator(
             borderBottomColor: "#F0EFEF",
             height: px2dp(88) + StatusBar.currentHeight
           }
-        : {
-            elevation: 0,
-            borderBottomWidth: 2 / PixelRatio.get(),
-            borderBottomColor: "#F0EFEF",
-            height: px2dp(88) + _.getStatusBarHeight()
-          },
+        : Object.assign(
+            {
+              elevation: 0,
+              borderBottomWidth: 2 / PixelRatio.get(),
+              borderBottomColor: "#F0EFEF"
+            },
+            _.getStatusBarHeight() ? { height: px2dp(88) + _.getStatusBarHeight() } : {}
+          ),
       headerTintColor: "#000",
       // headerTitleStyle: {
       //   fontWeight: 'bold',
