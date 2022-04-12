@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-03-30 14:58:18
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 17:17:58
+ * @LastEditTime: 2022-04-12 23:30:56
  * @Description: 状态管理，一般业务开发操作步骤，
  * 1.将stores下的template文件夹复制为自己的业务模块store，改名
  * 2.引入自己的模块store到此，然后实例化注册
@@ -20,15 +20,20 @@ if (isAndroid) {
 
 //1. 引入业务模块 start
 import UserStore from "./user";
+import BasicStore from "./basic";
 
 class RootStore {
   constructor() {
     //2.实例化注册
     this.userStore = new UserStore(this);
+    this.basicStore = new BasicStore(this);
   }
 
   // 初始化store
-  initStore() {}
+  initStore() {
+    // 客服电话全局
+    this.basicStore.getCustomService();
+  }
 
   // 清理store
   clearStore() {}

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 17:27:14
+ * @LastEditTime: 2022-04-12 23:05:58
  * @Description: 主入口
  */
 
@@ -12,7 +12,9 @@ import { View, StatusBar } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import { msg, Tip } from "@/common";
 import { AppContainer } from "./router";
+import { RootStore, RootStoreProvider } from "./stores/root-store";
 
+const rootStore = new RootStore();
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -28,29 +30,35 @@ export default class App extends Component {
 
   componentDidMount() {
     this._register();
+    // 初始化store
+    rootStore.initStore();
   }
 
   componentWillUnmount() {
     this._unRegister();
+    // 卸载store
+    rootStore.clearStore();
   }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <StatusBar barStyle="dark-content" translucent backgroundColor={"rgba(0, 0, 0, 0)"} />
-        <AppContainer
-          ref={obj => {
-            this.nav = obj;
-          }}
-        />
-        <Tip
-          modal={false}
-          text={this.state.isTipText}
-          icon={this.state.isTipIcon}
-          visible={this.state.isTipVisible}
-          onTipDisappear={this._handleTipDisappear}
-        />
-      </View>
+      <RootStoreProvider store={rootStore}>
+        <View style={{ flex: 1 }}>
+          <StatusBar barStyle="dark-content" translucent backgroundColor={"rgba(0, 0, 0, 0)"} />
+          <AppContainer
+            ref={obj => {
+              this.nav = obj;
+            }}
+          />
+          <Tip
+            modal={false}
+            text={this.state.isTipText}
+            icon={this.state.isTipIcon}
+            visible={this.state.isTipVisible}
+            onTipDisappear={this._handleTipDisappear}
+          />
+        </View>
+      </RootStoreProvider>
     );
   }
 
