@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 16:19:52
+ * @LastEditTime: 2022-04-12 17:27:14
  * @Description: 主入口
  */
 
@@ -37,7 +37,7 @@ export default class App extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <StatusBar translucent={false} barStyle="dark-content" />
+        <StatusBar barStyle="dark-content" translucent backgroundColor={"rgba(0, 0, 0, 0)"} />
         <AppContainer
           ref={obj => {
             this.nav = obj;
