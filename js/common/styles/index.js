@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-10 23:22:26
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 23:30:54
+ * @LastEditTime: 2022-04-12 17:04:16
  * @Description: 主要用于业务的色卡，适配
  */
 import { Dimensions, Platform } from "react-native";
@@ -17,6 +17,8 @@ const color_666666 = "#666666"; // 字体色 深灰色
 const color_999999 = "#999999"; // 字体色 次深灰色
 const color_CCCCCC = "#CCCCCC"; // 字体色 浅灰色
 const color_E6E6E6 = "#E6E6E6"; // 边框分割线色 浅灰色
+
+const color_2A64F4 = "#2A64F4";
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window"); // 屏幕宽高
 
@@ -48,5 +50,6 @@ export {
   color_666666,
   color_999999,
   color_CCCCCC,
-  color_E6E6E6
+  color_E6E6E6,
+  color_2A64F4
 };

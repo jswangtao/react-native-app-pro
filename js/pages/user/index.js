@@ -2,23 +2,20 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-02-19 20:29:30
+ * @LastEditTime: 2022-04-12 17:11:28
  * @Description: 个人中心
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import { iconUserCoffee, iconUserGray } from "@/images";
-import { Button, msg } from "@/common";
-
+import { StyleSheet, View, Text } from "react-native";
+import { Button, msg, Icon } from "@/common";
+import { color_2A64F4, color_CCCCCC } from "@/styles";
 const { LongButton } = Button;
 
 export default class User extends Component {
   static navigationOptions = () => ({
     title: "我的",
-    tabBarIcon: ({ focused }) => (
-      <Image source={focused ? iconUserCoffee : iconUserGray} style={{ width: 24, height: 24 }} />
-    )
+    tabBarIcon: ({ focused }) => <Icon name={"mine"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
   });
 
   constructor(props) {

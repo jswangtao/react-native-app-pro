@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-04-10 23:46:31
  * @Description: 主题色，主要是UI库用的，如果业务请用index中的值
  */
-export const color_primary = "#409EFF";
+export const color_primary = "#2A64F4";
 export const color_success = "#67C23A";
 export const color_warning = "#E6A23C";
 export const color_danger = "#F56C6C";

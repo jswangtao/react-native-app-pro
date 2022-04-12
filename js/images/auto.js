@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2022-01-12 15:10:47
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-02-19 20:19:33
- * @Description: 自动导入图片(目前支持drawable/icons文件夹，下划线命名,比如：icon_company_yellow，common_header_bg)
+ * @LastEditTime: 2022-04-12 17:12:40
+ * @Description: 自动导入图片(目前支持drawable文件夹，下划线命名,比如：common_header_bg)
  */
 // 导入模块
 const fs = require("fs/promises");
 
 const pathName = "./js/images"; // 需遍历的文件夹路径
-const dirNames = ["drawable", "icons"]; // 需遍历的文件夹路径
+const dirNames = ["drawable"]; // 需遍历的文件夹路径
 const jsPath = "./js/images/index.js"; // 生成 json 的文件路径
 const preFixReg = /^[a-z]\w+$/; //小写字母开头，包含字母数字下划线
 

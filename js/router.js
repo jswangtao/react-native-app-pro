@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 15:43:52
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 22:09:53
+ * @LastEditTime: 2022-04-12 17:08:40
  * @Description: 路由管理文件
  */
 import React from "react";
@@ -66,7 +66,7 @@ const TabNavigator = createBottomTabNavigator(
       allowFontScaling: false,
       activeBackgroundColor: "#fff",
       inactiveBackgroundColor: "#fff",
-      activeTintColor: "#BA914A",
+      activeTintColor: "#2A64F4",
       style: {
         borderTopWidth: 1 / PixelRatio.get(),
         borderTopColor: "#F0EFEF"

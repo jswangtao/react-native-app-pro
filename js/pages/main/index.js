@@ -2,25 +2,23 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-11 10:39:13
+ * @LastEditTime: 2022-04-12 17:14:39
  * @Description: 首页
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import { iconHomeCoffee, iconHomeGray } from "@/images";
+import { StyleSheet, View, Text } from "react-native";
+import {} from "@/images";
 import { Button, msg, Icon } from "@/common";
+import { color_2A64F4, color_CCCCCC } from "@/styles";
 import api from "@/api";
-// import Icon from "react-native-vector-icons/FontAwesome";
 
 const { LongButton } = Button;
 
 export default class Main extends Component {
   static navigationOptions = () => ({
     title: "首页",
-    tabBarIcon: ({ focused }) => (
-      <Image source={focused ? iconHomeCoffee : iconHomeGray} style={{ width: 24, height: 24 }} />
-    )
+    tabBarIcon: ({ focused }) => <Icon name={"home1"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
   });
 
   constructor(props) {
@@ -36,8 +34,7 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         <Icon name={"icon_setting"} size={24} color={"#999"} />
-
-        <Text>this is Main</Text>
+        <Text>支持IconFont</Text>
         <LongButton
           text="goTo测试页面"
           boxStyle={{ marginTop: 20 }}
