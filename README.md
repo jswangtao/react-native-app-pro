@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-12 17:33:47
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 21:08:54
+ * @LastEditTime: 2022-04-12 23:02:10
  * @Description: file content
 -->
 
@@ -29,6 +29,14 @@ cd ios && pod install
 2. 复制 iconfont，因为用了字体图标
    将 js/common/icons/iconfont 里面的 iconfont.ttf 文件复制到 node_modules/react-native-vector-icons/Fonts 文件夹下面,
    后续更换自己的字体图标库，请看 js/common/icons/README.md
+
+   或者直接执行
+
+   ```
+   npm run init
+   ```
+
+   这个命令会帮你复制 iconfont.ttf
 
 3. 启动
 
