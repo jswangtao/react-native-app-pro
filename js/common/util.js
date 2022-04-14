@@ -2,12 +2,58 @@
  * @Author: wangtao
  * @Date: 2020-06-30 20:02:03
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 21:44:51
+ * @LastEditTime: 2022-04-13 00:11:03
  * @Description: 工具
  */
 import { Dimensions, Platform, NativeModules, StatusBar } from "react-native";
-const isAndroid = Platform.OS === "android";
+
 const { StatusBarManager } = NativeModules;
+
+/**
+ *防抖
+ * @param {*} func 要进行debouce的函数
+ * @param {*} wait 等待时间,默认500ms
+ * @param {*} immediate 是否立即执行
+ */
+export function debounce(func, wait = 500, immediate = false) {
+  let timeout;
+  let callNow = true;
+  return function (...rest) {
+    let context = this;
+    let args = rest;
+    if (timeout) clearTimeout(timeout);
+    if (immediate) {
+      // 如果已经执行过，不再执行
+      if (callNow) {
+        callNow = false;
+        func.apply(context, args);
+      }
+      timeout = setTimeout(() => {
+        callNow = true;
+      }, wait);
+    } else {
+      timeout = setTimeout(() => {
+        func.apply(context, args);
+      }, wait);
+    }
+  };
+}
+
+// 节流
+export function throttle(fn, wait) {
+  var timer = null;
+  return function () {
+    var context = this;
+    var args = arguments;
+    if (!timer) {
+      timer = setTimeout(function () {
+        fn.apply(context, args);
+        timer = null;
+      }, wait);
+    }
+  };
+}
+
 /**
  * 是否是iPhonex
  */
@@ -29,20 +75,6 @@ export function ifIphoneX(iphoneXStyle, regularStyle) {
 /**
  * 获取状态栏高度
  */
-// export function getStatusBarHeight() {
-//   StatusBarManager.getHeight(statusBarHeight => {
-//     console.log("🚀🚀🚀wimi======>>>statusBarHeight", statusBarHeight);
-
-//     return 11;
-//   });
-//   // if (!isAndroid) {
-
-//   // } else {
-//   //   return StatusBar.currentHeight;
-//   // }
-// }
-
-// 获取状态栏高度
 let oStatusHeight = 0;
 export function getStatusBarHeight(callback?: (height: number) => void) {
   if (oStatusHeight) {
@@ -50,7 +82,6 @@ export function getStatusBarHeight(callback?: (height: number) => void) {
     return oStatusHeight;
   }
   if (Platform.OS === "ios") {
-    const { StatusBarManager } = NativeModules;
     // iOS Only
     if (StatusBarManager && StatusBarManager.getHeight) {
       StatusBarManager.getHeight((statusBar: { height: number }) => {

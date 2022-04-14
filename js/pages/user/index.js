@@ -2,15 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 17:11:28
+ * @LastEditTime: 2022-04-14 23:58:16
  * @Description: 个人中心
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { Button, msg, Icon } from "@/common";
+import { XMButton, msg, Icon } from "@/common";
 import { color_2A64F4, color_CCCCCC } from "@/styles";
-const { LongButton } = Button;
 
 export default class User extends Component {
   static navigationOptions = () => ({
@@ -29,16 +28,16 @@ export default class User extends Component {
     return (
       <View style={styles.container}>
         <Text>this is user</Text>
-        <LongButton
+        <XMButton
           text="关于个人"
-          boxStyle={{ marginTop: 20 }}
+          style={{ marginTop: 20 }}
           onClick={() => {
             msg.emit("router: goToNext", { routeName: "About" });
           }}
         />
-        <LongButton
+        <XMButton
           text="去登录"
-          boxStyle={{ marginTop: 20 }}
+          style={{ marginTop: 20 }}
           onClick={() => {
             msg.emit("router: goToNext", { routeName: "Login" });
           }}

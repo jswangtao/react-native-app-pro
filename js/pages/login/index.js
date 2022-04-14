@@ -2,18 +2,18 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 17:48:03
+ * @LastEditTime: 2022-04-14 23:57:51
  * @Description: 登录
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text, Image, TextInput, PixelRatio, TouchableOpacity, ScrollView } from "react-native";
 import { logo, iconLeftWhite } from "@/images";
-import { Button, _, isAndroid, msg, XMSafeAreaView } from "@/common";
+import { XMButton, _, isAndroid, msg, XMSafeAreaView } from "@/common";
 import { px2dp, mainBgColorWhite, fontColorBlack, fontColorLightGray, screenWidth } from "@/styles";
 import api from "@/api";
 
-const { SendButton, Submit } = Button;
+// const { SendButton, Submit } = Button;
 
 export default class Login extends Component {
   constructor(props) {
@@ -67,17 +67,16 @@ export default class Login extends Component {
               }
             }}
           />
-          <SendButton btnStyle={styles.sendBtn} onClick={() => {}} clickValid={() => {}} />
+          {/* <SendButton btnStyle={styles.sendBtn} onClick={() => {}} clickValid={() => {}} /> */}
         </View>
-        <Submit
+        <XMButton
           text="登录"
-          boxStyle={{
+          style={{
             width: "100%",
             height: px2dp(88),
             borderRadius: px2dp(16),
             marginTop: px2dp(80)
           }}
-          btnTextStyle={{ fontSize: px2dp(36) }}
           onClick={() => this.login()}
         />
         {/* 小返回按钮 */}
