@@ -2,16 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 22:01:07
+ * @LastEditTime: 2022-04-15 00:05:42
  * @Description: 个人中心
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, msg, AsyncStorage, cache, XMHeader } from "@/common";
+import { XMButton, msg, AsyncStorage, cache, XMHeader } from "@/common";
 import userApi from "@/api/user";
-
-const { LongButton } = Button;
 
 export default class User extends Component {
   constructor(props) {
@@ -26,28 +24,28 @@ export default class User extends Component {
       <View style={{ flex: 1, backgroundColor: "red" }}>
         <XMHeader title="测试页面" />
         <View style={styles.container}>
-          <LongButton
+          <XMButton
             text="测试同步存储和异步存储"
             boxStyle={{ marginTop: 20 }}
             onClick={() => {
               this.testStorage();
             }}
           />
-          <LongButton
+          <XMButton
             text="测试cookie是否丢失（iOS需要特殊处理）"
             boxStyle={{ marginTop: 20 }}
             onClick={() => {
               this.testCookie();
             }}
           />
-          <LongButton
+          <XMButton
             text="测试tip"
             boxStyle={{ marginTop: 20 }}
             onClick={() => {
               this.testTip();
             }}
           />
-          <LongButton
+          <XMButton
             text="ListViewDemo"
             boxStyle={{ marginTop: 20 }}
             onClick={() => {

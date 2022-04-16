@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 23:42:45
+ * @LastEditTime: 2022-04-16 17:09:36
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import {} from "@/images";
-import { Button, msg, Icon } from "@/common";
+import { msg, Icon, XMButton } from "@/common";
 import { color_2A64F4, color_CCCCCC } from "@/styles";
 import api from "@/api";
 
@@ -33,19 +33,33 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Icon name={"icon_setting"} size={24} color={"#999"} />
-        <Text>支持IconFont</Text>
-        <Text>出现这个客服电话，说明mobx和接口都成功了：{this.props.store.basicStore.serviceNum}</Text>
-        <LongButton
-          text="goTo测试页面"
-          boxStyle={{ marginTop: 20 }}
-          onClick={() => {
-            msg.emit("router: goToNext", { routeName: "Test" });
-          }}
-        />
+        <XMButton text="默认按钮" type="primary" icon="icon_setting" onClick={this.test} />
+        <Icon name={"icon_setting"} size={24} color={"#999"}>
+          支持IconFont
+        </Icon>
       </View>
     );
   }
+
+  test = () => {
+    return new Promise(reslove => {
+      setTimeout(() => {
+        reslove(1);
+      }, 3000);
+    });
+  };
+
+  // 获取客服电话
+  getCustomService = () => {
+    const params = {
+      code: "ydxlmkfdh"
+    };
+    api.user.getConfigValue(params).then(res => {
+      console.log("🚀🚀🚀wimi======>>>res", res);
+      if (res.success) {
+      }
+    });
+  };
 }
 export default Main;
 const styles = StyleSheet.create({
