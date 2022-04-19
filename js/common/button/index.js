@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-15 00:07:25
+ * @LastEditTime: 2022-04-20 00:13:30
  * @Description: Button公共组件
  */
 
@@ -16,8 +16,8 @@ import {
   color_danger,
   color_white,
   border_color_base
-} from "./styles/theme";
-import Icon from "./icons";
+} from "../styles/theme";
+import Icon from "../icons";
 const noop = () => {};
 /**
  * Button
@@ -162,10 +162,8 @@ export default class Button extends Component {
     this.setState({
       processing: true
     });
-    console.log("🚀🚀🚀wimi======>>>1111");
     // 执行 onClick 方法
     await this.props.onClick();
-    console.log("🚀🚀🚀wimi======>>>2222");
     this.setState({
       processing: false
     });
