@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 17:27:14
+ * @LastEditTime: 2022-04-19 21:40:05
  * @Description: 主入口
  */
 
@@ -12,6 +12,8 @@ import { View, StatusBar } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import { msg, Tip } from "@/common";
 import { AppContainer } from "./router";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 export default class App extends Component {
   constructor(props) {
@@ -36,21 +38,23 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <StatusBar barStyle="dark-content" translucent backgroundColor={"rgba(0, 0, 0, 0)"} />
-        <AppContainer
-          ref={obj => {
-            this.nav = obj;
-          }}
-        />
-        <Tip
-          modal={false}
-          text={this.state.isTipText}
-          icon={this.state.isTipIcon}
-          visible={this.state.isTipVisible}
-          onTipDisappear={this._handleTipDisappear}
-        />
-      </View>
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <StatusBar barStyle="dark-content" translucent backgroundColor={"rgba(0, 0, 0, 0)"} />
+          <AppContainer
+            ref={obj => {
+              this.nav = obj;
+            }}
+          />
+          <Tip
+            modal={false}
+            text={this.state.isTipText}
+            icon={this.state.isTipIcon}
+            visible={this.state.isTipVisible}
+            onTipDisappear={this._handleTipDisappear}
+          />
+        </View>
+      </Provider>
     );
   }
 

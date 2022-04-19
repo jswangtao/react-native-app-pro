@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-12 17:33:47
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 23:02:10
+ * @LastEditTime: 2022-04-19 17:56:26
  * @Description: file content
 -->
 
@@ -41,5 +41,6 @@ cd ios && pod install
 3. 启动
 
 ```
-react-native run-android或者react-native run-ios
+react-native run-ios
+react-native run-android
 ```
