@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 16:23:55
+ * @LastEditTime: 2022-04-26 20:46:01
  * @Description: Button公共组件 模仿u-button
  */
 
@@ -162,7 +162,6 @@ export default class Button extends Component {
     if (disabled || processing) {
       return;
     }
-
     // 设置按钮状态执行操作中
     this.setState({
       processing: true
