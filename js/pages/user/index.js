@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-14 23:58:16
+ * @LastEditTime: 2022-04-27 00:41:55
  * @Description: 个人中心
  */
 
@@ -14,7 +14,7 @@ import { color_2A64F4, color_CCCCCC } from "@/styles";
 export default class User extends Component {
   static navigationOptions = () => ({
     title: "我的",
-    tabBarIcon: ({ focused }) => <XMIcon name={"mine"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
+    tabBarIcon: ({ focused }) => <XMIcon name={"my"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
   });
 
   constructor(props) {

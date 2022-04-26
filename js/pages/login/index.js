@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 23:22:56
+ * @LastEditTime: 2022-04-27 00:29:36
  * @Description: 登录
  */
 
@@ -65,6 +65,17 @@ export default class Login extends Component {
           }}
           onClick={() => this.login()}
         /> */}
+        <XMButton
+          text="登录"
+          type="primary"
+          style={{
+            width: px2dp(638),
+            height: px2dp(88),
+            borderRadius: px2dp(44),
+            marginTop: px2dp(80)
+          }}
+          onClick={() => this.login()}
+        />
       </XMSafeAreaView>
     );
   }

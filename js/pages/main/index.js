@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 21:12:19
+ * @LastEditTime: 2022-04-27 00:41:14
  * @Description: 首页
  */
 
@@ -16,7 +16,7 @@ import api from "@/api";
 export default class Main extends Component {
   static navigationOptions = () => ({
     title: "首页",
-    tabBarIcon: ({ focused }) => <XMIcon name={"home1"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
+    tabBarIcon: ({ focused }) => <XMIcon name={"home"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
   });
 
   constructor(props) {
