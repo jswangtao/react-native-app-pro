@@ -1,12 +1,12 @@
 /*
  * @Author: wangtao
- * @Date: 2020-06-28 15:43:56
+ * @Date: 2022-04-26 14:07:06
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-14 23:49:11
- * @Description: 公共模块管理   兼容1.0版本的组件 colors, dashLine, navigationBar, svgs, theme
+ * @LastEditTime: 2022-04-26 16:40:40
+ * @Description: file content
  */
-
 import XMButton from "./button"; // 自定义Button
+import XMSendCodeButton from "./button-code-send"; // 发送验证码
 import msg from "./msg"; // 全局通信
 import BackImageOn from "./back-image-on"; // 返回按钮(主要与XMHeader配合使用，自带宽高，方便点击)
 import * as _ from "./util"; // 工具函数
@@ -24,6 +24,7 @@ import XMSafeAreaView from "./safe-area-view"; //沉浸式安全区
 import Icon from "./icons"; //沉浸式安全区
 export {
   XMButton,
+  XMSendCodeButton,
   msg,
   BackImageOn,
   _,

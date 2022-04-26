@@ -93,6 +93,7 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
   statusBar: {
+    width: screenWidth,
     backgroundColor: "rgba(255,255,255,1)"
   },
   container: {
