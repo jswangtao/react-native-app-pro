@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 22:58:46
+ * @LastEditTime: 2022-04-27 04:39:55
  * @Description: Button公共组件 模仿u-button
  */
 
@@ -185,11 +185,13 @@ const styles = StyleSheet.create({
 
   // begin submit
   submitBox: {
+    height: 44,
     borderRadius: 4,
     overflow: "hidden",
     borderWidth: 1 / PixelRatio.get(),
     borderColor: "rgba(0,0,0,0.2)",
-    backgroundColor: color_white
+    backgroundColor: color_white,
+    alignSelf: "center" //这里不设置，会导致如果外部没有指定弹性布局方式会自动撑满父级，因为rn的display没有inline-block等属性，只有采取这种方式
   },
   submitBtn: {
     height: "100%",

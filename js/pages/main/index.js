@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 00:41:14
+ * @LastEditTime: 2022-04-27 04:32:23
  * @Description: 首页
  */
 
@@ -32,9 +32,9 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         {this._renderView()}
-        <XMIcon name={"icon_setting"} size={24} color={"#999"}>
+        {/* <XMIcon name={"icon_setting"} size={24} color={"#999"}>
           支持IconFont
-        </XMIcon>
+        </XMIcon> */}
       </View>
     );
   }
@@ -89,7 +89,6 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     backgroundColor: "#f2f2f2",
     justifyContent: "center"
   }
