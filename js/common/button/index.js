@@ -2,8 +2,8 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-20 00:13:30
- * @Description: Button公共组件
+ * @LastEditTime: 2022-04-26 16:23:55
+ * @Description: Button公共组件 模仿u-button
  */
 
 import React, { Component } from "react";
@@ -28,6 +28,8 @@ export default class Button extends Component {
     type: "default", // 按钮的样式类型 default / primary / danger/ warning / success
     disabled: false, // 是否禁用
     loading: false, // 按钮名称前是否带 loading 图标
+    plain: false, // 按钮是否镂空，背景色透明
+    hairline: false, // 是否显示按钮的细边框
     style: {}, // 样式
     icon: "",
     iconSize: 18,
@@ -91,7 +93,7 @@ export default class Button extends Component {
    * @returns {{}}
    */
   getBoxStyle = () => {
-    const { type, plain } = this.props;
+    const { type, plain, hairline } = this.props;
     let { boxStyle } = this.state;
     if (type === "primary") {
       boxStyle = StyleSheet.flatten([boxStyle, { backgroundColor: color_primary, borderColor: color_primary }]);
@@ -107,6 +109,9 @@ export default class Button extends Component {
     }
     if (plain) {
       boxStyle = StyleSheet.flatten([boxStyle, { backgroundColor: "rgba(255,255,255,0)" }]);
+    }
+    if (hairline) {
+      boxStyle = StyleSheet.flatten([boxStyle, { borderWidth: 0 }]);
     }
     return boxStyle;
   };
