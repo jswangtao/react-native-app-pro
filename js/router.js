@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 15:43:52
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 22:12:02
+ * @LastEditTime: 2022-04-26 21:28:47
  * @Description: 路由管理文件
  */
 import React from "react";
@@ -16,6 +16,7 @@ import Main from "./pages/main";
 import User from "./pages/user";
 import About from "./pages/about";
 import Login from "./pages/login";
+import Ui from "./pages/ui";
 // 测试页面start
 import Test from "./pages/test";
 import ListViewDemo from "./pages/test/listview";
@@ -95,6 +96,7 @@ const AppNavigator = createStackNavigator(
       screen: Login,
       ...emptyHeader
     },
+
     About: {
       screen: About,
       navigationOptions: {
@@ -112,6 +114,10 @@ const AppNavigator = createStackNavigator(
         headerTitle: "列表",
         ...titleCenter
       }
+    },
+    Ui: {
+      screen: Ui,
+      ...emptyHeader
     }
   },
   {
@@ -138,9 +144,6 @@ const AppNavigator = createStackNavigator(
             _.getStatusBarHeight() ? { height: px2dp(88) + _.getStatusBarHeight() } : {}
           ),
       headerTintColor: "#000",
-      // headerTitleStyle: {
-      //   fontWeight: 'bold',
-      // },
       headerLeft: () => <BackImageOn />,
       headerBackTitle: null,
       // 将安卓的跳转动画改成iOS
@@ -148,13 +151,10 @@ const AppNavigator = createStackNavigator(
         open: TransitionSpecs.TransitionIOSSpec,
         close: TransitionSpecs.TransitionIOSSpec
       },
+      // 只要修改最后的forHorizontalIOS就可以实现不同的动画了。
+      // 从右向左：forHorizontalIOS
       cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
     }
-    // // 用于屏幕的默认导航选项
-    // navigationOptions: {
-    //     headerBackTitle: null,
-    //     header: null
-    // },
   }
 );
 

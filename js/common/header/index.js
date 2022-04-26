@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: "#000",
     fontSize: px2dp(36),
-    fontWeight: "600"
+    fontWeight: "bold"
   },
   rightContainer: {
     // height: isAndroid ? 50 : 45,

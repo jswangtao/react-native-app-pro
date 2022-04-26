@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 20:52:35
+ * @LastEditTime: 2022-04-26 22:11:30
  * @Description: 发送验证码
  */
 
@@ -18,7 +18,7 @@ export default class SendCodeButton extends Button {
     text: "获取验证码",
     time: 60,
     clickValid: noop, //校验函数
-    hairline: true,
+    hairline: false,
     plain: true,
     type: "primary"
   };

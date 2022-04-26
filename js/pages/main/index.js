@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-15 00:08:30
+ * @LastEditTime: 2022-04-26 21:12:19
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import {} from "@/images";
-import { msg, Icon, XMButton } from "@/common";
+import { msg, Icon, XMButton, XMSendCodeButton } from "@/common";
 import { color_2A64F4, color_CCCCCC } from "@/styles";
 import api from "@/api";
 
@@ -31,7 +31,7 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <XMButton text="默认按钮" type="primary" icon="icon_setting" onClick={this.test} />
+        {this._renderView()}
         <Icon name={"icon_setting"} size={24} color={"#999"}>
           支持IconFont
         </Icon>
@@ -39,7 +39,33 @@ export default class Main extends Component {
     );
   }
 
+  _renderView = () => {
+    return (
+      <>
+        <XMButton
+          text="公共组件"
+          type="primary"
+          style={{ marginBottom: 10 }}
+          onClick={() => {
+            msg.emit("router: goToNext", {
+              routeName: "Ui"
+            });
+          }}
+        />
+        <XMButton
+          text="测试页面"
+          onClick={() => {
+            msg.emit("router: goToNext", {
+              routeName: "Test"
+            });
+          }}
+        />
+      </>
+    );
+  };
+
   test = () => {
+    console.log("🚀🚀🚀wimi======>>>test");
     return new Promise(reslove => {
       setTimeout(() => {
         reslove(1);

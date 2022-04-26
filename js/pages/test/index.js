@@ -2,13 +2,13 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-15 00:05:42
+ * @LastEditTime: 2022-04-26 21:00:34
  * @Description: 个人中心
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { XMButton, msg, AsyncStorage, cache, XMHeader } from "@/common";
+import { XMButton, msg, AsyncStorage, cache, XMHeader, XMSendCodeButton } from "@/common";
 import userApi from "@/api/user";
 
 export default class User extends Component {
@@ -21,40 +21,9 @@ export default class User extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: "red" }}>
+      <View style={styles.container}>
         <XMHeader title="测试页面" />
-        <View style={styles.container}>
-          <XMButton
-            text="测试同步存储和异步存储"
-            boxStyle={{ marginTop: 20 }}
-            onClick={() => {
-              this.testStorage();
-            }}
-          />
-          <XMButton
-            text="测试cookie是否丢失（iOS需要特殊处理）"
-            boxStyle={{ marginTop: 20 }}
-            onClick={() => {
-              this.testCookie();
-            }}
-          />
-          <XMButton
-            text="测试tip"
-            boxStyle={{ marginTop: 20 }}
-            onClick={() => {
-              this.testTip();
-            }}
-          />
-          <XMButton
-            text="ListViewDemo"
-            boxStyle={{ marginTop: 20 }}
-            onClick={() => {
-              msg.emit("router: goToNext", {
-                routeName: "ListViewDemo"
-              });
-            }}
-          />
-        </View>
+        <XMSendCodeButton />
       </View>
     );
   }
@@ -97,7 +66,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#f2f2f2",
-    justifyContent: "center"
+    backgroundColor: "#f2f2f2"
   }
 });
