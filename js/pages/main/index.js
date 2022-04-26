@@ -9,14 +9,14 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import {} from "@/images";
-import { msg, Icon, XMButton, XMSendCodeButton } from "@/common";
+import { msg, XMIcon, XMButton, XMSendCodeButton } from "@/common";
 import { color_2A64F4, color_CCCCCC } from "@/styles";
 import api from "@/api";
 
 export default class Main extends Component {
   static navigationOptions = () => ({
     title: "首页",
-    tabBarIcon: ({ focused }) => <Icon name={"home1"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
+    tabBarIcon: ({ focused }) => <XMIcon name={"home1"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
   });
 
   constructor(props) {
@@ -32,9 +32,9 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         {this._renderView()}
-        <Icon name={"icon_setting"} size={24} color={"#999"}>
+        <XMIcon name={"icon_setting"} size={24} color={"#999"}>
           支持IconFont
-        </Icon>
+        </XMIcon>
       </View>
     );
   }

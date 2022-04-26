@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 15:43:52
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 21:28:47
+ * @LastEditTime: 2022-04-26 22:50:52
  * @Description: 路由管理文件
  */
 import React from "react";
@@ -122,7 +122,7 @@ const AppNavigator = createStackNavigator(
   },
   {
     // initialRouteName:__DEV__ ? 'Test' : 'BootPage',
-    initialRouteName: "Tab",
+    initialRouteName: "Login",
     mode: "card",
     // // screen：每个页面都有各自的标题栏，并且伴随着页面切换一起淡入淡出。这是 Android 上的常见模式。
     headerMode: "screen",

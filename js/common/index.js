@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-26 14:07:06
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 16:40:40
+ * @LastEditTime: 2022-04-26 23:11:00
  * @Description: file content
  */
 import XMButton from "./button"; // 自定义Button
@@ -21,7 +21,8 @@ import FormInput from "./form/form-input"; // 表单输入
 import FormSelect from "./form/form-select"; // 表单选择
 import FormItem from "./form/form-item"; // 表单普通展示项目
 import XMSafeAreaView from "./safe-area-view"; //沉浸式安全区
-import Icon from "./icons"; //沉浸式安全区
+import XMIcon from "./icons"; //字体图标
+import XMInput from "./input"; //输入框
 export {
   XMButton,
   XMSendCodeButton,
@@ -39,5 +40,6 @@ export {
   FormSelect,
   FormItem,
   XMSafeAreaView,
-  Icon
+  XMIcon,
+  XMInput
 };

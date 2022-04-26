@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 21:47:14
+ * @LastEditTime: 2022-04-26 22:58:46
  * @Description: Button公共组件 模仿u-button
  */
 
@@ -17,7 +17,7 @@ import {
   color_white,
   border_color_base
 } from "../styles/theme";
-import Icon from "../icons";
+import XMIcon from "../icons";
 const noop = () => {};
 /**
  * Button
@@ -67,7 +67,7 @@ export default class Button extends Component {
           {processing && loading && (
             <ActivityIndicator size="small" color={border_color_base} style={{ marginRight: 4 }} />
           )}
-          {!!icon && <Icon name={icon} size={iconSize} color={iconColor} style={{ marginRight: 4 }} />}
+          {!!icon && <XMIcon name={icon} size={iconSize} color={iconColor} style={{ marginRight: 4 }} />}
           <Text allowFontScaling={false} style={this.getTextStyle()}>
             {text}
           </Text>
@@ -192,6 +192,7 @@ const styles = StyleSheet.create({
     backgroundColor: color_white
   },
   submitBtn: {
+    height: "100%",
     paddingVertical: 8,
     paddingHorizontal: 8,
     alignItems: "center",

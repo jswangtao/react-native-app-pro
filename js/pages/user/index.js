@@ -8,13 +8,13 @@
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { XMButton, msg, Icon } from "@/common";
+import { XMButton, msg, XMIcon } from "@/common";
 import { color_2A64F4, color_CCCCCC } from "@/styles";
 
 export default class User extends Component {
   static navigationOptions = () => ({
     title: "我的",
-    tabBarIcon: ({ focused }) => <Icon name={"mine"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
+    tabBarIcon: ({ focused }) => <XMIcon name={"mine"} size={24} color={focused ? color_2A64F4 : color_CCCCCC} />
   });
 
   constructor(props) {

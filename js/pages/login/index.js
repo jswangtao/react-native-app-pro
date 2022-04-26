@@ -2,15 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-14 23:57:51
+ * @LastEditTime: 2022-04-26 23:22:56
  * @Description: 登录
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text, Image, TextInput, PixelRatio, TouchableOpacity, ScrollView } from "react-native";
 import { logo, iconLeftWhite } from "@/images";
-import { XMButton, _, isAndroid, msg, XMSafeAreaView } from "@/common";
-import { px2dp, mainBgColorWhite, fontColorBlack, fontColorLightGray, screenWidth } from "@/styles";
+import { XMButton, _, isAndroid, msg, XMSafeAreaView, XMInput } from "@/common";
+import { px2dp, color_FFFFFF, fontColorBlack, fontColorLightGray, screenWidth } from "@/styles";
 import api from "@/api";
 
 // const { SendButton, Submit } = Button;
@@ -30,8 +30,12 @@ export default class Login extends Component {
     return (
       <XMSafeAreaView style={styles.container}>
         <Image source={logo} resizeMode="contain" style={styles.logo} />
-        <Text style={styles.title}>欢迎来到RN</Text>
-        <TextInput
+        <Text style={styles.title}>react-native-app-pro</Text>
+        <View style={styles.inputWrap}>
+          <XMInput />
+        </View>
+
+        {/* <TextInput
           style={[styles.textInput, { marginTop: px2dp(140) }]}
           ref={inputMobile => (this.inputMobile = inputMobile)}
           placeholder="手机号"
@@ -49,40 +53,18 @@ export default class Login extends Component {
             }
           }}
         />
-        <View style={styles.pwdWrap}>
-          <TextInput
-            style={[styles.textInput]}
-            placeholder="验证码"
-            ref={inputCode => (this.inputCode = inputCode)}
-            maxLength={4}
-            keyboardType="number-pad"
-            placeholderTextColor="rgba(153, 151, 150, 1)"
-            underlineColorAndroid="transparent"
-            onChangeText={text => {
-              this.setState({
-                code: text
-              });
-              if (text.length === 4) {
-                this.inputCode.blur();
-              }
-            }}
-          />
-          {/* <SendButton btnStyle={styles.sendBtn} onClick={() => {}} clickValid={() => {}} /> */}
-        </View>
+
         <XMButton
           text="登录"
+          type="primary"
           style={{
-            width: "100%",
+            width: px2dp(638),
             height: px2dp(88),
-            borderRadius: px2dp(16),
+            borderRadius: px2dp(44),
             marginTop: px2dp(80)
           }}
           onClick={() => this.login()}
-        />
-        {/* 小返回按钮 */}
-        <TouchableOpacity style={styles.backDot} onPress={() => msg.emit("router: back")}>
-          <Image style={styles.backImg} resizeMode="stretch" source={iconLeftWhite} />
-        </TouchableOpacity>
+        /> */}
       </XMSafeAreaView>
     );
   }
@@ -102,16 +84,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: mainBgColorWhite,
-    paddingHorizontal: px2dp(60)
+    backgroundColor: color_FFFFFF
   },
   logo: {
     width: px2dp(160),
     height: px2dp(180),
-    ..._.ifIphoneX(
-      { marginTop: px2dp(180 + 60) },
-      isAndroid ? { marginTop: px2dp(180) } : { marginTop: px2dp(180 + 30) }
-    )
+    marginTop: px2dp(180)
   },
   title: {
     fontSize: px2dp(44),
@@ -119,37 +97,8 @@ const styles = StyleSheet.create({
     color: fontColorBlack,
     marginTop: px2dp(32)
   },
-  textInput: {
-    height: px2dp(80),
-    width: "100%",
-    textAlign: "left",
-    fontSize: px2dp(32),
-    borderBottomColor: fontColorLightGray,
-    borderBottomWidth: 1 / PixelRatio.get()
-  },
-  pwdWrap: {
-    width: "100%",
-    position: "relative",
-    marginTop: px2dp(20)
-  },
-  sendBtn: {
-    position: "absolute",
-    right: 0,
-    height: px2dp(80)
-  },
-  backDot: {
-    width: px2dp(66),
-    height: px2dp(66),
-    position: "absolute",
-    left: px2dp(40),
-    ..._.ifIphoneX({ top: px2dp(80 + 60) }, isAndroid ? { top: px2dp(80) } : { top: px2dp(80 + 30) }),
-    backgroundColor: "rgba(0,0,0,0.4)",
-    borderRadius: px2dp(33),
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  backImg: {
-    width: px2dp(36),
-    height: px2dp(36)
+  inputWrap: {
+    width: px2dp(622),
+    marginTop: px2dp(64)
   }
 });
