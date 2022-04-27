@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 04:29:40
+ * @LastEditTime: 2022-04-27 14:49:24
  * @Description: 登录
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image, TextInput, PixelRatio, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
 import { logo, iconLeftWhite } from "@/images";
-import { XMButton, _, isAndroid, msg, XMSafeAreaView, XMInput } from "@/common";
+import { XMButton, _, isAndroid, msg, XMSafeAreaView, XMInput, XMSendCodeButton } from "@/common";
 import { px2dp, color_FFFFFF, fontColorBlack, fontColorLightGray, screenWidth } from "@/styles";
 import api from "@/api";
 
@@ -32,39 +32,40 @@ export default class Login extends Component {
         <Image source={logo} resizeMode="contain" style={styles.logo} />
         <Text style={styles.title}>react-native-app-pro</Text>
         <View style={styles.inputWrap}>
-          <XMInput />
+          <XMInput
+            border="bottom"
+            placeholder="输入手机号"
+            clearable
+            onChangeText={text => {
+              console.log("🚀🚀🚀wimi======>>>text", text);
+            }}
+            prefixIcon="phone"
+          />
+
+          <XMInput
+            style={{ marginTop: 10 }}
+            border="bottom"
+            placeholder="输入密码"
+            onChangeText={text => {
+              console.log("🚀🚀🚀wimi======>>>text", text);
+            }}
+            prefixIcon="safe"
+            type="password"
+          />
+
+          <XMInput
+            style={{ marginTop: 10 }}
+            border="bottom"
+            placeholder="输入验证码"
+            onChangeText={text => {
+              console.log("🚀🚀🚀wimi======>>>text", text);
+            }}
+            prefixIcon="safe"
+            clearable
+            suffix={<XMSendCodeButton />}
+          />
         </View>
 
-        {/* <TextInput
-          style={[styles.textInput, { marginTop: px2dp(140) }]}
-          ref={inputMobile => (this.inputMobile = inputMobile)}
-          placeholder="手机号"
-          placeholderTextColor="#999"
-          maxLength={11}
-          keyboardType="numeric"
-          underlineColorAndroid="transparent"
-          clearButtonMode="while-editing"
-          onChangeText={text => {
-            this.setState({
-              mobile: text
-            });
-            if (text.length === 11) {
-              this.inputMobile.blur();
-            }
-          }}
-        />
-
-        <XMButton
-          text="登录"
-          type="primary"
-          style={{
-            width: px2dp(638),
-            height: px2dp(88),
-            borderRadius: px2dp(44),
-            marginTop: px2dp(80)
-          }}
-          onClick={() => this.login()}
-        /> */}
         <XMButton
           text="登录"
           type="primary"
