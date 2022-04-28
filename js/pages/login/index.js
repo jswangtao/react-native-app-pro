@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 09:32:08
+ * @LastEditTime: 2022-04-28 09:37:31
  * @Description: 登录
  */
 
@@ -26,7 +26,6 @@ export default class Login extends Component {
   componentDidMount() {}
 
   render() {
-    console.log("🚀🚀🚀wimi======>>>rq", JSON.stringify(require("../../images/drawable/empty_01.png")));
     const { visible } = this.state;
     return (
       <XMSafeAreaView style={styles.container}>

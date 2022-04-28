@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-26 14:07:06
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 23:11:00
+ * @LastEditTime: 2022-04-28 09:54:05
  * @Description: file content
  */
 import XMButton from "./button"; // 自定义Button
@@ -14,7 +14,8 @@ import cache from "./cache"; // 常量模块
 import Tip from "./modal/tip"; // tips弹框
 import ValidConst from "./validate"; // 常用校验正则
 import XMImage from "./image"; // 图片组件
-import XMImageViewer from "./image-viewer";
+import XMImageViewer from "./image-viewer"; //图片预览
+import XMImageAlbum from "./image-album"; //图片预览
 import XMListView from "./list-view"; // 列表组件
 import XMEmpty from "./empty"; // 缺省图
 import XMHeader from "./header"; // 内嵌头部
@@ -35,6 +36,7 @@ export {
   ValidConst,
   XMImage,
   XMImageViewer,
+  XMImageAlbum,
   XMListView,
   XMEmpty,
   XMHeader,

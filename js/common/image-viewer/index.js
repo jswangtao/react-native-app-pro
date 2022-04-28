@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2021-08-16 14:36:01
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 09:27:01
+ * @LastEditTime: 2022-04-28 09:34:59
  * @Description: file content
  */
 import React, { Component } from "react";
@@ -24,8 +24,6 @@ export default class XMImageViewer extends Component {
   render() {
     let { index, visible, sources, ...rest } = this.props;
     let imageUrls = [];
-    console.log("🚀🚀🚀wimi======>>>sources", sources);
-    //
     if (sources) {
       imageUrls = sources.map(item => {
         // 插件需要的数据格式

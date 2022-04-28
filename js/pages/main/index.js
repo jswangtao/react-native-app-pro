@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 04:32:23
+ * @LastEditTime: 2022-04-28 10:29:11
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import {} from "@/images";
-import { msg, XMIcon, XMButton, XMSendCodeButton } from "@/common";
+import { logo } from "@/images";
+import { msg, XMIcon, XMButton, XMImageAlbum } from "@/common";
 import { color_2A64F4, color_CCCCCC } from "@/styles";
 import api from "@/api";
 
@@ -25,16 +25,17 @@ export default class Main extends Component {
   }
 
   componentDidMount() {
-    this.getCustomService();
+    // this.getCustomService();
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {this._renderView()}
+        {/* {this._renderView()} */}
         {/* <XMIcon name={"icon_setting"} size={24} color={"#999"}>
           支持IconFont
         </XMIcon> */}
+        <XMImageAlbum sources={[logo, logo, logo, logo, logo, logo, logo]} />
       </View>
     );
   }
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f2f2f2",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: 220
   }
 });
