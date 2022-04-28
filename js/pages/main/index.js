@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 10:29:11
+ * @LastEditTime: 2022-04-28 20:37:10
  * @Description: 首页
  */
 
@@ -35,7 +35,10 @@ export default class Main extends Component {
         {/* <XMIcon name={"icon_setting"} size={24} color={"#999"}>
           支持IconFont
         </XMIcon> */}
-        <XMImageAlbum sources={[logo, logo, logo, logo, logo, logo, logo]} />
+        <XMImageAlbum
+          sources={[logo, logo, logo, logo, logo, logo, logo, logo, logo, logo, logo, logo, logo]}
+          preview
+        />
       </View>
     );
   }
