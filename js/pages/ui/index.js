@@ -2,14 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 04:37:39
+ * @LastEditTime: 2022-04-28 20:54:32
  * @Description: ui
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
-import { XMButton, msg, AsyncStorage, cache, XMHeader, XMSendCodeButton } from "@/common";
+import { XMButton, XMImage, XMImageAlbum, cache, XMHeader, XMSendCodeButton } from "@/common";
 import { screenWidth } from "@/styles";
+import { logo } from "@/images";
 
 export default class Ui extends Component {
   constructor(props) {
@@ -38,6 +39,27 @@ export default class Ui extends Component {
             "发送验证码",
             <>
               <XMSendCodeButton />
+            </>
+          )}
+          {this._renderFloor(
+            "图片浏览",
+            <>
+              <XMImage
+                width={100}
+                height={100}
+                preview
+                source={logo}
+                style={styles.logoImg}
+                onClick={source => {
+                  console.log("🚀🚀🚀wimi======>>>source", source);
+                }}
+              />
+            </>
+          )}
+          {this._renderFloor(
+            "相册",
+            <>
+              <XMImageAlbum sources={[logo, logo, logo]} preview />
             </>
           )}
         </ScrollView>

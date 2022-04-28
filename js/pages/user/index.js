@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 00:41:55
+ * @LastEditTime: 2022-04-28 20:51:55
  * @Description: 个人中心
  */
 
@@ -28,6 +28,24 @@ export default class User extends Component {
     return (
       <View style={styles.container}>
         <Text>this is user</Text>
+        <XMButton
+          text="公共组件"
+          type="primary"
+          style={{ marginBottom: 10 }}
+          onClick={() => {
+            msg.emit("router: goToNext", {
+              routeName: "Ui"
+            });
+          }}
+        />
+        <XMButton
+          text="测试页面"
+          onClick={() => {
+            msg.emit("router: goToNext", {
+              routeName: "Test"
+            });
+          }}
+        />
         <XMButton
           text="关于个人"
           style={{ marginTop: 20 }}

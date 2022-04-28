@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-28 09:41:31
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 20:48:52
+ * @LastEditTime: 2022-04-28 20:56:07
  * @Description: 相册
  */
 import React from "react";
@@ -57,7 +57,7 @@ export default class XMImageAlbum extends React.Component {
                         this.setState({ isVisible: true });
                       }}
                     />
-                    {twoArr.length - 1 === arrKey && arr.length - 1 === index && (
+                    {sources.length > maxCount && twoArr.length - 1 === arrKey && arr.length - 1 === index && (
                       <View style={[styles.mask]}>
                         <Text style={styles.maskTxt}>+{sources.length - maxCount}</Text>
                       </View>
