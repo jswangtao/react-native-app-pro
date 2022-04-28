@@ -1,26 +1,29 @@
 import React from "react";
 import { View, Image, Animated, Easing, StyleSheet, Platform, TouchableOpacity, Text } from "react-native";
 import { px2dp } from "../styles";
-
-export default class LoadImage extends React.Component {
+import XMImageViewer from "../image-viewer";
+const noop = () => {};
+const loadingError = require("./loading_error.png");
+export default class XMImage extends React.Component {
   static defaultProps = {
-    width: px2dp(200),
-    height: px2dp(200),
-    source: {},
+    width: 100,
+    height: 100,
+    source: null, // // 1.没传source  2.source为number本地图片  3.source为''
     defaultSource: null,
+    preview: false, //是否可以预览图片
     style: {},
-    resizeMode: "stretch",
-    type: "animated", //加载时的图片不一样  'animated', 'load'
-    onLoad: () => {},
-    onError: () => {},
-    onClick: () => {}
+    resizeMode: "contain",
+    onLoad: noop,
+    onError: noop,
+    onClick: noop
   };
 
   constructor(props) {
     super(props);
     this.state = {
       loadStatus: "pending",
-      backgroundColor: new Animated.Value(0)
+      backgroundColor: new Animated.Value(0),
+      isVisible: false
     };
   }
 
@@ -29,6 +32,64 @@ export default class LoadImage extends React.Component {
       this.backgroundColorAnimated.stop();
     }
   }
+
+  render() {
+    let { width, height, style, source, resizeMode } = this.props;
+    let { loadStatus } = this.state;
+    // 1.没传source
+    if (!source) {
+      source = loadingError;
+    } else {
+      // 2.判断是否是网络图片
+      if (String.prototype.indexOf.call(source, "http") !== -1) {
+        source = { uri: source };
+      }
+      // 3.source为number本地图片
+      // source=source
+    }
+
+    return (
+      <View style={[styles.container, style]}>
+        <TouchableOpacity activeOpacity={0.8} onPress={() => this._onClick()}>
+          <Image
+            source={source}
+            style={{ width, height }}
+            onLoadStart={this.onLoadStart}
+            onLoadEnd={this.onLoadEnd}
+            onLoad={this.handleImageLoaded}
+            onError={this.handleImageErrored}
+            resizeMode={resizeMode}
+          />
+        </TouchableOpacity>
+        {loadStatus === "pending" && this.renderPending()}
+        {loadStatus === "error" && this.renderError()}
+        {this._renderPreView()}
+      </View>
+    );
+  }
+
+  // 预览界面
+  _renderPreView = () => {
+    let { source, preview } = this.props;
+    let { isVisible } = this.state;
+    return preview ? (
+      <XMImageViewer
+        sources={[source]}
+        visible={isVisible}
+        onClose={() => {
+          this.setState({ isVisible: false });
+        }}
+      />
+    ) : null;
+  };
+
+  _onClick = () => {
+    let { source, onClick, preview } = this.props;
+    if (preview) {
+      this.setState({ isVisible: true });
+    }
+    onClick(source);
+  };
 
   /**
    * 图片资源开始加载
@@ -60,7 +121,7 @@ export default class LoadImage extends React.Component {
    * 加载结束
    */
   onLoadEnd = () => {
-    // if (undefined !== this.backgroundColorAnimated) this.backgroundColorAnimated.stop()
+    // if (undefined !== this.backgroundColorAnimated) this.backgroundColorAnimated.stop();
   };
 
   /**
@@ -87,8 +148,8 @@ export default class LoadImage extends React.Component {
    * 渲染加载中界面
    */
   renderPending = () => {
-    const { width, height, type } = this.props;
-    return type === "animated" ? (
+    const { width, height } = this.props;
+    return (
       <Animated.View
         style={[
           {
@@ -106,27 +167,12 @@ export default class LoadImage extends React.Component {
       >
         <Image
           style={{
-            width: width / 3,
-            height: width / 3
+            width: width / 2,
+            height: width / 2
           }}
           source={require("./loading.gif")}
         />
       </Animated.View>
-    ) : (
-      <View
-        style={[
-          {
-            width,
-            height,
-            position: "absolute",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#eceff4"
-          }
-        ]}
-      >
-        <Image style={{ width: 30, height: 30 }} source={require("./loading-spinner.gif")} />
-      </View>
     );
   };
 
@@ -135,10 +181,9 @@ export default class LoadImage extends React.Component {
    */
   renderError = () => {
     let { width, height, defaultSource, emptyDesc } = this.props;
-    console.log("🚀🚀🚀wimi======>>>defaultSource", defaultSource);
     let iconSize = {
-      width: width / 3,
-      height: width / 3
+      width: width / 2,
+      height: width / 2
     };
     return (
       <View
@@ -156,7 +201,7 @@ export default class LoadImage extends React.Component {
         {defaultSource ? (
           <Image source={defaultSource} style={[iconSize]} resizeMode="contain" />
         ) : (
-          <Image source={require("./pic_error.png")} style={[iconSize]} resizeMode="contain" />
+          <Image source={loadingError} style={[iconSize]} resizeMode="contain" />
         )}
         <Text
           style={[
@@ -171,55 +216,6 @@ export default class LoadImage extends React.Component {
       </View>
     );
   };
-
-  render() {
-    let { width, height, style, source, onClick, resizeMode } = this.props;
-    let { loadStatus } = this.state;
-    // 兼容 uri为null的情况
-    if (source.hasOwnProperty("uri") && typeof source.uri !== "string") {
-      source = { ...source, uri: "" };
-    }
-    // 兼容Androud无法对空字符串进行处理情况
-    if (Platform.OS === "android" && source.hasOwnProperty("uri") && !source.uri) {
-      source = { ...source, uri: " " };
-    }
-    return (
-      <View style={[styles.container, style]}>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => {
-            if (source.uri && source.uri.indexOf("http") !== -1 && source.uri.indexOf("?") !== -1) {
-              let queryParamsStr = "";
-              let uriArr = source.uri.split("?");
-              let queryParamsArr = uriArr[1].split("&");
-              let strArr = queryParamsArr.filter(item => {
-                if (item.indexOf("oss") === -1) {
-                  return true;
-                }
-                return false;
-              });
-              queryParamsStr = `${uriArr[0]}?${strArr.join("&")}`;
-              onClick(queryParamsStr);
-              return;
-            }
-            onClick(source.uri);
-          }}
-        >
-          <Image
-            source={source}
-            style={[{ width, height }]}
-            onLoadStart={this.onLoadStart}
-            onLoadEnd={this.onLoadEnd}
-            onLoad={this.handleImageLoaded}
-            onError={this.handleImageErrored}
-            resizeMode={resizeMode}
-          />
-        </TouchableOpacity>
-        {loadStatus === "pending" && this.renderPending()}
-        {loadStatus === "error" && this.renderError()}
-      </View>
-    );
-  }
 }
 
 const styles = StyleSheet.create({

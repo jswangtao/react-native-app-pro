@@ -2,34 +2,47 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 14:49:24
+ * @LastEditTime: 2022-04-28 09:32:08
  * @Description: 登录
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import { logo, iconLeftWhite } from "@/images";
-import { XMButton, _, isAndroid, msg, XMSafeAreaView, XMInput, XMSendCodeButton } from "@/common";
-import { px2dp, color_FFFFFF, fontColorBlack, fontColorLightGray, screenWidth } from "@/styles";
+import { StyleSheet, View, Text } from "react-native";
+import { logo } from "@/images";
+import { XMButton, XMImage, isAndroid, msg, XMSafeAreaView, XMInput, XMSendCodeButton, XMImageViewer } from "@/common";
+import { px2dp, color_FFFFFF, color_000000 } from "@/styles";
 import api from "@/api";
-
-// const { SendButton, Submit } = Button;
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       mobile: "",
-      code: ""
+      code: "",
+      visible: false
     };
   }
 
   componentDidMount() {}
 
   render() {
+    console.log("🚀🚀🚀wimi======>>>rq", JSON.stringify(require("../../images/drawable/empty_01.png")));
+    const { visible } = this.state;
     return (
       <XMSafeAreaView style={styles.container}>
-        <Image source={logo} resizeMode="contain" style={styles.logo} />
+        <XMImage
+          width={100}
+          height={100}
+          preview
+          source={logo}
+          // source={
+          //   "https://cdn.jsdelivr.net/gh/WTxiaomage/imgsbed/posts/1535725078-1224-20160201162405944-676557632.jpg"
+          // }
+          style={styles.logoImg}
+          onClick={source => {
+            console.log("🚀🚀🚀wimi======>>>source", source);
+          }}
+        />
         <Text style={styles.title}>react-native-app-pro</Text>
         <View style={styles.inputWrap}>
           <XMInput
@@ -41,7 +54,6 @@ export default class Login extends Component {
             }}
             prefixIcon="phone"
           />
-
           <XMInput
             style={{ marginTop: 10 }}
             border="bottom"
@@ -77,18 +89,31 @@ export default class Login extends Component {
           }}
           onClick={() => this.login()}
         />
+
+        <XMImageViewer
+          sources={[
+            {
+              uri: logo
+            }
+          ]}
+          visible={visible}
+          onClose={() => {
+            this.setState({ visible: false });
+          }}
+        />
       </XMSafeAreaView>
     );
   }
 
   login = () => {
-    const { mobile, code } = this.state;
-    console.log("🚀🚀🚀wimi======>>>mobile,code", mobile, code);
-    api.user.login({ mobile, code }).then(res => {
-      if (res.success) {
-        console.log("🚀🚀🚀wimi======>>>success", res);
-      }
-    });
+    this.setState({ visible: true });
+    // const { mobile, code } = this.state;
+    // console.log("🚀🚀🚀wimi======>>>mobile,code", mobile, code);
+    // api.user.login({ mobile, code }).then(res => {
+    //   if (res.success) {
+    //     console.log("🚀🚀🚀wimi======>>>success", res);
+    //   }
+    // });
   };
 }
 
@@ -98,15 +123,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: color_FFFFFF
   },
-  logo: {
-    width: px2dp(160),
-    height: px2dp(180),
+  logoImg: {
     marginTop: px2dp(180)
   },
   title: {
     fontSize: px2dp(44),
     fontWeight: "bold",
-    color: fontColorBlack,
+    color: color_000000,
     marginTop: px2dp(32)
   },
   inputWrap: {

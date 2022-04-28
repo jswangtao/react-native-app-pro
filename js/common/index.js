@@ -14,6 +14,7 @@ import cache from "./cache"; // 常量模块
 import Tip from "./modal/tip"; // tips弹框
 import ValidConst from "./validate"; // 常用校验正则
 import XMImage from "./image"; // 图片组件
+import XMImageViewer from "./image-viewer";
 import XMListView from "./list-view"; // 列表组件
 import XMEmpty from "./empty"; // 缺省图
 import XMHeader from "./header"; // 内嵌头部
@@ -33,6 +34,7 @@ export {
   Tip,
   ValidConst,
   XMImage,
+  XMImageViewer,
   XMListView,
   XMEmpty,
   XMHeader,
