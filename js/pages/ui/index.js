@@ -2,13 +2,13 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 20:54:32
+ * @LastEditTime: 2022-04-28 21:54:32
  * @Description: ui
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
-import { XMButton, XMImage, XMImageAlbum, cache, XMHeader, XMSendCodeButton } from "@/common";
+import { XMButton, XMImage, XMImageAlbum, XMIcon, XMHeader, XMSendCodeButton, XMInput } from "@/common";
 import { screenWidth } from "@/styles";
 import { logo } from "@/images";
 
@@ -25,6 +25,12 @@ export default class Ui extends Component {
       <View style={styles.container}>
         <XMHeader title="自定义头部" />
         <ScrollView style={{ flex: 1 }}>
+          {this._renderFloor(
+            "图标",
+            <>
+              <XMIcon name={"phone"} size={24} color={"#999"} />
+            </>
+          )}
           {this._renderFloor(
             "按钮",
             <>
@@ -60,6 +66,20 @@ export default class Ui extends Component {
             "相册",
             <>
               <XMImageAlbum sources={[logo, logo, logo]} preview />
+            </>
+          )}
+          {this._renderFloor(
+            "输入框",
+            <>
+              <XMInput
+                border="bottom"
+                placeholder="输入手机号"
+                clearable
+                onChangeText={text => {
+                  console.log("🚀🚀🚀wimi======>>>text", text);
+                }}
+                prefixIcon="phone"
+              />
             </>
           )}
         </ScrollView>

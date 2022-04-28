@@ -33,7 +33,7 @@ export default class User extends Component {
           type="primary"
           style={{ marginBottom: 10 }}
           onClick={() => {
-            msg.emit("router: goToNext", {
+            msg.emit("router:goToNext", {
               routeName: "Ui"
             });
           }}
@@ -41,7 +41,7 @@ export default class User extends Component {
         <XMButton
           text="测试页面"
           onClick={() => {
-            msg.emit("router: goToNext", {
+            msg.emit("router:goToNext", {
               routeName: "Test"
             });
           }}
@@ -50,14 +50,14 @@ export default class User extends Component {
           text="关于个人"
           style={{ marginTop: 20 }}
           onClick={() => {
-            msg.emit("router: goToNext", { routeName: "About" });
+            msg.emit("router:goToNext", { routeName: "About" });
           }}
         />
         <XMButton
           text="去登录"
           style={{ marginTop: 20 }}
           onClick={() => {
-            msg.emit("router: goToNext", { routeName: "Login" });
+            msg.emit("router:goToNext", { routeName: "Login" });
           }}
         />
       </View>

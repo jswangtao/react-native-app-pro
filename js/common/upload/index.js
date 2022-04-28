@@ -90,7 +90,7 @@ export default class Upload extends React.Component {
   // 渲染列表
   _renderFileList = () => {
     const { fileList, type, onTouchImage, itemStyle } = this.props;
-    console.log('fileList', fileList);
+    console.log("fileList", fileList);
     return fileList.map((item, index) => {
       console.log("🚀🚀🚀wimi======>>>item.imageBase64", item.imageBase64);
       return (
@@ -208,7 +208,7 @@ export default class Upload extends React.Component {
       //   });
       // }
     } else if (selectType === "WatermarkCamera") {
-      msg.emit("router: goToNext", {
+      msg.emit("router:goToNext", {
         routeName: "WatermarkCamera",
         routerFrom: routerFrom || "",
         imgsLength: limit - fileList.length

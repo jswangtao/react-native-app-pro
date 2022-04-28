@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 09:37:31
+ * @LastEditTime: 2022-04-28 21:50:17
  * @Description: 登录
  */
 
@@ -87,18 +87,6 @@ export default class Login extends Component {
             marginTop: px2dp(80)
           }}
           onClick={() => this.login()}
-        />
-
-        <XMImageViewer
-          sources={[
-            {
-              uri: logo
-            }
-          ]}
-          visible={visible}
-          onClose={() => {
-            this.setState({ visible: false });
-          }}
         />
       </XMSafeAreaView>
     );

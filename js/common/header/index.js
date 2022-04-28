@@ -86,7 +86,7 @@ export default class Header extends Component {
     if (onLeftMenuPress) {
       onLeftMenuPress();
     } else {
-      msg.emit("router: back");
+      msg.emit("router:back");
     }
   };
 }

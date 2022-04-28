@@ -45,7 +45,7 @@ export default class User extends Component {
           console.log("🚀🚀🚀wimi======>>>success", response);
         } else {
           console.log("🚀🚀🚀wimi======>>>error", response);
-          msg.emit("router: goToNext", { routeName: "Login" });
+          msg.emit("router:goToNext", { routeName: "Login" });
           // NativeModules.WindowModule.showWindow({ content: response.msg, onlyRightBtn: '1' }, (e) => { });
         }
       })

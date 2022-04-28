@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 20:37:10
+ * @LastEditTime: 2022-04-28 22:03:23
  * @Description: 首页
  */
 
@@ -31,14 +31,10 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* {this._renderView()} */}
+        {this._renderView()}
         {/* <XMIcon name={"icon_setting"} size={24} color={"#999"}>
           支持IconFont
         </XMIcon> */}
-        <XMImageAlbum
-          sources={[logo, logo, logo, logo, logo, logo, logo, logo, logo, logo, logo, logo, logo]}
-          preview
-        />
       </View>
     );
   }
@@ -51,7 +47,7 @@ export default class Main extends Component {
           type="primary"
           style={{ marginBottom: 10 }}
           onClick={() => {
-            msg.emit("router: goToNext", {
+            msg.emit("router:goToNext", {
               routeName: "Ui"
             });
           }}
@@ -59,9 +55,7 @@ export default class Main extends Component {
         <XMButton
           text="测试页面"
           onClick={() => {
-            msg.emit("router: goToNext", {
-              routeName: "Test"
-            });
+            msg.emit("app:loginModal", true);
           }}
         />
       </>
