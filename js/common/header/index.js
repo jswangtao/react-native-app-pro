@@ -86,13 +86,14 @@ export default class Header extends Component {
     if (onLeftMenuPress) {
       onLeftMenuPress();
     } else {
-      msg.emit("router: back");
+      msg.emit("router:back");
     }
   };
 }
 
 const styles = StyleSheet.create({
   statusBar: {
+    width: screenWidth,
     backgroundColor: "rgba(255,255,255,1)"
   },
   container: {
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: "#000",
     fontSize: px2dp(36),
-    fontWeight: "600"
+    fontWeight: "bold"
   },
   rightContainer: {
     // height: isAndroid ? 50 : 45,

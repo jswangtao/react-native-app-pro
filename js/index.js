@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-19 21:40:05
+ * @LastEditTime: 2022-04-29 06:25:27
  * @Description: 主入口
  */
 
@@ -14,6 +14,7 @@ import { msg, Tip } from "@/common";
 import { AppContainer } from "./router";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import LoginModal from "./pages/login/login-modal";
 
 export default class App extends Component {
   constructor(props) {
@@ -24,7 +25,9 @@ export default class App extends Component {
       // tip的text
       isTipText: "",
       // tip的icon
-      isTipIcon: ""
+      isTipIcon: "",
+      // 登录弹框的显示状态
+      isLoginModalVisible: false
     };
   }
 
@@ -53,6 +56,7 @@ export default class App extends Component {
             visible={this.state.isTipVisible}
             onTipDisappear={this._handleTipDisappear}
           />
+          <LoginModal visible={this.state.isLoginModalVisible} />
         </View>
       </Provider>
     );
@@ -64,17 +68,17 @@ export default class App extends Component {
    */
   _register = () => {
     msg.on("app:tip", this._handleAppTip); // 弹出tips提示
-    msg.on("app:loginTips", this._handleAppLoginTip); // 弹出登录tips提示
-    msg.on("router: goToNext", this._goToNext); // 下一页
-    msg.on("router: back", this._back); // 返回上一页
-    msg.on("router: backToTop", this._backToTop); // 返回栈顶
-    msg.on("router: backToLast", this._backToLast); // 返回路由末位
-    msg.on("router: replace", this._replaceRoute); // 替换栈顶
-    msg.on("router: reset", this._resetRoute); // 重置路由栈
-    msg.on("router: setParams", this._setParams);
-    msg.on("router: refresh", this._refresh); // 刷新当前页(栈顶)
-    msg.on("router: refreshRoute", this._refreshRoute); // 刷新指定页面
-    msg.on("router: refreshRoutes", this._refreshRoutes); // 刷新指定多个页面
+    msg.on("router:goToNext", this._goToNext); // 下一页
+    msg.on("router:back", this._back); // 返回上一页
+    msg.on("router:backToTop", this._backToTop); // 返回栈顶
+    msg.on("router:backToLast", this._backToLast); // 返回路由末位
+    msg.on("router:replace", this._replaceRoute); // 替换栈顶
+    msg.on("router:reset", this._resetRoute); // 重置路由栈
+    msg.on("router:setParams", this._setParams);
+    msg.on("router:refresh", this._refresh); // 刷新当前页(栈顶)
+    msg.on("router:refreshRoute", this._refreshRoute); // 刷新指定页面
+    msg.on("router:refreshRoutes", this._refreshRoutes); // 刷新指定多个页面
+    msg.on("app:loginModal", this._handleLoginModal); // 弹出登录弹框提示
   };
 
   /**
@@ -83,17 +87,17 @@ export default class App extends Component {
    */
   _unRegister = () => {
     msg.off("app:tip", this._handleAppTip);
-    msg.off("app:loginTips", this._handleAppLoginTip);
-    msg.off("router: goToNext", this._goToNext);
-    msg.off("router: back", this._back);
-    msg.off("router: backToTop", this._backToTop);
-    msg.off("router: backToLast", this._backToLast);
-    msg.off("router: replace", this._replaceRoute);
-    msg.off("router: reset", this._resetRoute);
-    msg.off("router: setParams", this._setParams);
-    msg.off("router: refresh", this._refresh);
-    msg.off("router: refreshRoute", this._refreshRoute);
-    msg.off("router: refreshRoutes", this._refreshRoutes);
+    msg.off("router:goToNext", this._goToNext);
+    msg.off("router:back", this._back);
+    msg.off("router:backToTop", this._backToTop);
+    msg.off("router:backToLast", this._backToLast);
+    msg.off("router:replace", this._replaceRoute);
+    msg.off("router:reset", this._resetRoute);
+    msg.off("router:setParams", this._setParams);
+    msg.off("router:refresh", this._refresh);
+    msg.off("router:refreshRoute", this._refreshRoute);
+    msg.off("router:refreshRoutes", this._refreshRoutes);
+    msg.off("app:loginModal", this._handleLoginModal);
   };
 
   /**
@@ -286,11 +290,11 @@ export default class App extends Component {
   };
 
   /**
-   * 处理app登录Tip
+   * 处理app登录弹框
    */
-  _handleAppLoginTip = isLoginTipsShow => {
+  _handleLoginModal = isLoginModalVisible => {
     this.setState({
-      isLoginTipsShow
+      isLoginModalVisible
     });
   };
 }
