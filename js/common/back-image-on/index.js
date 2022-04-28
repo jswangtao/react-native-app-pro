@@ -29,7 +29,7 @@ export default class BackImageOn extends PureComponent {
           style
         ]}
         onPress={() => {
-          onClick ? onClick() : msg.emit("router: back");
+          onClick ? onClick() : msg.emit("router:back");
         }}
       >
         <Image source={require("./go-back.png")} style={{ width: px2dp(36), height: px2dp(36) }} />
