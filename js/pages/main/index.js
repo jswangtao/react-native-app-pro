@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-29 06:29:04
+ * @LastEditTime: 2022-04-29 06:30:58
  * @Description: 首页
  */
 
@@ -14,7 +14,7 @@ import { color_2A64F4, color_CCCCCC } from "@/styles";
 import api from "@/api";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as basicActions from "../../store/actions/basic.actions";
+import * as basicActions from "@/store/actions/basic.actions";
 
 class Main extends Component {
   static navigationOptions = () => ({

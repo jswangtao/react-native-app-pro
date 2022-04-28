@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-08 23:21:03
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 17:04:57
+ * @LastEditTime: 2022-04-29 06:44:48
  * @Description: file content
  */
 module.exports = {
@@ -18,7 +18,8 @@ module.exports = {
           "@/common": "./js/common",
           "@/styles": "./js/common/styles",
           "@/images": "./js/images",
-          "@/api": "./js/api"
+          "@/api": "./js/api",
+          "@/store": "./js/store"
         }
       }
     ]
