@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-12 17:33:47
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-30 15:20:13
+ * @LastEditTime: 2022-05-01 03:33:56
  * @Description: file content
 -->
 
@@ -41,7 +41,15 @@ cd ios && pod install
 3. 启动
 
 ```
-react-native run-android或者react-native run-ios
+ios启动
+react-native run-ios
+如果报错打开xcode看详细报错，一般都是环境不匹配导致
+
+安卓启动
+react-native run-android
+如果报错
+error Failed to install the app. Make sure you have the Android development environment
+打开Android Studio编译一下
 ```
 
 4. 项目的分支说明
