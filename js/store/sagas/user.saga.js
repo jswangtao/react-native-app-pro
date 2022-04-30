@@ -2,11 +2,11 @@
  * @Author: wangtao
  * @Date: 2022-04-29 09:48:09
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-30 10:11:16
+ * @LastEditTime: 2022-04-30 12:02:00
  * @Description: file content
  */
 import { takeEvery, put } from "redux-saga/effects";
-import { user_base_info, login_async } from "../actions/user.actions";
+import { user_base_info, login_async, user_init_async, user_init } from "../actions/user.actions";
 import api from "@/api";
 import { AsyncStorage, cache, msg } from "@/common";
 
@@ -24,6 +24,12 @@ function* login(action) {
   });
 }
 
+function* userInit() {
+  const info = yield AsyncStorage.getItem(cache.USER_BASE_INFO);
+  yield put(user_init(info));
+}
+
 export default function* userSaga() {
   yield takeEvery(login_async, login);
+  yield takeEvery(user_init_async, userInit);
 }
