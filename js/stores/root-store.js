@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-03-30 14:58:18
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 23:30:56
+ * @LastEditTime: 2022-04-30 14:49:55
  * @Description: 状态管理，一般业务开发操作步骤，
  * 1.将stores下的template文件夹复制为自己的业务模块store，改名
  * 2.引入自己的模块store到此，然后实例化注册
@@ -31,8 +31,13 @@ class RootStore {
 
   // 初始化store
   initStore() {
-    // 客服电话全局
-    this.basicStore.getCustomService();
+    // 从内存中获取
+    AsyncStorage.multiGetItem([cache.USER_BASE_INFO]).then(res => {
+      this.userStore.setUserBaseInfo(res.user_base_info);
+      console.log("🚀🚀🚀wimi======>>>setUserBaseInfo", res);
+      // 客服电话全局
+      this.basicStore.getCustomService();
+    });
   }
 
   // 清理store

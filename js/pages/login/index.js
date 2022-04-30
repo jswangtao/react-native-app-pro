@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 21:50:17
+ * @LastEditTime: 2022-04-30 14:42:34
  * @Description: 登录
  */
 
@@ -12,36 +12,24 @@ import { logo } from "@/images";
 import { XMButton, XMImage, isAndroid, msg, XMSafeAreaView, XMInput, XMSendCodeButton, XMImageViewer } from "@/common";
 import { px2dp, color_FFFFFF, color_000000 } from "@/styles";
 import api from "@/api";
-
-export default class Login extends Component {
+import { observer, inject } from "mobx-react";
+@inject("store")
+@observer
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       mobile: "",
-      code: "",
-      visible: false
+      code: ""
     };
   }
 
   componentDidMount() {}
 
   render() {
-    const { visible } = this.state;
     return (
       <XMSafeAreaView style={styles.container}>
-        <XMImage
-          width={100}
-          height={100}
-          preview
-          source={logo}
-          // source={
-          //   "https://cdn.jsdelivr.net/gh/WTxiaomage/imgsbed/posts/1535725078-1224-20160201162405944-676557632.jpg"
-          // }
-          style={styles.logoImg}
-          onClick={source => {
-            console.log("🚀🚀🚀wimi======>>>source", source);
-          }}
-        />
+        <XMImage width={100} height={100} source={logo} style={styles.logoImg} />
         <Text style={styles.title}>react-native-app-pro</Text>
         <View style={styles.inputWrap}>
           <XMInput
@@ -49,31 +37,22 @@ export default class Login extends Component {
             placeholder="输入手机号"
             clearable
             onChangeText={text => {
-              console.log("🚀🚀🚀wimi======>>>text", text);
+              this.setState({ mobile: text });
             }}
             prefixIcon="phone"
+            maxLength={11}
           />
-          <XMInput
-            style={{ marginTop: 10 }}
-            border="bottom"
-            placeholder="输入密码"
-            onChangeText={text => {
-              console.log("🚀🚀🚀wimi======>>>text", text);
-            }}
-            prefixIcon="safe"
-            type="password"
-          />
-
           <XMInput
             style={{ marginTop: 10 }}
             border="bottom"
             placeholder="输入验证码"
             onChangeText={text => {
-              console.log("🚀🚀🚀wimi======>>>text", text);
+              this.setState({ code: text });
             }}
             prefixIcon="safe"
             clearable
             suffix={<XMSendCodeButton />}
+            maxLength={4}
           />
         </View>
 
@@ -93,16 +72,12 @@ export default class Login extends Component {
   }
 
   login = () => {
-    this.setState({ visible: true });
-    // const { mobile, code } = this.state;
-    // console.log("🚀🚀🚀wimi======>>>mobile,code", mobile, code);
-    // api.user.login({ mobile, code }).then(res => {
-    //   if (res.success) {
-    //     console.log("🚀🚀🚀wimi======>>>success", res);
-    //   }
-    // });
+    const { mobile, code } = this.state;
+    this.props.store.userStore.login({ mobile, code });
   };
 }
+
+export default Login;
 
 const styles = StyleSheet.create({
   container: {

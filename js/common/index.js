@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-26 14:07:06
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 09:54:05
+ * @LastEditTime: 2022-04-30 14:37:18
  * @Description: file content
  */
 import XMButton from "./button"; // 自定义Button
@@ -10,6 +10,7 @@ import XMSendCodeButton from "./button-code-send"; // 发送验证码
 import msg from "./msg"; // 全局通信
 import BackImageOn from "./back-image-on"; // 返回按钮(主要与XMHeader配合使用，自带宽高，方便点击)
 import * as _ from "./util"; // 工具函数
+import AsyncStorage from "./storage-async"; // 常量模块
 import cache from "./cache"; // 常量模块
 import Tip from "./modal/tip"; // tips弹框
 import ValidConst from "./validate"; // 常用校验正则
@@ -31,6 +32,7 @@ export {
   msg,
   BackImageOn,
   _,
+  AsyncStorage,
   cache,
   Tip,
   ValidConst,

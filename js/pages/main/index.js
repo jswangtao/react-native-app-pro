@@ -2,18 +2,17 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-30 14:08:43
+ * @LastEditTime: 2022-04-30 14:45:37
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { logo } from "@/images";
-import { msg, XMIcon, XMButton, XMImageAlbum } from "@/common";
+import { msg, XMIcon, XMButton, AsyncStorage, cache } from "@/common";
 import { color_2A64F4, color_CCCCCC } from "@/styles";
 import api from "@/api";
 
-const { LongButton } = Button;
 import { observer, inject } from "mobx-react";
 @inject("store")
 @observer
@@ -25,68 +24,32 @@ class Main extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userBaseInfo: {}
+    };
   }
 
-  componentDidMount() {
-    // this.getCustomService();
-  }
+  componentDidMount() {}
 
   render() {
     return (
       <View style={styles.container}>
-        {this._renderView()}
-        {/* <XMIcon name={"icon_setting"} size={24} color={"#999"}>
-          支持IconFont
-        </XMIcon> */}
-      </View>
-    );
-  }
-
-  _renderView = () => {
-    return (
-      <>
+        <Text>store中的user:{this.props.store.userStore.userBaseInfo.name}</Text>
+        <Text>AsyncStorage中的user:{this.state.userBaseInfo.name}</Text>
         <XMButton
-          text="公共组件"
+          text="get+"
           type="primary"
-          style={{ marginBottom: 10 }}
           onClick={() => {
-            msg.emit("router:goToNext", {
-              routeName: "Ui"
+            AsyncStorage.getItem(cache.USER_BASE_INFO).then(res => {
+              this.setState({ userBaseInfo: res || {} });
             });
           }}
         />
-        <XMButton
-          text="测试页面"
-          onClick={() => {
-            msg.emit("app:loginModal", true);
-          }}
-        />
-      </>
+      </View>
     );
-  };
-
-  test = () => {
-    console.log("🚀🚀🚀wimi======>>>test");
-    return new Promise(reslove => {
-      setTimeout(() => {
-        reslove(1);
-      }, 3000);
-    });
-  };
-
-  // 获取客服电话
-  getCustomService = () => {
-    const params = {
-      code: "ydxlmkfdh"
-    };
-    api.user.getConfigValue(params).then(res => {
-      console.log("🚀🚀🚀wimi======>>>res", res);
-      if (res.success) {
-      }
-    });
-  };
+  }
 }
+
 export default Main;
 const styles = StyleSheet.create({
   container: {
