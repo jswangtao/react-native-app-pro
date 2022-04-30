@@ -10,6 +10,7 @@ import XMSendCodeButton from "./button-code-send"; // 发送验证码
 import msg from "./msg"; // 全局通信
 import BackImageOn from "./back-image-on"; // 返回按钮(主要与XMHeader配合使用，自带宽高，方便点击)
 import * as _ from "./util"; // 工具函数
+import AsyncStorage from "./storage-async"; // 异步存储
 import cache from "./cache"; // 常量模块
 import Tip from "./modal/tip"; // tips弹框
 import ValidConst from "./validate"; // 常用校验正则
@@ -31,6 +32,7 @@ export {
   msg,
   BackImageOn,
   _,
+  AsyncStorage,
   cache,
   Tip,
   ValidConst,

@@ -1,5 +1,19 @@
 import axios from "axios";
 import { APP_REQUEST_DOMAIN_PREFIX } from "../config/baseConfig";
+import { AsyncStorage, cache } from "@/common";
+
+// 配置config
+const getData = async config => {
+  try {
+    const tokenId = await AsyncStorage.getItem(cache.TOKEN_ID);
+    if (tokenId) {
+      config.headers["X-Auth-Token"] = tokenId;
+    }
+    return config;
+  } catch (e) {
+    Promise.reject(e);
+  }
+};
 
 let start; // 开始时间
 
@@ -17,7 +31,7 @@ axios.interceptors.request.use(
       );
       start = new Date();
     }
-    return config;
+    return getData(config);
   },
   error => {
     return Promise.reject(error);
