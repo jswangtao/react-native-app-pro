@@ -33,6 +33,7 @@ export default class App extends Component {
 
   componentDidMount() {
     this._register();
+    store.dispatch({ type: "user_init_async" });
   }
 
   componentWillUnmount() {
@@ -40,6 +41,7 @@ export default class App extends Component {
   }
 
   render() {
+    console.log("🚀🚀🚀wimi======>>>store", store);
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>

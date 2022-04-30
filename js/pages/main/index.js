@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-29 06:56:50
+ * @LastEditTime: 2022-04-30 12:03:27
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { logo } from "@/images";
-import { msg, XMIcon, XMButton, XMImageAlbum } from "@/common";
+import { msg, XMIcon, AsyncStorage, cache, XMButton } from "@/common";
 import { color_2A64F4, color_CCCCCC } from "@/styles";
 import api from "@/api";
 import { connect } from "react-redux";
@@ -24,48 +24,36 @@ class Main extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userBaseInfo: {}
+    };
   }
 
-  componentDidMount() {
-    // this.getCustomService();
-  }
+  componentDidMount() {}
 
   render() {
     console.log("🚀🚀🚀wimi======>>>props", this.props);
+
     return (
       <View style={styles.container}>
-        <XMButton text="async+" type="primary" onClick={this.increment_async} />
-        <XMIcon name={"add"} size={24} color={"#999"}>
-          {this.props.basic.count}
-        </XMIcon>
-        <XMButton text="+" type="primary" onClick={this.increment} />
+        <Text>store中的user:{this.props.user.userBaseInfo.name}</Text>
+        <Text>AsyncStorage中的user:{this.state.userBaseInfo.name}</Text>
+        <XMButton
+          text="get+"
+          type="primary"
+          onClick={() => {
+            AsyncStorage.getItem(cache.USER_BASE_INFO).then(res => {
+              this.setState({ userBaseInfo: res || {} });
+            });
+          }}
+        />
       </View>
     );
   }
-
-  increment_async = () => {
-    this.props.increment_async(20);
-  };
-  increment = () => {
-    this.props.increment(1);
-  };
-
-  // 获取客服电话
-  getCustomService = () => {
-    const params = {
-      code: "ydxlmkfdh"
-    };
-    api.user.getConfigValue(params).then(res => {
-      console.log("🚀🚀🚀wimi======>>>res", res);
-      if (res.success) {
-      }
-    });
-  };
 }
 
 const mapStateToProps = state => ({
-  basic: state.basic
+  user: state.user
 });
 
 const mapDispatchToProps = dispatch => ({
