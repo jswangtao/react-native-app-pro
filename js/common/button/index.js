@@ -2,8 +2,8 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-15 00:07:25
- * @Description: Button公共组件
+ * @LastEditTime: 2022-04-27 04:58:47
+ * @Description: Button公共组件 模仿u-button
  */
 
 import React, { Component } from "react";
@@ -16,8 +16,8 @@ import {
   color_danger,
   color_white,
   border_color_base
-} from "./styles/theme";
-import Icon from "./icons";
+} from "../styles/theme";
+import XMIcon from "../icons";
 const noop = () => {};
 /**
  * Button
@@ -28,6 +28,8 @@ export default class Button extends Component {
     type: "default", // 按钮的样式类型 default / primary / danger/ warning / success
     disabled: false, // 是否禁用
     loading: false, // 按钮名称前是否带 loading 图标
+    plain: false, // 按钮是否镂空，背景色透明
+    hairline: true, // 是否显示按钮的细边框
     style: {}, // 样式
     icon: "",
     iconSize: 18,
@@ -65,7 +67,7 @@ export default class Button extends Component {
           {processing && loading && (
             <ActivityIndicator size="small" color={border_color_base} style={{ marginRight: 4 }} />
           )}
-          {!!icon && <Icon name={icon} size={iconSize} color={iconColor} style={{ marginRight: 4 }} />}
+          {!!icon && <XMIcon name={icon} size={iconSize} color={iconColor} style={{ marginRight: 4 }} />}
           <Text allowFontScaling={false} style={this.getTextStyle()}>
             {text}
           </Text>
@@ -91,7 +93,7 @@ export default class Button extends Component {
    * @returns {{}}
    */
   getBoxStyle = () => {
-    const { type, plain } = this.props;
+    const { type, plain, hairline } = this.props;
     let { boxStyle } = this.state;
     if (type === "primary") {
       boxStyle = StyleSheet.flatten([boxStyle, { backgroundColor: color_primary, borderColor: color_primary }]);
@@ -107,6 +109,9 @@ export default class Button extends Component {
     }
     if (plain) {
       boxStyle = StyleSheet.flatten([boxStyle, { backgroundColor: "rgba(255,255,255,0)" }]);
+    }
+    if (!hairline) {
+      boxStyle = StyleSheet.flatten([boxStyle, { borderWidth: 0 }]);
     }
     return boxStyle;
   };
@@ -157,15 +162,12 @@ export default class Button extends Component {
     if (disabled || processing) {
       return;
     }
-
     // 设置按钮状态执行操作中
     this.setState({
       processing: true
     });
-    console.log("🚀🚀🚀wimi======>>>1111");
     // 执行 onClick 方法
     await this.props.onClick();
-    console.log("🚀🚀🚀wimi======>>>2222");
     this.setState({
       processing: false
     });
@@ -183,13 +185,16 @@ const styles = StyleSheet.create({
 
   // begin submit
   submitBox: {
+    height: 44,
     borderRadius: 4,
     overflow: "hidden",
     borderWidth: 1 / PixelRatio.get(),
     borderColor: "rgba(0,0,0,0.2)",
-    backgroundColor: color_white
+    backgroundColor: color_white,
+    alignSelf: "center" //这里不设置，会导致如果外部没有指定弹性布局方式会自动撑满父级，因为rn的display没有inline-block等属性，只有采取这种方式
   },
   submitBtn: {
+    height: "100%",
     paddingVertical: 8,
     paddingHorizontal: 8,
     alignItems: "center",

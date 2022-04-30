@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-11 09:54:34
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-14 23:16:04
+ * @LastEditTime: 2022-04-20 00:14:18
  * @Description: file content
  */
 import createIconSet from "react-native-vector-icons/lib/create-icon-set";
