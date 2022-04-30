@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-29 06:56:43
+ * @LastEditTime: 2022-04-30 12:12:52
  * @Description: 主入口
  */
 
@@ -41,7 +41,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log("🚀🚀🚀wimi======>>>store", store);
     return (
       <Provider store={store}>
         <View style={{ flex: 1 }}>

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-30 12:03:27
+ * @LastEditTime: 2022-04-30 12:24:37
  * @Description: 首页
  */
 
@@ -32,11 +32,9 @@ class Main extends Component {
   componentDidMount() {}
 
   render() {
-    console.log("🚀🚀🚀wimi======>>>props", this.props);
-
     return (
       <View style={styles.container}>
-        <Text>store中的user:{this.props.user.userBaseInfo.name}</Text>
+        <Text>store中的user:{this.props.user.getIn(["userBaseInfo", "name"])}</Text>
         <Text>AsyncStorage中的user:{this.state.userBaseInfo.name}</Text>
         <XMButton
           text="get+"
