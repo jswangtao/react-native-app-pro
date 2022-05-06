@@ -2,13 +2,35 @@
  * @Author: wangtao
  * @Date: 2022-04-12 17:33:47
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-01 03:33:56
+ * @LastEditTime: 2022-05-06 18:09:23
  * @Description: file content
 -->
 
 ### react-native-app-pro
 
 - react-native 快速业务框架
+
+### 项目目录结构
+
+```
+__tests__      rn目录
+.bundle        rn目录
+.vscode        vscode配置目录
+android       安卓目录
+ios           ios目录
+bin           脚本目录
+js            业务目录
+  - api            接口请求
+  - common         公共组件
+  - config         基础配置
+  - images         图片
+  - pages          页面
+  - index.js       入口
+  - router.js      路由
+
+```
+
+如果下载的其他分支，可能有 mobx 或者 redux 文件夹
 
 ### 依赖环境
 
