@@ -2,11 +2,22 @@
  * @Author: wangtao
  * @Date: 2022-04-12 22:39:28
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-30 12:10:32
+ * @LastEditTime: 2022-05-07 20:44:06
  * @Description: file content
  */
 const path = require("path");
 const fs = require("fs");
+
+// 1. 复制iconfont到Android下
+copyFile(
+  path.resolve("assets/iconfont/iconfont.ttf"),
+  path.resolve("android/app/src/main/assets/fonts/iconfont.ttf"),
+  "binary"
+);
+// 2. 复制iconfont到iOS下
+copyFile(path.resolve("assets/iconfont/iconfont.ttf"), path.resolve("ios/helloworld/Fonts/iconfont.ttf"), "binary");
+// 3.自动生成iconfont对应json
+autoIconFont();
 
 // 复制文件
 function copyFile(srcPath, destPath, format) {
@@ -23,16 +34,9 @@ function copyFile(srcPath, destPath, format) {
   });
 }
 
-// 复制iconfont到node_modules
-copyFile(
-  path.resolve("js/common/icons/iconfont/iconfont.ttf"),
-  path.resolve("node_modules/react-native-vector-icons/Fonts/iconfont.ttf"),
-  "binary"
-);
-
 // 自动生成iconfont对应json
 function autoIconFont() {
-  const data = fs.readFileSync(path.resolve("js/common/icons/iconfont/iconfont.json"), "utf-8");
+  const data = fs.readFileSync(path.resolve("assets/iconfont/iconfont.json"), "utf-8");
 
   const glyphs = JSON.parse(data).glyphs;
   let result = {};
@@ -42,5 +46,3 @@ function autoIconFont() {
   fs.writeFileSync(path.resolve("js/common/icons/iconfont.json"), JSON.stringify(result));
   console.log("🚀🚀🚀wimi======>>>导入iconfont.json成功");
 }
-
-autoIconFont();
