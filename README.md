@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-12 17:33:47
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-01 03:33:56
+ * @LastEditTime: 2022-05-07 20:41:29
  * @Description: file content
 -->
 
@@ -26,26 +26,16 @@ yarn
 cd ios && pod install
 ```
 
-2. 复制 iconfont，因为用了字体图标
-   将 js/common/icons/iconfont 里面的 iconfont.ttf 文件复制到 node_modules/react-native-vector-icons/Fonts 文件夹下面,
-   后续更换自己的字体图标库，请看 js/common/icons/README.md
-
-   或者直接执行
-
-   ```
-   npm run init
-   ```
-
-   这个命令会帮你复制 iconfont.ttf
-
-3. 启动
+2. ios 启动
 
 ```
-ios启动
 react-native run-ios
-如果报错打开xcode看详细报错，一般都是环境不匹配导致
+如果报错打开xcode看详细报错，一般都是环境不匹配等问题
+```
 
-安卓启动
+3. 安卓启动
+
+```
 react-native run-android
 如果报错
 error Failed to install the app. Make sure you have the Android development environment
