@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["js/*"],
+      "@/styles": ["js/common/styles"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
