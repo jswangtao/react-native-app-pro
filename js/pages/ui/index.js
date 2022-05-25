@@ -2,14 +2,25 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 21:54:32
+ * @LastEditTime: 2022-05-25 20:05:29
  * @Description: ui
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
-import { XMButton, XMImage, XMImageAlbum, XMIcon, XMHeader, XMSendCodeButton, XMInput } from "@/common";
-import { screenWidth } from "@/styles";
+import {
+  XMButton,
+  XMImage,
+  XMImageAlbum,
+  XMIcon,
+  XMHeader,
+  XMSendCodeButton,
+  XMInput,
+  FormInput,
+  FormSelect,
+  FormItem
+} from "@/common";
+import { screenWidth, px2dp } from "@/styles";
 import { logo } from "@/images";
 
 export default class Ui extends Component {
@@ -82,6 +93,23 @@ export default class Ui extends Component {
               />
             </>
           )}
+          {this._renderFloor(
+            "输入框",
+            <>
+              <View style={styles.formContainer}>
+                <FormSelect
+                  label="客户名"
+                  style={{ height: px2dp(104), paddingRight: px2dp(16) }}
+                  selected={{ value: "" }}
+                  onPress={() => {
+                    console.log("🚀🚀🚀wimi======>>>1111");
+                  }}
+                />
+                <FormInput label="车主类型" style={{ height: px2dp(104), paddingRight: px2dp(16) }} />
+                <FormItem label="车主类型" style={{ height: px2dp(104), paddingRight: px2dp(16) }} placeholder="111" />
+              </View>
+            </>
+          )}
         </ScrollView>
       </View>
     );
@@ -104,8 +132,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2f2f2"
   },
   floor: {
-    width: screenWidth,
-    paddingHorizontal: 10
+    width: screenWidth
+    // paddingHorizontal: 10
   },
   title: {
     fontSize: 18,
@@ -118,5 +146,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 6,
     flexWrap: "wrap"
+  },
+  formContainer: {
+    width: screenWidth
   }
 });

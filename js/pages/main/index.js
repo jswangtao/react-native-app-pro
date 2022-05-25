@@ -2,15 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 22:03:23
+ * @LastEditTime: 2022-05-25 20:04:07
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { logo } from "@/images";
-import { msg, XMIcon, XMButton, XMImageAlbum } from "@/common";
-import { color_2A64F4, color_CCCCCC } from "@/styles";
+import { msg, XMIcon, XMButton, FormInput, FormSelect, FormItem } from "@/common";
+import { color_2A64F4, color_CCCCCC, px2dp, screenWidth } from "@/styles";
 import api from "@/api";
 
 export default class Main extends Component {
@@ -31,7 +31,19 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this._renderView()}
+        <View style={styles.wrap}>
+          <FormSelect
+            label="客户名"
+            style={{ height: px2dp(104), paddingRight: px2dp(16) }}
+            selected={{ value: "" }}
+            onPress={() => {
+              console.log("🚀🚀🚀wimi======>>>1111");
+            }}
+          />
+          <FormInput label="车主类型" style={{ height: px2dp(104), paddingRight: px2dp(16) }} />
+          <FormItem label="车主类型" style={{ height: px2dp(104), paddingRight: px2dp(16) }} placeholder="111" />
+        </View>
+        {/* {this._renderView()} */}
         {/* <XMIcon name={"icon_setting"} size={24} color={"#999"}>
           支持IconFont
         </XMIcon> */}
@@ -90,5 +102,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2f2f2",
     justifyContent: "center",
     width: 220
+  },
+  wrap: {
+    width: screenWidth
   }
 });

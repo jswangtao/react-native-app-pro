@@ -2,31 +2,27 @@
  * @Author: wangtao
  * @Date: 2020-07-28 08:23:07
  * @LastEditors: 汪滔
- * @LastEditTime: 2020-08-06 17:45:49
+ * @LastEditTime: 2022-05-25 20:02:04
  * @Description: form中普通展示项
  */
-import React, { Component } from 'react';
-import { PixelRatio, StyleSheet, Text, View } from 'react-native';
+import React, { PureComponent } from "react";
+import { PixelRatio, StyleSheet, Text, View } from "react-native";
 
-import { screenWidth } from '../../styles';
+import { screenWidth } from "../../styles";
 
-export default class FormItem extends Component {
+export default class FormItem extends PureComponent {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const { labelName, placeholder, textStyle, style } = this.props;
+    const { label, placeholder, textStyle, style } = this.props;
     return (
       <View style={[styles.form_item, style]}>
-        <Text style={styles.form_text}>{labelName}</Text>
+        <Text style={styles.form_text}>{label}</Text>
         <View style={styles.form_context}>
-          {typeof placeholder === 'string' ? (
-            <Text
-              textAlignVertica="top"
-              allowFontScaling={false}
-              style={[styles.select_text, { ...textStyle }]}
-            >
+          {typeof placeholder === "string" ? (
+            <Text textAlignVertica="top" allowFontScaling={false} style={[styles.select_text, { ...textStyle }]}>
               {placeholder}
             </Text>
           ) : (
@@ -40,18 +36,17 @@ export default class FormItem extends Component {
 
 const styles = StyleSheet.create({
   form_item: {
-    borderBottomColor: '#F0EFEF',
+    borderBottomColor: "#F0EFEF",
     borderBottomWidth: 1 / PixelRatio.get(),
-    borderStyle: 'solid',
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 14,
+    borderStyle: "solid",
+    backgroundColor: "#ffffff",
     paddingVertical: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start'
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start"
   },
   form_text: {
-    color: '#343332',
+    color: "#343332",
     fontSize: 14
   },
   form_context: {
@@ -60,12 +55,12 @@ const styles = StyleSheet.create({
   },
   select_text: {
     fontSize: 14,
-    color: '#999999',
-    textAlign: 'right',
+    color: "#999999",
+    textAlign: "right",
     width: screenWidth * 0.6,
-    alignSelf: 'flex-end'
+    alignSelf: "flex-end"
   },
   rightCon: {
-    alignItems: 'flex-end'
+    alignItems: "flex-end"
   }
 });

@@ -1,8 +1,15 @@
+/*
+ * @Author: wangtao
+ * @Date: 2020-10-13 09:25:53
+ * @LastEditors: 汪滔
+ * @LastEditTime: 2021-09-28 15:13:06
+ * @Description: file content
+ */
 import React from 'react';
 import { TouchableOpacity, Keyboard } from 'react-native';
 import FormSelectBase from '../form-select-base/index';
 
-export default class FormSelect extends React.Component {
+export default class FormSelect extends React.PureComponent {
   static defaultProps = {
     disabled: false
   };
