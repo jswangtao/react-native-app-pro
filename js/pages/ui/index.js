@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-25 20:05:29
+ * @LastEditTime: 2022-05-26 14:16:25
  * @Description: ui
  */
 
@@ -18,10 +18,12 @@ import {
   XMInput,
   FormInput,
   FormSelect,
-  FormItem
+  FormItem,
+  XMEmpty,
+  XMLoading
 } from "@/common";
 import { screenWidth, px2dp } from "@/styles";
-import { logo } from "@/images";
+import { empty01, logo } from "@/images";
 
 export default class Ui extends Component {
   constructor(props) {
@@ -94,7 +96,7 @@ export default class Ui extends Component {
             </>
           )}
           {this._renderFloor(
-            "输入框",
+            "Form相关",
             <>
               <View style={styles.formContainer}>
                 <FormSelect
@@ -108,6 +110,18 @@ export default class Ui extends Component {
                 <FormInput label="车主类型" style={{ height: px2dp(104), paddingRight: px2dp(16) }} />
                 <FormItem label="车主类型" style={{ height: px2dp(104), paddingRight: px2dp(16) }} placeholder="111" />
               </View>
+            </>
+          )}
+          {this._renderFloor(
+            "空状态",
+            <>
+              <XMEmpty image={empty01} desc="暂无数据~" />
+            </>
+          )}
+          {this._renderFloor(
+            "加载中",
+            <>
+              <XMLoading />
             </>
           )}
         </ScrollView>

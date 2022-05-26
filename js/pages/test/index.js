@@ -2,13 +2,13 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-26 21:00:34
+ * @LastEditTime: 2022-05-26 14:00:35
  * @Description: 个人中心
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View } from "react-native";
-import { XMButton, msg, AsyncStorage, cache, XMHeader, XMSendCodeButton } from "@/common";
+import { StyleSheet, View, Text } from "react-native";
+import { XMButton, msg, AsyncStorage, cache, XMHeader, XMListView } from "@/common";
 import userApi from "@/api/user";
 
 export default class User extends Component {
@@ -23,10 +23,24 @@ export default class User extends Component {
     return (
       <View style={styles.container}>
         <XMHeader title="测试页面" />
-        <XMSendCodeButton />
+        <XMListView
+          url="shop-api/api/v1/pi/getGoodsInfoApp"
+          method="GET"
+          params={{ gcCode: "stsp" }}
+          dataPropsName={"data.goods"}
+          renderRow={item => this._renderItem(item)}
+        />
       </View>
     );
   }
+
+  _renderItem = item => {
+    return (
+      <View style={{ width: 300, height: 100, backgroundColor: "pink", marginTop: 12 }}>
+        <Text>{item.name}</Text>
+      </View>
+    );
+  };
 
   // 测试同步存储和异步存储
   testStorage = () => {
