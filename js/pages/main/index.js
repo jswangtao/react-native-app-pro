@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-26 13:37:34
+ * @LastEditTime: 2022-05-26 17:08:47
  * @Description: 首页
  */
 
@@ -21,23 +21,25 @@ export default class Main extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      disabled: true
+    };
   }
 
   componentDidMount() {
     // this.getCustomService();
+    setTimeout(() => {
+      this.setState({ disabled: false });
+    }, 2000);
+    setTimeout(() => {
+      this.setState({ disabled: true });
+    }, 5000);
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <XMListView
-          url="shop-api/api/v1/pi/getGoodsInfoApp"
-          method="GET"
-          params={{ gcCode: "stsp" }}
-          dataPropsName={"data.goods"}
-          renderRow={item => this._renderItem(item)}
-        />
+        <XMButton disabled={this.state.disabled} type="primary"></XMButton>
       </View>
     );
   }

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 04:58:47
+ * @LastEditTime: 2022-05-26 17:40:03
  * @Description: Button公共组件 模仿u-button
  */
 
@@ -22,6 +22,9 @@ const noop = () => {};
 /**
  * Button
  */
+
+let processing = false;
+
 export default class Button extends Component {
   static defaultProps = {
     text: "确定",
@@ -36,24 +39,58 @@ export default class Button extends Component {
     iconColor: "#999",
     onClick: noop
   };
+
   constructor(props) {
     super(props);
+
     this.state = {
-      processing: false,
       activeBtnStyle: props.disabled
         ? StyleSheet.flatten([styles.activeBtnStyle, { backgroundColor: color_white, opacity: 0.5 }])
         : styles.activeBtnStyle,
       boxStyle: props.style ? StyleSheet.flatten([styles.submitBox, props.style]) : styles.submitBox,
-      btnStyle: this.props.btnStyle ? StyleSheet.flatten([styles.submitBtn, this.props.btnStyle]) : styles.submitBtn,
+      btnStyle: props.btnStyle ? StyleSheet.flatten([styles.submitBtn, props.btnStyle]) : styles.submitBtn,
       btnTextStyle: props.btnTextStyle
         ? StyleSheet.flatten([styles.submitBtnText, props.btnTextStyle])
         : styles.submitBtnText
     };
   }
 
+  // static getDerivedStateFromProps(props, state) {
+  //   if (props && props.disabled) {
+  //     return {
+  //       activeBtnStyle: StyleSheet.flatten([styles.activeBtnStyle, { backgroundColor: color_white, opacity: 0.5 }]),
+  //       boxStyle: props.style ? StyleSheet.flatten([styles.submitBox, props.style]) : styles.submitBox,
+  //       btnStyle: props.btnStyle ? StyleSheet.flatten([styles.submitBtn, props.btnStyle]) : styles.submitBtn,
+  //       btnTextStyle: props.btnTextStyle
+  //         ? StyleSheet.flatten([styles.submitBtnText, props.btnTextStyle])
+  //         : styles.submitBtnText
+  //     };
+  //   }
+  //   if (processing) {
+  //     return {
+  //       activeBtnStyle: StyleSheet.flatten([state.activeBtnStyle, { opacity: 0.15 }]),
+  //       boxStyle: props.style ? StyleSheet.flatten([styles.submitBox, props.style]) : styles.submitBox,
+  //       btnStyle: props.btnStyle ? StyleSheet.flatten([styles.submitBtn, props.btnStyle]) : styles.submitBtn,
+  //       btnTextStyle: props.btnTextStyle
+  //         ? StyleSheet.flatten([styles.submitBtnText, props.btnTextStyle])
+  //         : styles.submitBtnText
+  //     };
+  //   }
+  //   if (props && !props.disabled && !processing) {
+  //     return {
+  //       activeBtnStyle: styles.activeBtnStyle,
+  //       boxStyle: props.style ? StyleSheet.flatten([styles.submitBox, props.style]) : styles.submitBox,
+  //       btnStyle: props.btnStyle ? StyleSheet.flatten([styles.submitBtn, props.btnStyle]) : styles.submitBtn,
+  //       btnTextStyle: props.btnTextStyle
+  //         ? StyleSheet.flatten([styles.submitBtnText, props.btnTextStyle])
+  //         : styles.submitBtnText
+  //     };
+  //   }
+  //   return null;
+  // }
+
   render() {
     const { text, loading, icon, iconSize, iconColor } = this.props;
-    const { processing } = this.state;
     return (
       <TouchableOpacity
         activeOpacity={1}
@@ -72,19 +109,22 @@ export default class Button extends Component {
             {text}
           </Text>
         </View>
-        <View style={this.state.activeBtnStyle}></View>
+        <View style={this.getActiveBtnStyle()}></View>
       </TouchableOpacity>
     );
   }
 
   _handleClickActive = () => {
+    // 设置按钮状态执行操作中
+    processing = true;
     this.setState({
-      activeBtnStyle: StyleSheet.flatten([this.state.activeBtnStyle, { opacity: 0.15 }])
+      activeBtnStyle: StyleSheet.flatten([styles.activeBtnStyle, { opacity: 0.15 }])
     });
   };
   _handleClickInActive = () => {
+    processing = false;
     this.setState({
-      activeBtnStyle: StyleSheet.flatten([this.state.activeBtnStyle, { opacity: 0 }])
+      activeBtnStyle: StyleSheet.flatten([styles.activeBtnStyle, { opacity: 0 }])
     });
   };
 
@@ -114,6 +154,18 @@ export default class Button extends Component {
       boxStyle = StyleSheet.flatten([boxStyle, { borderWidth: 0 }]);
     }
     return boxStyle;
+  };
+
+  //
+  getActiveBtnStyle = () => {
+    const { disabled } = this.props;
+    if (disabled) {
+      return StyleSheet.flatten([styles.activeBtnStyle, { backgroundColor: color_white, opacity: 0.5 }]);
+    }
+    if (processing) {
+      return StyleSheet.flatten([this.state.activeBtnStyle, { opacity: 0.15 }]);
+    }
+    return styles.activeBtnStyle;
   };
 
   /**
@@ -155,22 +207,14 @@ export default class Button extends Component {
   _handleClick = async () => {
     // 收起键盘
     Keyboard.dismiss();
-
     const { disabled } = this.props;
-    const { processing } = this.state;
 
     if (disabled || processing) {
       return;
     }
-    // 设置按钮状态执行操作中
-    this.setState({
-      processing: true
-    });
+
     // 执行 onClick 方法
     await this.props.onClick();
-    this.setState({
-      processing: false
-    });
   };
 }
 
