@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-26 17:08:47
+ * @LastEditTime: 2022-05-30 16:01:19
  * @Description: 首页
  */
 
@@ -25,7 +25,6 @@ export default class Main extends Component {
       disabled: true
     };
   }
-
   componentDidMount() {
     // this.getCustomService();
     setTimeout(() => {
@@ -35,7 +34,6 @@ export default class Main extends Component {
       this.setState({ disabled: true });
     }, 5000);
   }
-
   render() {
     return (
       <View style={styles.container}>
@@ -43,6 +41,7 @@ export default class Main extends Component {
       </View>
     );
   }
+
   _renderItem = item => {
     return (
       <View style={{ height: 100, backgroundColor: "pink", marginTop: 24 }}>
@@ -91,6 +90,7 @@ export default class Main extends Component {
     api.user.getConfigValue(params).then(res => {
       console.log("🚀🚀🚀wimi======>>>res", res);
       if (res.success) {
+        console.log("🚀🚀🚀wimi======>>>res", res);
       }
     });
   };

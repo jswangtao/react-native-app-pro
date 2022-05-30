@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2021-12-31 09:10:24
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-10 16:23:40
+ * @LastEditTime: 2022-05-30 16:01:11
  * @Description: file content
  */
 module.exports = {
@@ -36,6 +36,16 @@ module.exports = {
     //"error" or 2 - 将规则作为错误打开（退出代码为1）
     eqeqeq: "error", //开启全等校验
     "no-console": "off",
-    "react/prop-types": 0 //关闭必须在props中声明
+    "react/prop-types": 0, //关闭必须在props中声明
+    // 配置方法编码顺序start
+    "react/sort-comp": [
+      1,
+      {
+        order: ["static-methods", "lifecycle", "/^on.+$/", "rendering", "everything-else"],
+        groups: {
+          rendering: ["/^render.+$/", "render"]
+        }
+      }
+    ]
   }
 };
