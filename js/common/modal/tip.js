@@ -6,13 +6,11 @@
  * @Description: tip组件
  */
 
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
-import {
-  View, Text, Image, StyleSheet, BackHandler,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, BackHandler } from "react-native";
 
-import Overlay from './overlay';
+import Overlay from "./overlay";
 
 const noop = () => {};
 
@@ -21,7 +19,7 @@ export default class Tip extends PureComponent {
     // 是否显示
     visible: false,
     // 显示的消息的内容
-    text: '',
+    text: "",
     // 是否模态
     modal: false,
     // 消失时间 当time=false时不限时间
@@ -29,15 +27,15 @@ export default class Tip extends PureComponent {
     // tip消失后的callback
     onTipDisappear: noop,
     // 提示图标，目前仅支持success和warning，其他需传入icon图片
-    icon: '',
+    icon: "",
     // 支付loading
-    loading: false,
+    loading: false
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      visible: this.props.visible,
+      visible: this.props.visible
     };
   }
 
@@ -48,26 +46,26 @@ export default class Tip extends PureComponent {
         setTimeout(() => {
           props.onTipDisappear();
           return {
-            visible: false,
+            visible: false
           };
         }, props.time);
       }
       // 如果当前的属性为显示状态，则立刻去显示
       return {
-        visible: true,
+        visible: true
       };
     }
     return {
-      visible: false,
+      visible: false
     };
   }
 
   componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this._onBackAndroid);
+    BackHandler.addEventListener("hardwareBackPress", this._onBackAndroid);
   }
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this._onBackAndroid);
+    BackHandler.removeEventListener("hardwareBackPress", this._onBackAndroid);
   }
 
   render() {
@@ -77,30 +75,18 @@ export default class Tip extends PureComponent {
     }
     return (
       <Overlay
-        style={[
-          this.props.icon && { backgroundColor: 'rgba(0,0,0,0.1)' },
-          this.props.style,
-        ]}
+        style={[this.props.icon && { backgroundColor: "rgba(0,0,0,0.1)" }, this.props.style]}
         modal={this.props.modal}
         icon={this.props.icon}
       >
         <View style={[styles.tip, this.props.icon && styles.bgw]}>
           {this._renderIcon()}
           {this.props.text ? (
-            <Text
-              style={[styles.text, this.props.icon && styles.iconText]}
-              allowFontScaling={false}
-              numberOfLines={3}
-            >
+            <Text style={[styles.text, this.props.icon && styles.iconText]} allowFontScaling={false} numberOfLines={3}>
               {this.props.text}
             </Text>
           ) : null}
-          {this.props.loading && (
-            <Image
-              style={styles.loading}
-              source={require('./img/loading.gif')}
-            />
-          )}
+          {this.props.loading && <Image style={styles.loading} source={require("./img/loading.gif")} />}
         </View>
       </Overlay>
     );
@@ -114,15 +100,16 @@ export default class Tip extends PureComponent {
   };
 
   _renderIcon() {
-    if (this.props.icon === 'success') {
-      return <Image style={styles.icon} source={require('./img/ok.png')} />;
-    } if (this.props.icon === 'warning') {
-      return (
-        <Image style={styles.icon} source={require('./img/warning.png')} />
-      );
-    } if (this.props.icon === 'pay') {
-      return <Image style={styles.icon} source={require('./img/pay.png')} />;
-    } if (this.props.icon) {
+    if (this.props.icon === "success") {
+      return <Image style={styles.icon} source={require("./img/ok.png")} />;
+    }
+    if (this.props.icon === "warning") {
+      return <Image style={styles.icon} source={require("./img/warning.png")} />;
+    }
+    if (this.props.icon === "pay") {
+      return <Image style={styles.icon} source={require("./img/pay.png")} />;
+    }
+    if (this.props.icon) {
       return <Image style={styles.icon} source={this.props.icon} />;
     }
     return null;
@@ -132,32 +119,32 @@ export default class Tip extends PureComponent {
 const styles = StyleSheet.create({
   tip: {
     // flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: "center"
   },
   icon: {
     width: 55,
-    height: 55,
+    height: 55
   },
   text: {
-    color: '#FFF',
-    fontSize: 16,
+    color: "#FFF",
+    fontSize: 16
   },
   bgw: {
     // backgroundColor: 'rgba(100,100,100,0.5)',
     borderRadius: 15,
     width: 130,
     height: 130,
-    justifyContent: 'space-around',
+    justifyContent: "space-around",
     paddingTop: 15,
-    paddingBottom: 15,
+    paddingBottom: 15
   },
   iconText: {
-    color: '#eee',
-    fontSize: 18,
+    color: "#eee",
+    fontSize: 18
   },
   loading: {
     width: (159 / 38) * 10,
     height: 10,
-    marginTop: 5,
-  },
+    marginTop: 5
+  }
 });

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Modal } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React from "react";
+import { Modal } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 // import { Modal } from 'antd-mobile';
 
 /**
@@ -14,36 +14,18 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
  * @param platform 组件的平台特有样式
  * @constructor
  */
-export function WmPrompt(
-  title,
-  message,
-  callbackOrActions,
-  type,
-  defaultValue,
-  placeholders,
-  platform,
-) {
-  Modal.prompt(
-    title,
-    message,
-    callbackOrActions,
-    type,
-    defaultValue,
-    placeholders,
-    platform,
-  );
+export function WmPrompt(title, message, callbackOrActions, type, defaultValue, placeholders, platform) {
+  Modal.prompt(title, message, callbackOrActions, type, defaultValue, placeholders, platform);
 }
 
 export default class WmModal extends React.Component {
   render() {
-    const {
-      visible, onClose, title, footer,
-    } = this.props;
+    const { visible, onClose, title, footer } = this.props;
     return (
       !!visible && (
         <KeyboardAwareScrollView
-          ref={(ref) => (this._scroll = ref)}
-          onScroll={(event) => {
+          ref={ref => (this._scroll = ref)}
+          onScroll={event => {
             window.y = event.nativeEvent.contentOffset.y;
           }}
         >
@@ -52,7 +34,7 @@ export default class WmModal extends React.Component {
             transparent
             maskClosable={false}
             onRequestClose={onClose}
-            title={title || ''}
+            title={title || ""}
             footer={footer}
             wrapProps={{ onTouchStart: this.onWrapTouchStart }}
           >
@@ -63,12 +45,12 @@ export default class WmModal extends React.Component {
     );
   }
 
-  onWrapTouchStart = (e) => {
+  onWrapTouchStart = e => {
     // fix touch to scroll background page on iOS
     if (!/iPhone|iPod|iPad/i.test(navigator.userAgent)) {
       return;
     }
-    const pNode = closest(e.target, '.am-modal-content');
+    const pNode = closest(e.target, ".am-modal-content");
     if (!pNode) {
       e.preventDefault();
     }
@@ -76,10 +58,7 @@ export default class WmModal extends React.Component {
 }
 
 const closest = (el, selector) => {
-  const matchesSelector = el.matches
-    || el.webkitMatchesSelector
-    || el.mozMatchesSelector
-    || el.msMatchesSelector;
+  const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
   while (el) {
     if (matchesSelector.call(el, selector)) {
       return el;

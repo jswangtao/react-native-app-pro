@@ -2,15 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-30 16:01:19
+ * @LastEditTime: 2022-06-01 15:32:49
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { empty01 } from "@/images";
-import { msg, XMIcon, XMButton, XMListView, XMEmpty } from "@/common";
-import { color_2A64F4, color_CCCCCC, px2dp, screenWidth } from "@/styles";
+import {} from "@/images";
+import { msg, XMIcon, XMButton } from "@/common";
+import { color_2A64F4, color_CCCCCC, screenWidth } from "@/styles";
 import api from "@/api";
 
 export default class Main extends Component {

@@ -7,5 +7,5 @@
  * 如：USER: 'user'    APP_TOKEN: 'app_token'
  */
 export default {
-  USER: 'user', // APP 登录后获取user信息
+  USER: "user" // APP 登录后获取user信息
 };

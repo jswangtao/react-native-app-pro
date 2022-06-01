@@ -1,4 +1,4 @@
-import { Alert } from 'react-native';
+import { Alert } from "react-native";
 
 /**
  * 两个按钮的alert
@@ -16,18 +16,18 @@ export const Confirm = ({
   okFn, // 点击确认回调函数
   cancelFn, // 点击取消回调函数
   okText, // 确认按钮文案
-  cancelText, // 取消按钮文案
+  cancelText // 取消按钮文案
 }) => {
   const buttonArray = !cancelText
     ? [{ text: okText, onPress: () => okFn() }]
     : [
-      {
-        text: cancelText,
-        style: 'cancel',
-        onPress: () => cancelFn && cancelFn(),
-      },
-      { text: okText, onPress: () => okFn() },
-    ];
+        {
+          text: cancelText,
+          style: "cancel",
+          onPress: () => cancelFn && cancelFn()
+        },
+        { text: okText, onPress: () => okFn() }
+      ];
 
   Alert.alert(title, text, buttonArray);
 };

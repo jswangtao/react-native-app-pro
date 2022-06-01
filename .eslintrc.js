@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2021-12-31 09:10:24
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-30 16:01:11
+ * @LastEditTime: 2022-06-01 14:32:07
  * @Description: file content
  */
 module.exports = {
@@ -13,8 +13,8 @@ module.exports = {
     commonjs: true,
     es6: true
   },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
-  // extends: 'airbnb-base', //上一行为不要代码格式化功能，这一行为代码格式化选择 airbnb 的格式规范。
+  extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  // extends: 'airbnb-base', //上一行为默认并  "prettier" 解决 eslint 和 prettier 的冲突，这一行为代码格式化选择 airbnb 的格式规范。
   globals: {
     __DEV__: true
   },

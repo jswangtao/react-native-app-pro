@@ -7,16 +7,8 @@
  * okBtnBg 是否展示 实心确认按钮 默认false,如果需要实心确认按钮跟okText结合使用即可
  */
 
-import React, { PureComponent } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  PixelRatio,
-  TouchableOpacity,
-  Image,
-  Modal,
-} from 'react-native';
+import React, { PureComponent } from "react";
+import { View, Text, StyleSheet, PixelRatio, TouchableOpacity, Image, Modal } from "react-native";
 import {
   screenWidth,
   screenHeight,
@@ -25,22 +17,22 @@ import {
   fontColorBlack,
   fontColorCoffee,
   splitLineColorLightGray,
-  fontColorSecDeepGray,
-} from '../styles';
+  fontColorSecDeepGray
+} from "../styles";
 
-import msg from '../msg';
-import { noop } from '../noop';
+import msg from "../msg";
+import { noop } from "../noop";
 
 /**
  * 公共MessageBox组件
  */
 export default class MessageBox extends PureComponent {
   static defaultProps = {
-    title: '',
+    title: "",
     text: null,
     okFn: noop,
     cancelFn: noop,
-    okText: '确定',
+    okText: "确定",
     cancelText: null,
     imgSource: null,
     isClickBg: true
@@ -49,69 +41,56 @@ export default class MessageBox extends PureComponent {
   render() {
     const { headerCancel = false, isClickBg } = this.props;
     return (
-      <Modal animationType='fade' transparent visible>
-        {
-          headerCancel ?
-            <View style={styles.container}>
-              <View style={styles.containerWrap}>
-                <View style={styles.cancelBox}>
-                  <TouchableOpacity
-                    style={[styles.cancelBtn, { flex: 1 }]}
-                    activeOpacity={0.8}
-                    onPress={() => {
-                      msg.emit('app:messageBox', { isVisible: false });
-                    }}
-                  >
-                    <Image style={styles.cancelImg} source={require('./close.png')} />
-                  </TouchableOpacity>
-                </View>
-                {/* 内容 */}
-                {this._renderContent()}
-                {/* 底部按钮 */}
-                {this._renderFooter()}
+      <Modal animationType="fade" transparent visible>
+        {headerCancel ? (
+          <View style={styles.container}>
+            <View style={styles.containerWrap}>
+              <View style={styles.cancelBox}>
+                <TouchableOpacity
+                  style={[styles.cancelBtn, { flex: 1 }]}
+                  activeOpacity={0.8}
+                  onPress={() => {
+                    msg.emit("app:messageBox", { isVisible: false });
+                  }}
+                >
+                  <Image style={styles.cancelImg} source={require("./close.png")} />
+                </TouchableOpacity>
               </View>
+              {/* 内容 */}
+              {this._renderContent()}
+              {/* 底部按钮 */}
+              {this._renderFooter()}
             </View>
-            :
-            <TouchableOpacity
-              style={styles.container}
-              activeOpacity={1}
-              onPress={() => {
-                if (isClickBg) {
-                  msg.emit('app:messageBox', { isVisible: false });
-                }
-              }}
-            >
-              <TouchableOpacity
-                style={styles.containerWrap}
-                activeOpacity={1}
-                onPress={() => { }}
-              >
-                {/* 内容 */}
-                {this._renderContent()}
-                {/* 底部按钮 */}
-                {this._renderFooter()}
-              </TouchableOpacity>
+          </View>
+        ) : (
+          <TouchableOpacity
+            style={styles.container}
+            activeOpacity={1}
+            onPress={() => {
+              if (isClickBg) {
+                msg.emit("app:messageBox", { isVisible: false });
+              }
+            }}
+          >
+            <TouchableOpacity style={styles.containerWrap} activeOpacity={1} onPress={() => {}}>
+              {/* 内容 */}
+              {this._renderContent()}
+              {/* 底部按钮 */}
+              {this._renderFooter()}
             </TouchableOpacity>
-        }
-
+          </TouchableOpacity>
+        )}
       </Modal>
     );
   }
 
   // 内容
   _renderContent = () => {
-    const {
-      title,
-      text,
-      secText,
-      imgSource,
-    } = this.props;
+    const { title, text, secText, imgSource } = this.props;
     return (
       <View style={styles.contentWrap}>
         {!!title && <Text style={styles.titleText}>{title}</Text>}
-        {!!imgSource && (
-          <Image source={imgSource} resizeMode='contain' style={styles.img} />
-        )}
+        {!!imgSource && <Image source={imgSource} resizeMode="contain" style={styles.img} />}
         {!!text && <Text style={styles.descText}>{text}</Text>}
         {!!secText && <Text style={styles.secText}>{secText}</Text>}
       </View>
@@ -128,7 +107,7 @@ export default class MessageBox extends PureComponent {
             style={[styles.btnLeft]}
             activeOpacity={0.8}
             onPress={() => {
-              msg.emit('app:messageBox', { isVisible: false });
+              msg.emit("app:messageBox", { isVisible: false });
               cancelFn && cancelFn();
             }}
           >
@@ -141,11 +120,10 @@ export default class MessageBox extends PureComponent {
             style={styles.btnRight}
             activeOpacity={0.8}
             onPress={() => {
-              msg.emit('app:messageBox', { isVisible: false });
+              msg.emit("app:messageBox", { isVisible: false });
               okFn && okFn();
             }}
           >
-
             <Text style={styles.btnRightText}>{okText}</Text>
           </TouchableOpacity>
         ) : (
@@ -154,11 +132,10 @@ export default class MessageBox extends PureComponent {
               style={styles.btnRightTwo}
               activeOpacity={0.8}
               onPress={() => {
-                msg.emit('app:messageBox', { isVisible: false });
+                msg.emit("app:messageBox", { isVisible: false });
                 okFn && okFn();
               }}
             >
-
               <Text style={styles.btnRightTextTwo}>{okText}</Text>
             </TouchableOpacity>
           </View>
@@ -172,100 +149,100 @@ const styles = StyleSheet.create({
   container: {
     width: screenWidth,
     height: screenHeight,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
     top: 0,
-    left: 0,
+    left: 0
   },
   containerWrap: {
     width: px2dp(600),
     borderRadius: px2dp(12),
-    overflow: 'hidden',
-    backgroundColor: mainBgColorWhite,
+    overflow: "hidden",
+    backgroundColor: mainBgColorWhite
   },
   contentWrap: {
     minHeight: px2dp(188),
     paddingHorizontal: px2dp(48),
     paddingTop: px2dp(56),
     paddingBottom: px2dp(48),
-    alignItems: 'center',
+    alignItems: "center"
   },
   titleText: {
     fontSize: px2dp(36),
     color: fontColorBlack,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center"
   },
   descText: {
     fontSize: px2dp(28),
     color: fontColorSecDeepGray,
-    textAlign: 'center',
-    marginTop: px2dp(28),
+    textAlign: "center",
+    marginTop: px2dp(28)
   },
   secText: {
     fontSize: px2dp(28),
     color: fontColorSecDeepGray,
-    textAlign: 'center',
+    textAlign: "center"
   },
   body: {},
   btn: {
     height: px2dp(106),
     borderTopWidth: 1 / PixelRatio.get(),
     borderTopColor: splitLineColorLightGray,
-    flexDirection: 'row',
+    flexDirection: "row"
   },
   btnLeft: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center"
   },
   btnLeftText: {
     fontSize: px2dp(36),
-    color: fontColorBlack,
+    color: fontColorBlack
   },
   middleSpliteLine: {
     borderRightWidth: 1 / PixelRatio.get(),
-    borderRightColor: splitLineColorLightGray,
+    borderRightColor: splitLineColorLightGray
   },
   btnRightText: {
     fontSize: px2dp(36),
-    color: fontColorCoffee,
+    color: fontColorCoffee
   },
   btnRight: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center"
   },
   img: {
     width: px2dp(240),
     height: px2dp(240),
     marginTop: px2dp(40),
-    marginBottom: px2dp(12),
+    marginBottom: px2dp(12)
   },
   cancelBtn: {
-    color: '#CCCAC8',
+    color: "#CCCAC8",
     paddingTop: px2dp(48),
     paddingLeft: px2dp(48),
-    position: 'absolute',
+    position: "absolute"
   },
   cancelImg: {
     width: px2dp(28),
-    height: px2dp(28),
+    height: px2dp(28)
   },
   booterBox: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginBottom: px2dp(20)
   },
   btnRightTwo: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     width: px2dp(480),
     height: px2dp(80),
-    backgroundColor: '#BA914A',
+    backgroundColor: "#BA914A",
     borderRadius: px2dp(8)
   },
   btnRightTextTwo: {

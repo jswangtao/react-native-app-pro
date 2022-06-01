@@ -6,10 +6,10 @@
  * @Description: 异步存储方法
  * 未回调方法 调用时需要async await
  */
-import AsyncStorage from '@react-native-community/async-storage';
-import JPush from 'jpush-react-native';
-import msg from './msg';
-import cache from './cache';
+import AsyncStorage from "@react-native-community/async-storage";
+import JPush from "jpush-react-native";
+import msg from "./msg";
+import cache from "./cache";
 
 export default {
   // 存储字符串
@@ -17,20 +17,20 @@ export default {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
-      msg.emit('app:tip', { text: '保存失败' });
+      msg.emit("app:tip", { text: "保存失败" });
     }
   },
   // 获取字符串
-  getItem: async (key) => {
+  getItem: async key => {
     try {
       const value = await AsyncStorage.getItem(key);
       return JSON.parse(value);
     } catch (e) {
-      msg.emit('app:tip', { text: '取值失败' });
+      msg.emit("app:tip", { text: "取值失败" });
     }
   },
   // 清除回调
-  removeItem: async (key) => {
+  removeItem: async key => {
     try {
       await AsyncStorage.removeItem(key);
     } catch (e) {
@@ -49,5 +49,5 @@ export default {
     } catch (e) {
       console.log(e);
     }
-  },
+  }
 };
