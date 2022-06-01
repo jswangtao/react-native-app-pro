@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-10 23:22:26
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 17:04:16
+ * @LastEditTime: 2022-06-01 18:52:24
  * @Description: 主要用于业务的色卡，适配
  */
 import { Dimensions, Platform } from "react-native";
@@ -36,12 +36,46 @@ function px2dp(uiElementPx) {
   return (uiElementPx * screenWidth) / uiWidthPx;
 }
 
+let customerStyleSheet = {
+  create(style) {
+    let s = { ...style };
+    // 目前仅对以下的属性进行处理
+    let list = [
+      "width",
+      "height",
+      "marginTop",
+      "marginBottom",
+      "marginLeft",
+      "marginRight",
+      "paddingTop",
+      "paddingRight",
+      "paddingBottom",
+      "paddingLeft",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "fontSize",
+      "lineHeight"
+    ];
+    for (let outKey in s) {
+      for (let innerKey in s[outKey]) {
+        if (list.includes(innerKey) && typeof s[outKey][innerKey] === "number") {
+          s[outKey][innerKey] = px2dp(s[outKey][innerKey]);
+        }
+      }
+    }
+    return StyleSheet.create(s);
+  }
+};
+
 export {
   isAndroid,
   isIOS,
   screenWidth,
   screenHeight,
   px2dp,
+  customerStyleSheet,
   color_F0F0F0,
   color_F8F8F8,
   color_FFFFFF,

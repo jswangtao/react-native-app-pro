@@ -21,7 +21,7 @@
     "immutable": "^4.0.0",
     "mitt": "^3.0.0",
     "react": "17.0.2",
-    "react-native": "0.68.0",
+    "react-native": "0.68.2",
     "react-native-gesture-handler": "2.1.1",
     "react-native-image-zoom-viewer": "^3.0.1",
     "react-native-reanimated": "^2.6.0",
