@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-12 17:33:47
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-07 20:41:29
+ * @LastEditTime: 2022-06-01 17:24:24
  * @Description: file content
 -->
 
@@ -54,3 +54,11 @@ react-navigation-4.x-redux-immutable 业务框架 (目前主要更新分支)
 ```
 
 5. 如果想基于本仓库快速生成自己的业务框架项目，自定义项目名，修改相关项目名称，请用仓库[@jswangtao/react-native-cli](https://github.com/jswangtao/react-native-cli),可以快速生成自己的 react-native 业务框架项目，并使用到本项目的基础代码
+
+6. 仓库集成了 Eslint + Prettier + Husky + Commitlint+ Lint-staged 代码提交规范
+   git 提交代码请执行
+
+```
+git add .
+npm run commit
+```
