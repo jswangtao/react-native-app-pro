@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 22:01:50
+ * @LastEditTime: 2022-06-02 18:11:32
  * @Description: 主入口
  */
 
@@ -10,7 +10,7 @@ import React, { Component } from "react";
 import { View, StatusBar } from "react-native";
 
 import { NavigationActions, StackActions } from "react-navigation";
-import { msg, Tip } from "@/common";
+import { msg, Toast } from "@/common";
 import { AppContainer } from "./router";
 import LoginModal from "./pages/login/login-modal";
 
@@ -18,12 +18,17 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // 错误tip的显示状态
-      isTipVisible: false,
-      // tip的text
-      isTipText: "",
-      // tip的icon
-      isTipIcon: "",
+      // toast的显示状态
+      isShowToastVisible: false,
+      // toast的text
+      showToastTitle: "",
+      // toast的icon
+      showToastIcon: "",
+      // toast的iconColor
+      showToastIconColor: "",
+      // toast的时间
+      showToastTime: null,
+      isShowToastModal: false,
       // 登录弹框的显示状态
       isLoginModalVisible: false
     };
@@ -46,13 +51,17 @@ export default class App extends Component {
             this.nav = obj;
           }}
         />
-        <Tip
-          modal={false}
-          text={this.state.isTipText}
-          icon={this.state.isTipIcon}
-          visible={this.state.isTipVisible}
-          onTipDisappear={this._handleTipDisappear}
+        {/* 全局吐司 */}
+        <Toast
+          modal={this.state.isShowToastModal}
+          time={this.state.showToastTime}
+          title={this.state.showToastTitle}
+          icon={this.state.showToastIcon}
+          iconColor={this.state.showToastIconColor}
+          visible={this.state.isShowToastVisible}
+          complete={this._handleToastDisappear}
         />
+        {/* 全局登录 */}
         <LoginModal visible={this.state.isLoginModalVisible} />
       </View>
     );
@@ -63,7 +72,8 @@ export default class App extends Component {
    * @private
    */
   _register = () => {
-    msg.on("app:tip", this._handleAppTip); // 弹出tips提示
+    msg.on("app:toast", this._handleAppToast); // 弹出toast提示
+    msg.on("app:hideToast", this._handleToastDisappear); // 主动隐藏toast提示
     msg.on("router:goToNext", this._goToNext); // 下一页
     msg.on("router:back", this._back); // 返回上一页
     msg.on("router:backToTop", this._backToTop); // 返回栈顶
@@ -82,7 +92,8 @@ export default class App extends Component {
    * @private
    */
   _unRegister = () => {
-    msg.off("app:tip", this._handleAppTip);
+    msg.off("app:toast", this._handleAppToast);
+    msg.off("app:hideToast", this._handleToastDisappear);
     msg.off("router:goToNext", this._goToNext);
     msg.off("router:back", this._back);
     msg.off("router:backToTop", this._backToTop);
@@ -265,23 +276,26 @@ export default class App extends Component {
   /**
    * 处理Tip
    */
-  _handleAppTip = ({ text, icon, time = 2000 }) => {
+  _handleAppToast = ({ title, icon, duration = 2500, mask, iconColor }) => {
     this.setState({
-      isTipVisible: true,
-      isTipText: text,
-      isTipIcon: icon,
-      time
+      isShowToastVisible: true,
+      showToastTitle: title,
+      showToastIcon: icon,
+      showToastIconColor: iconColor,
+      showToastTime: duration,
+      isShowToastModal: mask
     });
   };
 
   /**
    * 恢复Tip的原始状态
    */
-  _handleTipDisappear = () => {
+  _handleToastDisappear = () => {
     this.setState({
-      isTipVisible: false,
-      isTipText: "",
-      isTipIcon: ""
+      isShowToastVisible: false,
+      showToastTitle: "",
+      showToastIcon: "",
+      isShowToastModal: false
     });
   };
 

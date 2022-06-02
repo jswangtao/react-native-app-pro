@@ -9,7 +9,7 @@
     "images": "node ./js/images/auto.js",
     "init": "node ./bin/init.js",
     "test": "jest",
-    "lint": "eslint .",
+    "lint": "eslint  --fix",
     "prepare": "husky install",
     "commit": "git-cz"
   },

@@ -2,11 +2,11 @@
  * @Author: wangtao
  * @Date: 2021-10-27 15:57:31
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-01-26 11:03:41
+ * @LastEditTime: 2022-06-02 18:35:46
  * @Description: file content
  */
 import React, { PureComponent } from "react";
-import { View, Text, StyleSheet, PixelRatio, TouchableOpacity, Image, Modal } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Image, Modal } from "react-native";
 import Video from "react-native-video";
 import { screenWidth, screenHeight, px2dp, isAndroid } from "../styles";
 import * as _ from "../util";

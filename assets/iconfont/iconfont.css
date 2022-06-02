@@ -1,0 +1,156 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 939695 */
+  src: url('iconfont.woff2?t=1654164225205') format('woff2'),
+       url('iconfont.woff?t=1654164225205') format('woff'),
+       url('iconfont.ttf?t=1654164225205') format('truetype'),
+       url('iconfont.svg?t=1654164225205#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-success:before {
+  content: "\e60c";
+}
+
+.icon-phone:before {
+  content: "\e652";
+}
+
+.icon-roundclosefill:before {
+  content: "\e658";
+}
+
+.icon-roundclose:before {
+  content: "\e659";
+}
+
+.icon-notificationfill:before {
+  content: "\e66a";
+}
+
+.icon-notification:before {
+  content: "\e66b";
+}
+
+.icon-more:before {
+  content: "\e684";
+}
+
+.icon-scan:before {
+  content: "\e689";
+}
+
+.icon-pic:before {
+  content: "\e69b";
+}
+
+.icon-deletefill:before {
+  content: "\e6a6";
+}
+
+.icon-roundaddfill:before {
+  content: "\e6d8";
+}
+
+.icon-roundadd:before {
+  content: "\e6d9";
+}
+
+.icon-album:before {
+  content: "\e734";
+}
+
+.icon-video_fill_light:before {
+  content: "\e7e8";
+}
+
+.icon-video_light:before {
+  content: "\e7e9";
+}
+
+.icon-phone_light:before {
+  content: "\e7fe";
+}
+
+.icon-close:before {
+  content: "\e646";
+}
+
+.icon-search:before {
+  content: "\e65c";
+}
+
+.icon-back:before {
+  content: "\e679";
+}
+
+.icon-right:before {
+  content: "\e6a3";
+}
+
+.icon-home:before {
+  content: "\e6b8";
+}
+
+.icon-homefill:before {
+  content: "\e6bb";
+}
+
+.icon-add:before {
+  content: "\e767";
+}
+
+.icon-move:before {
+  content: "\e768";
+}
+
+.icon-safe:before {
+  content: "\e769";
+}
+
+.icon-my:before {
+  content: "\e78b";
+}
+
+.icon-myfill:before {
+  content: "\e78c";
+}
+
+.icon-triangledownfill:before {
+  content: "\e79b";
+}
+
+.icon-triangleupfill:before {
+  content: "\e79c";
+}
+
+.icon-piclight:before {
+  content: "\e7b7";
+}
+
+.icon-user:before {
+  content: "\e7ae";
+}
+
+.icon-sync:before {
+  content: "\e786";
+}
+
+.icon-setting:before {
+  content: "\e78e";
+}
+
+.icon-eye:before {
+  content: "\e78f";
+}
+
+.icon-eye-close:before {
+  content: "\e8ff";
+}
+

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 22:04:24
+ * @LastEditTime: 2022-06-02 18:35:25
  * @Description: 登录弹框
  */
 
@@ -11,7 +11,6 @@ import { StyleSheet, View, Text, Modal, TouchableOpacity } from "react-native";
 import { logo } from "@/images";
 import { XMButton, XMImage, XMIcon, _, XMSafeAreaView, XMInput, XMSendCodeButton, msg } from "@/common";
 import { px2dp, color_FFFFFF, color_000000, screenWidth, screenHeight } from "@/styles";
-import api from "@/api";
 
 export default class LoginModal extends Component {
   constructor(props) {
@@ -103,7 +102,8 @@ export default class LoginModal extends Component {
   }
 
   login = () => {
-    this.setState({ visible: true });
+    msg.emit("app:toast", { text: "message" });
+    // this.setState({ visible: true });
     // const { mobile, code } = this.state;
     // console.log("🚀🚀🚀wimi======>>>mobile,code", mobile, code);
     // api.user.login({ mobile, code }).then(res => {

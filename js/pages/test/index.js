@@ -8,7 +8,7 @@
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { XMButton, msg, AsyncStorage, cache, XMHeader, XMListView } from "@/common";
+import { msg, AsyncStorage, cache, XMHeader, XMListView } from "@/common";
 import userApi from "@/api/user";
 
 export default class User extends Component {
@@ -71,8 +71,8 @@ export default class User extends Component {
 
   // 测试全局tips弹框
   testTip = () => {
-    msg.emit("app:tip", { text: "message" });
-    // msg.emit('app:tip', { text: '删除成功', icon: 'success' });
+    msg.emit("app:toast", { text: "message" });
+    // msg.emit('app:toast', { text: '删除成功', icon: 'success' });
   };
 }
 

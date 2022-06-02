@@ -2,16 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 21:50:17
+ * @LastEditTime: 2022-06-02 18:35:31
  * @Description: 登录
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { logo } from "@/images";
-import { XMButton, XMImage, isAndroid, msg, XMSafeAreaView, XMInput, XMSendCodeButton, XMImageViewer } from "@/common";
+import { XMButton, XMImage, XMSafeAreaView, XMInput, XMSendCodeButton } from "@/common";
 import { px2dp, color_FFFFFF, color_000000 } from "@/styles";
-import api from "@/api";
 
 export default class Login extends Component {
   constructor(props) {
@@ -26,7 +25,6 @@ export default class Login extends Component {
   componentDidMount() {}
 
   render() {
-    const { visible } = this.state;
     return (
       <XMSafeAreaView style={styles.container}>
         <XMImage

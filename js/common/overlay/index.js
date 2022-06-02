@@ -2,8 +2,8 @@
  * @Author: wangtao
  * @Date: 2020-06-29 11:01:03
  * @LastEditors: 汪滔
- * @LastEditTime: 2020-10-12 14:31:45
- * @Description: 结合tips做扩展
+ * @LastEditTime: 2022-06-02 16:19:18
+ * @Description: Overlay
  */
 /**
  * overlay
@@ -31,6 +31,18 @@ export default class Overlay extends PureComponent {
 }
 
 const styles = StyleSheet.create({
+  // 模态
+  modalContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.3)"
+  },
+
   // 普通的overlay
   container: {
     flexWrap: "wrap",
@@ -44,18 +56,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
 
-  // 模态
-  modalContainer: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.3)"
-  },
-
   tipContainer: {
     position: "absolute",
     left: 0,
@@ -63,7 +63,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "transparent"
-
-    // transform: [{ translate: [0, -100] }]
   }
 });

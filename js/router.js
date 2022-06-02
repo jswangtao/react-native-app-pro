@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 15:43:52
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 00:27:30
+ * @LastEditTime: 2022-06-02 18:14:20
  * @Description: 路由管理文件
  */
 import React from "react";
@@ -17,6 +17,7 @@ import User from "./pages/user";
 import About from "./pages/about";
 import Login from "./pages/login";
 import Ui from "./pages/ui";
+import Methods from "./pages/methods";
 // 测试页面start
 import Test from "./pages/test";
 import ListViewDemo from "./pages/test/listview";
@@ -112,6 +113,13 @@ const AppNavigator = createStackNavigator(
       screen: ListViewDemo,
       navigationOptions: {
         headerTitle: "列表",
+        ...titleCenter
+      }
+    },
+    Methods: {
+      screen: Methods,
+      navigationOptions: {
+        headerTitle: "公共方法",
         ...titleCenter
       }
     },

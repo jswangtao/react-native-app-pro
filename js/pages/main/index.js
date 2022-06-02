@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-01 15:32:49
+ * @LastEditTime: 2022-06-02 18:26:28
  * @Description: 首页
  */
 
@@ -38,6 +38,7 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         <XMButton disabled={this.state.disabled} type="primary"></XMButton>
+        {this._renderView()}
       </View>
     );
   }
@@ -54,19 +55,20 @@ export default class Main extends Component {
     return (
       <>
         <XMButton
-          text="公共组件"
-          type="primary"
-          style={{ marginBottom: 10 }}
+          text="测试页面1"
           onClick={() => {
-            msg.emit("router:goToNext", {
-              routeName: "Ui"
-            });
+            msg.emit("app:toast", { title: "message", icon: "loading", duration: 0, mask: true });
+            // msg.emit("app:loginModal", true);
+            setTimeout(() => {
+              msg.emit("app:hideToast");
+            }, 3000);
           }}
         />
         <XMButton
           text="测试页面"
           onClick={() => {
-            msg.emit("app:loginModal", true);
+            msg.emit("app:toast", { title: "message", icon: "success" });
+            // msg.emit("app:loginModal", true);
           }}
         />
       </>

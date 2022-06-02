@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-26 14:07:06
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-26 14:13:40
+ * @LastEditTime: 2022-06-02 16:12:59
  * @Description: file content
  */
 import XMButton from "./button"; // 自定义Button
@@ -11,7 +11,7 @@ import msg from "./msg"; // 全局通信
 import BackImageOn from "./back-image-on"; // 返回按钮(主要与XMHeader配合使用，自带宽高，方便点击)
 import * as _ from "./util"; // 工具函数
 import cache from "./cache"; // 常量模块
-import Tip from "./modal/tip"; // tips弹框
+import Toast from "./toast"; // toast弹框
 import ValidConst from "./validate"; // 常用校验正则
 import XMImage from "./image"; // 图片组件
 import XMImageViewer from "./image-viewer"; //图片预览
@@ -33,7 +33,7 @@ export {
   BackImageOn,
   _,
   cache,
-  Tip,
+  Toast,
   ValidConst,
   XMImage,
   XMImageViewer,
