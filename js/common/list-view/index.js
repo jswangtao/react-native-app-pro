@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-09-04 11:05:35
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-26 14:03:39
+ * @LastEditTime: 2022-06-02 20:01:47
  * @Description:
  */
 
@@ -19,6 +19,7 @@ import { px2dp } from "../styles";
 
 export default class XMListView extends React.PureComponent {
   // 当前的pageNum
+  // eslint-disable-next-line react/sort-comp
   _pageNum;
 
   // 大分页的pageNum
@@ -114,7 +115,7 @@ export default class XMListView extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     console.log("nextProps===", nextProps);
     if (!is(fromJS(nextProps.params), fromJS(this.props.params))) {
       this._init(nextProps);

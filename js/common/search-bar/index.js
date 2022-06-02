@@ -2,12 +2,12 @@
  * @Author: wangtao
  * @Date: 2021-11-26 18:38:24
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-01-14 14:36:35
+ * @LastEditTime: 2022-06-02 20:00:20
  * @Description: file content
  */
 import React from "react";
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image } from "react-native";
-import { px2dp, mainBgColorWhite, mainBgColorLightGray, fontColorBlack } from "../styles";
+import { px2dp, mainBgColorWhite, fontColorBlack } from "../styles";
 
 const noop = () => {};
 

@@ -41,7 +41,7 @@ axios.interceptors.response.use(
   }
 );
 
-function handleError(error, reject, opts) {
+function handleError(error, reject) {
   if (error.response && error.response.data) {
     // 未登录
     if (
@@ -62,7 +62,7 @@ function handleError(error, reject, opts) {
   reject(error);
 }
 
-function handleSuccess(res, resolve, opts) {
+function handleSuccess(res, resolve) {
   resolve(res);
 }
 

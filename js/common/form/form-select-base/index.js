@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-27 11:28:08
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-01-26 11:03:09
+ * @LastEditTime: 2022-06-02 19:59:18
  * @Description: 不带可点击按钮的FormSelect样式
  */
 import React from "react";
@@ -31,17 +31,7 @@ export default class FormSelectBase extends React.Component {
   }
 
   render() {
-    const {
-      style,
-      label,
-      labelWidth,
-      labelStyle,
-      required,
-      selected,
-      placeholder,
-
-      textStyles
-    } = this.props;
+    const { style, label, labelWidth, labelStyle, required } = this.props;
 
     return (
       <View style={[styles.item, style]}>

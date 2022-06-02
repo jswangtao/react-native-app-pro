@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-09-04 11:22:31
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-26 14:15:26
+ * @LastEditTime: 2022-06-02 19:59:43
  * @Description: file content
  */
 import React, { Component } from "react";
@@ -29,17 +29,6 @@ export default class Loading extends Component {
     this.spin();
   }
 
-  // 旋转方法
-  spin = () => {
-    this.spinValue.setValue(0);
-    Animated.timing(this.spinValue, {
-      toValue: 1, // 最终值 为1，这里表示最大旋转 360度
-      duration: 1000,
-      easing: Easing.linear,
-      useNativeDriver: true
-    }).start(() => this.spin());
-  };
-
   render() {
     const { style, textStyle } = this.props;
     // 映射 0-1的值 映射 成 0 - 360 度
@@ -60,6 +49,17 @@ export default class Loading extends Component {
       </View>
     );
   }
+
+  // 旋转方法
+  spin = () => {
+    this.spinValue.setValue(0);
+    Animated.timing(this.spinValue, {
+      toValue: 1, // 最终值 为1，这里表示最大旋转 360度
+      duration: 1000,
+      easing: Easing.linear,
+      useNativeDriver: true
+    }).start(() => this.spin());
+  };
 }
 
 const styles = StyleSheet.create({
