@@ -5,13 +5,13 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "react-native start --reset-cache",
+    "lint-fix": "eslint js --fix --ext .js --ext .jsx --ext .ts --ext .tsx",
+    "commit": "git add . && git-cz",
     "images": "node ./js/images/auto.js",
     "init": "node ./bin/init.js",
     "test": "jest",
-    "lint-fix": "eslint js --fix --ext .js --ext .jsx --ext .ts --ext .tsx",
-    "prepare": "husky install",
-    "commit": "git-cz"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 18:11:32
+ * @LastEditTime: 2022-06-02 21:26:02
  * @Description: 主入口
  */
 
@@ -51,9 +51,11 @@ export default class App extends Component {
             this.nav = obj;
           }}
         />
+        {/* 全局登录 */}
+        <LoginModal visible={this.state.isLoginModalVisible} />
         {/* 全局吐司 */}
         <Toast
-          modal={this.state.isShowToastModal}
+          mask={this.state.isShowToastModal}
           time={this.state.showToastTime}
           title={this.state.showToastTitle}
           icon={this.state.showToastIcon}
@@ -61,8 +63,6 @@ export default class App extends Component {
           visible={this.state.isShowToastVisible}
           complete={this._handleToastDisappear}
         />
-        {/* 全局登录 */}
-        <LoginModal visible={this.state.isLoginModalVisible} />
       </View>
     );
   }

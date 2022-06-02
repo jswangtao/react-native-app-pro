@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-29 11:01:03
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 16:19:18
+ * @LastEditTime: 2022-06-02 21:25:19
  * @Description: Overlay
  */
 /**
@@ -11,15 +11,15 @@
  */
 import React, { PureComponent } from "react";
 import { View, StyleSheet } from "react-native";
-import { screenHeight } from "../styles";
+import { screenHeight, screenWidth } from "../styles";
 
 export default class Overlay extends PureComponent {
   static defaultProps = {
-    modal: false // 是不是需要模态
+    mask: false // 是不是需要蒙层
   };
 
   render() {
-    if (this.props.modal) {
+    if (this.props.mask) {
       return <View style={[styles.modalContainer, this.props.style]}>{this.props.children}</View>;
     }
     return (
@@ -40,7 +40,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.3)"
+    backgroundColor: "rgba(0,0,0,0.3)",
+    width: screenWidth,
+    height: screenHeight
   },
 
   // 普通的overlay

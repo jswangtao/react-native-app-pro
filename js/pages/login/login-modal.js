@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 18:35:25
+ * @LastEditTime: 2022-06-02 22:03:36
  * @Description: 登录弹框
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, Text, Modal, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { logo } from "@/images";
-import { XMButton, XMImage, XMIcon, _, XMSafeAreaView, XMInput, XMSendCodeButton, msg } from "@/common";
+import { XMButton, XMImage, XMIcon, _, XMInput, XMSendCodeButton, msg, XMModal } from "@/common";
 import { px2dp, color_FFFFFF, color_000000, screenWidth, screenHeight } from "@/styles";
 
 export default class LoginModal extends Component {
@@ -26,13 +26,13 @@ export default class LoginModal extends Component {
   render() {
     const { visible } = this.props;
     return (
-      <Modal animationType="slide" transparent visible={visible}>
-        <XMSafeAreaView style={styles.container}>
+      <XMModal type="view" visible={visible}>
+        <View style={styles.container}>
           <TouchableOpacity
             onPress={() => {
               msg.emit("app:loginModal", false);
             }}
-            style={{ position: "absolute", top: _.getStatusBarHeight() + 10, left: 20 }}
+            style={{ position: "absolute", top: _.getStatusBarHeight(), left: 20 }}
           >
             <XMIcon name={"close"} size={24} color={"#999"} />
           </TouchableOpacity>
@@ -96,13 +96,13 @@ export default class LoginModal extends Component {
             }}
             onClick={() => this.login()}
           />
-        </XMSafeAreaView>
-      </Modal>
+        </View>
+      </XMModal>
     );
   }
 
   login = () => {
-    msg.emit("app:toast", { text: "message" });
+    msg.emit("app:toast", { title: "message" });
     // this.setState({ visible: true });
     // const { mobile, code } = this.state;
     // console.log("🚀🚀🚀wimi======>>>mobile,code", mobile, code);

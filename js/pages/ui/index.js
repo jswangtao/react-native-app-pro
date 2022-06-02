@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-05-26 14:16:25
+ * @LastEditTime: 2022-06-02 22:42:03
  * @Description: ui
  */
 
@@ -20,6 +20,7 @@ import {
   FormSelect,
   FormItem,
   XMEmpty,
+  XMModal,
   XMLoading
 } from "@/common";
 import { screenWidth, px2dp } from "@/styles";
@@ -28,12 +29,16 @@ import { empty01, logo } from "@/images";
 export default class Ui extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isVisibleModalView: false,
+      isVisibleModal: false
+    };
   }
 
   componentDidMount() {}
 
   render() {
+    const { isVisibleModalView, isVisibleModal } = this.state;
     return (
       <View style={styles.container}>
         <XMHeader title="自定义头部" />
@@ -124,7 +129,29 @@ export default class Ui extends Component {
               <XMLoading />
             </>
           )}
+          {this._renderFloor(
+            "Modal",
+            <>
+              <XMButton
+                text="展示view自定义Modal"
+                type="primary"
+                onClick={() => {
+                  this.setState({ isVisibleModalView: true });
+                }}
+              />
+              <XMButton
+                text="展示RNModal"
+                type="primary"
+                onClick={() => {
+                  this.setState({ isVisibleModal: true });
+                }}
+              />
+            </>
+          )}
         </ScrollView>
+
+        <XMModal type="view" visible={isVisibleModalView} />
+        <XMModal type="modal" visible={isVisibleModal} />
       </View>
     );
   }

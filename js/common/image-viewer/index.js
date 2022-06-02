@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2021-08-16 14:36:01
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 20:47:57
+ * @LastEditTime: 2022-06-02 21:23:41
  * @Description: file content
  */
 import React, { Component } from "react";
@@ -44,7 +44,6 @@ export default class XMImageViewer extends Component {
         return itemResult;
       });
     }
-    console.log("🚀🚀🚀wimi======>>>imageUrls", imageUrls, visible);
     return (
       <Modal visible={visible} transparent>
         <ImageViewer

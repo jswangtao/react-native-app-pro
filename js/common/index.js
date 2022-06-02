@@ -26,6 +26,8 @@ import XMInput from "./input"; //输入框
 import FormInput from "./form/form-input"; // 表单输入
 import FormSelect from "./form/form-select"; // 表单选择
 import FormItem from "./form/form-item"; // 表单普通展示项目
+import Overlay from "./overlay"; // 模态框
+import XMModal from "./modal"; // 模态框
 export {
   XMButton,
   XMSendCodeButton,
@@ -47,5 +49,7 @@ export {
   FormItem,
   XMSafeAreaView,
   XMIcon,
+  Overlay,
+  XMModal,
   XMInput
 };

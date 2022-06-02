@@ -1,33 +1,111 @@
-/*
- * @Author: wangtao
- * @Date: 2020-06-29 11:01:03
- * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 20:00:13
- * @Description: Overlay
- */
 /**
- * overlay
- * @type {ReactNative|exports|module.exports}
+ * 因为自带的modal导致全局toast看不到，所以经常用view写的，也可以用基于modal写的
+ *
  */
-import React, { PureComponent } from "react";
-import { View, StyleSheet } from "react-native";
-import { screenHeight } from "../styles";
 
-export default class Overlay extends PureComponent {
+import React, { Component } from "react";
+import { StyleSheet, Modal, Animated, TouchableOpacity } from "react-native";
+import { screenHeight, screenWidth } from "../styles";
+
+export default class XMModal extends Component {
   static defaultProps = {
-    modal: false // 是不是需要模态
+    visible: false,
+    type: "view" //modal view
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      y: new Animated.Value(screenHeight),
+      isShow: props.visible
+    };
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.visible) {
+      this.startAnimation();
+    } else {
+      this.endAnimation();
+    }
+    this.setState({ isShow: nextProps.visible });
+  }
 
   render() {
-    if (this.props.modal) {
-      return <View style={[styles.modalContainer, this.props.style]}>{this.props.children}</View>;
+    const { children, type } = this.props;
+    const { isShow } = this.state;
+    if (type === "view") {
+      return (
+        <Animated.View
+          style={[
+            styles.modalContainer,
+            {
+              transform: [{ translateY: this.state.y }]
+            }
+          ]}
+        >
+          <TouchableOpacity
+            style={styles.mask}
+            onPress={() => {
+              this._onChangeVisible();
+            }}
+          ></TouchableOpacity>
+          {children}
+        </Animated.View>
+      );
     }
-    return (
-      <View style={[styles.tipContainer, { bottom: screenHeight / 2 }]}>
-        <View style={styles.container}>{this.props.children}</View>
-      </View>
-    );
+
+    if (type === "modal") {
+      return (
+        <Modal animationType="slide" transparent visible={isShow}>
+          <TouchableOpacity
+            style={styles.modalContainer}
+            onPress={() => {
+              this._onChangeVisible();
+            }}
+          >
+            {children}
+          </TouchableOpacity>
+        </Modal>
+      );
+    }
+    return null;
   }
+
+  // 出现时动画
+  startAnimation = () => {
+    // this.state.y.setValue(100)
+    Animated.timing(
+      // 随时间变化而执行的动画类型
+      this.state.y, // 动画中的变量值
+      {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true
+      }
+    ).start();
+  };
+
+  // 消失时动画
+  endAnimation = () => {
+    Animated.timing(
+      // 随时间变化而执行的动画类型
+      this.state.y, // 动画中的变量值
+      {
+        toValue: screenHeight,
+        duration: 300,
+        useNativeDriver: true
+      }
+    ).start();
+  };
+  _onChangeVisible = () => {
+    const { isShow } = this.state;
+    if (isShow) {
+      this.endAnimation();
+      this.setState({ isShow: false });
+    } else {
+      this.startAnimation();
+      this.setState({ isShow: true });
+    }
+  };
 }
 
 const styles = StyleSheet.create({
@@ -38,30 +116,13 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "rgba(0,0,0,0.3)"
   },
-
-  // 普通的overlay
-  container: {
-    flexWrap: "wrap",
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-    borderRadius: 6,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-
-  tipContainer: {
+  mask: {
     position: "absolute",
+    top: 0,
     left: 0,
-    right: 0,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "transparent"
+    width: screenWidth,
+    height: screenHeight
   }
 });

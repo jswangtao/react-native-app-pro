@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-29 11:01:03
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 18:26:56
+ * @LastEditTime: 2022-06-02 20:38:07
  * @Description: tip组件
  */
 
@@ -24,7 +24,7 @@ export default class Toast extends PureComponent {
     // 显示的消息的内容
     title: "",
     // 是否模态
-    modal: false,
+    mask: false,
     // 消失时间 当time=0时不限时间
     time: 2500,
     // tip消失后的callback
@@ -77,11 +77,11 @@ export default class Toast extends PureComponent {
       return null;
     }
     return (
-      <Overlay style={this.props.style} modal={this.props.modal}>
-        <View style={[styles.tip, this.props.modal && styles.bgw]}>
+      <Overlay style={this.props.style} mask={this.props.mask}>
+        <View style={[styles.tip, this.props.mask && styles.bgw]}>
           {this._renderIcon()}
           {this.props.title ? (
-            <Text style={[styles.text, this.props.modal && styles.iconText]} allowFontScaling={false} numberOfLines={3}>
+            <Text style={[styles.text, this.props.mask && styles.iconText]} allowFontScaling={false} numberOfLines={3}>
               {this.props.title}
             </Text>
           ) : null}
