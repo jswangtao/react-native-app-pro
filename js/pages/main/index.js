@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-03 09:54:57
+ * @LastEditTime: 2022-06-03 10:11:24
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import {} from "@/images";
-import { msg, XMIcon, XMButton, XMSearchBar } from "@/common";
+import { msg, XMIcon, XMButton, XMTabs } from "@/common";
 import { color_2A64F4, color_CCCCCC, screenWidth } from "@/styles";
 import api from "@/api";
 
@@ -29,7 +29,13 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <XMSearchBar />
+        <XMTabs
+          list={[
+            { code: null, name: "全部" },
+            { code: 1, name: "进行中" },
+            { code: 2, name: "已完成" }
+          ]}
+        />
         {this._renderView()}
       </View>
     );
