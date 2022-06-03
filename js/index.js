@@ -10,7 +10,7 @@ import React, { Component } from "react";
 import { View, StatusBar } from "react-native";
 
 import { NavigationActions, StackActions } from "react-navigation";
-import { msg, Toast } from "@/common";
+import { msg, XMToast } from "@/common";
 import { AppContainer } from "./router";
 import LoginModal from "./pages/login/login-modal";
 
@@ -54,7 +54,7 @@ export default class App extends Component {
         {/* 全局登录 */}
         <LoginModal visible={this.state.isLoginModalVisible} />
         {/* 全局吐司 */}
-        <Toast
+        <XMToast
           mask={this.state.isShowToastModal}
           time={this.state.showToastTime}
           title={this.state.showToastTitle}

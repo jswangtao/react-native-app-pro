@@ -10,13 +10,13 @@ import React, { PureComponent } from "react";
 
 import { View, Text, StyleSheet, BackHandler } from "react-native";
 
-import Overlay from "../overlay";
+import XMOverlay from "../overlay";
 import Loading from "../loading";
 import Icon from "../icons";
 
 const noop = () => {};
 
-export default class Toast extends PureComponent {
+export default class XMToast extends PureComponent {
   static defaultProps = {
     style: {},
     // 是否显示
@@ -77,7 +77,7 @@ export default class Toast extends PureComponent {
       return null;
     }
     return (
-      <Overlay style={this.props.style} mask={this.props.mask}>
+      <XMOverlay style={this.props.style} mask={this.props.mask}>
         <View style={[styles.tip, this.props.mask && styles.bgw]}>
           {this._renderIcon()}
           {this.props.title ? (
@@ -86,7 +86,7 @@ export default class Toast extends PureComponent {
             </Text>
           ) : null}
         </View>
-      </Overlay>
+      </XMOverlay>
     );
   }
 

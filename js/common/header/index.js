@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, PixelRatio } from "react-native";
 import msg from "../msg";
 import { screenWidth, px2dp } from "../styles";
-import BackImageOn from "../back-image-on";
+import XMBackOn from "../back-on";
 import { getStatusBarHeight } from "../util";
 
 /**
@@ -39,7 +39,7 @@ export default class Header extends Component {
     if (renderLeft) {
       return <View style={[styles.leftContainer, leftStyle]}>{renderLeft()}</View>;
     }
-    return <BackImageOn onClick={this._handleBack} style={styles.leftContainer} />;
+    return <XMBackOn onClick={this._handleBack} style={styles.leftContainer} />;
   }
 
   /**

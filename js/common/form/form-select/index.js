@@ -9,7 +9,7 @@ import React from "react";
 import { TouchableOpacity, Keyboard } from "react-native";
 import FormSelectBase from "../form-select-base/index";
 
-export default class FormSelect extends React.PureComponent {
+export default class XMFormSelect extends React.PureComponent {
   static defaultProps = {
     disabled: false
   };

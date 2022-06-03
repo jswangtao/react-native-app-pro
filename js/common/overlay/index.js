@@ -3,7 +3,7 @@
  * @Date: 2020-06-29 11:01:03
  * @LastEditors: 汪滔
  * @LastEditTime: 2022-06-02 21:25:19
- * @Description: Overlay
+ * @Description: XMOverlay
  */
 /**
  * overlay
@@ -13,7 +13,7 @@ import React, { PureComponent } from "react";
 import { View, StyleSheet } from "react-native";
 import { screenHeight, screenWidth } from "../styles";
 
-export default class Overlay extends PureComponent {
+export default class XMOverlay extends PureComponent {
   static defaultProps = {
     mask: false // 是不是需要蒙层
   };

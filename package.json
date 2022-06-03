@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "lint-fix": "eslint js --fix --ext .js --ext .jsx --ext .ts --ext .tsx",
+    "commit": "git add . && git-cz",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start --reset-cache",
-    "lint-fix": "eslint js --fix --ext .js --ext .jsx --ext .ts --ext .tsx",
-    "commit": "git add . && git-cz",
     "images": "node ./js/images/auto.js",
     "init": "node ./bin/init.js",
     "test": "jest",

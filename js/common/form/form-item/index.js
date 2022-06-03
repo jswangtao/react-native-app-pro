@@ -10,7 +10,7 @@ import { PixelRatio, StyleSheet, Text, View } from "react-native";
 
 import { screenWidth } from "../../styles";
 
-export default class FormItem extends PureComponent {
+export default class XMFormItem extends PureComponent {
   constructor(props) {
     super(props);
   }

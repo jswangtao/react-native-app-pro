@@ -10,7 +10,7 @@ import { Platform, PixelRatio, StatusBar } from "react-native";
 import { createAppContainer, NavigationActions } from "react-navigation";
 import { createStackNavigator, TransitionSpecs, CardStyleInterpolators } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { BackImageOn, _ } from "@/common";
+import { XMBackOn, _ } from "@/common";
 import { px2dp } from "@/styles";
 import Main from "./pages/main";
 import User from "./pages/user";
@@ -152,7 +152,7 @@ const AppNavigator = createStackNavigator(
             _.getStatusBarHeight() ? { height: px2dp(88) + _.getStatusBarHeight() } : {}
           ),
       headerTintColor: "#000",
-      headerLeft: () => <BackImageOn />,
+      headerLeft: () => <XMBackOn />,
       headerBackTitle: null,
       // 将安卓的跳转动画改成iOS
       transitionSpec: {

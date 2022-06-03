@@ -27,7 +27,7 @@ export default class Ui extends Component {
             "toast",
             <>
               <XMButton
-                text="Toast"
+                text="XMToast"
                 type="primary"
                 onClick={() => {
                   msg.emit("app:toast", { title: "message" });

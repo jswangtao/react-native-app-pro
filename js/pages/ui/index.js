@@ -16,9 +16,9 @@ import {
   XMHeader,
   XMSendCodeButton,
   XMInput,
-  FormInput,
-  FormSelect,
-  FormItem,
+  XMFormInput,
+  XMFormSelect,
+  XMFormItem,
   XMEmpty,
   XMModal,
   XMLoading
@@ -104,7 +104,7 @@ export default class Ui extends Component {
             "Form相关",
             <>
               <View style={styles.formContainer}>
-                <FormSelect
+                <XMFormSelect
                   label="客户名"
                   style={{ height: px2dp(104), paddingRight: px2dp(16) }}
                   selected={{ value: "" }}
@@ -112,8 +112,12 @@ export default class Ui extends Component {
                     console.log("🚀🚀🚀wimi======>>>1111");
                   }}
                 />
-                <FormInput label="车主类型" style={{ height: px2dp(104), paddingRight: px2dp(16) }} />
-                <FormItem label="车主类型" style={{ height: px2dp(104), paddingRight: px2dp(16) }} placeholder="111" />
+                <XMFormInput label="车主类型" style={{ height: px2dp(104), paddingRight: px2dp(16) }} />
+                <XMFormItem
+                  label="车主类型"
+                  style={{ height: px2dp(104), paddingRight: px2dp(16) }}
+                  placeholder="111"
+                />
               </View>
             </>
           )}

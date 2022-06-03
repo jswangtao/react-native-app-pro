@@ -11,7 +11,7 @@ import { TouchableOpacity, Image } from "react-native";
 import { px2dp } from "../styles";
 import msg from "../msg";
 
-export default class BackImageOn extends PureComponent {
+export default class XMBackOn extends PureComponent {
   // 创建一个返回按钮的组件
   render() {
     const { onClick, style } = this.props;

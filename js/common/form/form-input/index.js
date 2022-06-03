@@ -13,7 +13,7 @@ const px2dp = uiElementPx => {
 
 const noop = () => {};
 
-export default class FormInput extends React.Component {
+export default class XMFormInput extends React.Component {
   static defaultProps = {
     label: "", // label文本
     labelWidth: null, // label宽度
