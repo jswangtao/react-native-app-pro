@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "lint-fix": "eslint js --fix --ext .js --ext .jsx --ext .ts --ext .tsx",
-    "commit": "git add . && git-cz",
+    "add-commit": "npm run add && npm run commit",
+    "add": "git add .",
+    "commit": "git-cz",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start --reset-cache",

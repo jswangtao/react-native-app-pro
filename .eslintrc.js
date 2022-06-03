@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2021-12-31 09:10:24
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-01 14:32:07
+ * @LastEditTime: 2022-06-03 10:00:20
  * @Description: file content
  */
 module.exports = {
@@ -46,6 +46,8 @@ module.exports = {
           rendering: ["/^render.+$/", "render"]
         }
       }
-    ]
+    ],
+    // 如果标签没有包含标签，标签自闭合
+    "react/self-closing-comp": ["error"]
   }
 };
