@@ -47,7 +47,7 @@ export default class XMModal extends Component {
             onPress={() => {
               this._onChangeVisible();
             }}
-          ></TouchableOpacity>
+          />
           {children}
         </Animated.View>
       );

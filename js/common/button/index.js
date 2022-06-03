@@ -109,7 +109,7 @@ export default class Button extends Component {
             {text}
           </Text>
         </View>
-        <View style={this.getActiveBtnStyle()}></View>
+        <View style={this.getActiveBtnStyle()} />
       </TouchableOpacity>
     );
   }

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-26 14:07:06
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-03 09:46:18
+ * @LastEditTime: 2022-06-03 09:54:16
  * @Description: file content
  */
 import msg from "./msg"; // 全局通信
@@ -28,6 +28,7 @@ import XMFormSelect from "./form/form-select"; // 表单选择
 import XMFormItem from "./form/form-item"; // 表单普通展示项目
 import XMOverlay from "./overlay"; // 模态框
 import XMModal from "./modal"; // 模态框
+import XMSearchBar from "./search-bar"; // 模态框
 export {
   msg,
   _,
@@ -51,5 +52,6 @@ export {
   XMIcon,
   XMOverlay,
   XMModal,
+  XMSearchBar,
   XMInput
 };

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 22:42:03
+ * @LastEditTime: 2022-06-03 10:01:30
  * @Description: ui
  */
 
@@ -21,7 +21,8 @@ import {
   XMFormItem,
   XMEmpty,
   XMModal,
-  XMLoading
+  XMLoading,
+  XMSearchBar
 } from "@/common";
 import { screenWidth, px2dp } from "@/styles";
 import { empty01, logo } from "@/images";
@@ -133,6 +134,7 @@ export default class Ui extends Component {
               <XMLoading />
             </>
           )}
+
           {this._renderFloor(
             "Modal",
             <>
@@ -150,6 +152,12 @@ export default class Ui extends Component {
                   this.setState({ isVisibleModal: true });
                 }}
               />
+            </>
+          )}
+          {this._renderFloor(
+            "搜索框",
+            <>
+              <XMSearchBar />
             </>
           )}
         </ScrollView>

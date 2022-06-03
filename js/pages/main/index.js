@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 20:37:10
+ * @LastEditTime: 2022-06-03 09:54:57
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import {} from "@/images";
-import { msg, XMIcon, XMButton } from "@/common";
+import { msg, XMIcon, XMButton, XMSearchBar } from "@/common";
 import { color_2A64F4, color_CCCCCC, screenWidth } from "@/styles";
 import api from "@/api";
 
@@ -25,19 +25,11 @@ export default class Main extends Component {
       disabled: true
     };
   }
-  componentDidMount() {
-    // this.getCustomService();
-    setTimeout(() => {
-      this.setState({ disabled: false });
-    }, 2000);
-    setTimeout(() => {
-      this.setState({ disabled: true });
-    }, 5000);
-  }
+  componentDidMount() {}
   render() {
     return (
       <View style={styles.container}>
-        <XMButton disabled={this.state.disabled} type="primary"></XMButton>
+        <XMSearchBar />
         {this._renderView()}
       </View>
     );

@@ -18,7 +18,7 @@ export default class Header extends Component {
     const { style } = this.props;
     return (
       <>
-        <View style={[styles.statusBar, { height: getStatusBarHeight() }]}></View>
+        <View style={[styles.statusBar, { height: getStatusBarHeight() }]} />
         <View style={[styles.container, style]}>
           {this._renderLeft()}
           {this._renderTitle()}
