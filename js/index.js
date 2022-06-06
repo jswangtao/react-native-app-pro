@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 21:26:02
+ * @LastEditTime: 2022-06-06 11:58:07
  * @Description: 主入口
  */
 
@@ -10,9 +10,14 @@ import React, { Component } from "react";
 import { View, StatusBar } from "react-native";
 
 import { NavigationActions, StackActions } from "react-navigation";
-import { msg, XMToast } from "@/common";
+import { msg, XMMessageBox, XMToast } from "@/common";
 import { AppContainer } from "./router";
+import setModuleGlobal from "./module-global-setting";
 import LoginModal from "./pages/login/login-modal";
+import { noop } from "./common/noop";
+
+// 设置react-native组件全局默认属性
+setModuleGlobal();
 
 export default class App extends Component {
   constructor(props) {
@@ -30,7 +35,18 @@ export default class App extends Component {
       showToastTime: null,
       isShowToastModal: false,
       // 登录弹框的显示状态
-      isLoginModalVisible: false
+      isLoginModalVisible: false,
+
+      // 可交互弹框是否显示start
+      isMessageBoxShow: false,
+      isMessageBoxTitle: "",
+      isMessageBoxContent: "",
+      isMessageBoxConfirmText: "",
+      isMessageBoxCancelText: "",
+      isMessageBoxConfirmFn: null,
+      isMessageBoxCancelFn: null,
+      isMessageBoxRenderContent: noop
+      // 可交互弹框是否显示end
     };
   }
 
@@ -63,6 +79,17 @@ export default class App extends Component {
           visible={this.state.isShowToastVisible}
           complete={this._handleToastDisappear}
         />
+        {/* 全局的message */}
+        <XMMessageBox
+          visible={this.state.isMessageBoxShow}
+          title={this.state.isMessageBoxTitle}
+          content={this.state.isMessageBoxContent}
+          confirmText={this.state.isMessageBoxConfirmText}
+          cancelText={this.state.isMessageBoxCancelText}
+          confirmFn={this.state.isMessageBoxConfirmFn}
+          cancelFn={this.state.isMessageBoxCancelFn}
+          renderContent={this.state.isMessageBoxRenderContent}
+        />
       </View>
     );
   }
@@ -85,6 +112,7 @@ export default class App extends Component {
     msg.on("router:refreshRoute", this._refreshRoute); // 刷新指定页面
     msg.on("router:refreshRoutes", this._refreshRoutes); // 刷新指定多个页面
     msg.on("app:loginModal", this._handleLoginModal); // 弹出登录弹框提示
+    msg.on("app:messageBox", this._handleMessageBox); // 可交互的弹框
   };
 
   /**
@@ -105,6 +133,7 @@ export default class App extends Component {
     msg.off("router:refreshRoute", this._refreshRoute);
     msg.off("router:refreshRoutes", this._refreshRoutes);
     msg.off("app:loginModal", this._handleLoginModal);
+    msg.off("app:messageBox", this._handleMessageBox);
   };
 
   /**
@@ -305,6 +334,20 @@ export default class App extends Component {
   _handleLoginModal = isLoginModalVisible => {
     this.setState({
       isLoginModalVisible
+    });
+  };
+
+  // 可交互弹框
+  _handleMessageBox = ({ isVisible, title, content, confirmText, cancelText, confirmFn, cancelFn, renderContent }) => {
+    this.setState({
+      isMessageBoxShow: isVisible,
+      isMessageBoxTitle: title,
+      isMessageBoxContent: content,
+      isMessageBoxConfirmText: confirmText,
+      isMessageBoxCancelText: cancelText,
+      isMessageBoxConfirmFn: confirmFn,
+      isMessageBoxCancelFn: cancelFn,
+      isMessageBoxRenderContent: renderContent
     });
   };
 }

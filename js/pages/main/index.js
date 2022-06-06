@@ -2,14 +2,14 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-03 10:11:24
+ * @LastEditTime: 2022-06-06 11:55:07
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import {} from "@/images";
-import { msg, XMIcon, XMButton, XMTabs } from "@/common";
+import { msg, XMIcon, XMButton } from "@/common";
 import { color_2A64F4, color_CCCCCC, screenWidth } from "@/styles";
 import api from "@/api";
 
@@ -27,18 +27,7 @@ export default class Main extends Component {
   }
   componentDidMount() {}
   render() {
-    return (
-      <View style={styles.container}>
-        <XMTabs
-          list={[
-            { code: null, name: "全部" },
-            { code: 1, name: "进行中" },
-            { code: 2, name: "已完成" }
-          ]}
-        />
-        {this._renderView()}
-      </View>
-    );
+    return <View style={styles.container}>{this._renderView()}</View>;
   }
 
   _renderItem = item => {
@@ -55,8 +44,19 @@ export default class Main extends Component {
         <XMButton
           text="测试页面"
           onClick={() => {
-            // msg.emit("app:toast", { title: "message", icon: "success" });
-            msg.emit("app:loginModal", true);
+            msg.emit("app:messageBox", {
+              isVisible: true,
+              title: "标题",
+              content: "确定确定确定确定确定确定",
+              confirmText: "确定",
+              cancelText: "取消",
+              confirmFn: () => {
+                console.log("🚀🚀🚀wimi======>>>confirmFn");
+              },
+              cancelFn: () => {
+                console.log("🚀🚀🚀wimi======>>>cancelFn");
+              }
+            });
           }}
         />
       </>

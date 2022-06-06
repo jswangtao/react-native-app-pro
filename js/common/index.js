@@ -30,6 +30,7 @@ import XMOverlay from "./overlay"; // 模态框
 import XMModal from "./modal"; // 模态框
 import XMSearchBar from "./search-bar"; // 搜索框
 import XMTabs from "./tabs"; // tabs
+import XMMessageBox from "./message-box"; // message-box
 export {
   msg,
   _,
@@ -55,5 +56,6 @@ export {
   XMModal,
   XMSearchBar,
   XMTabs,
+  XMMessageBox,
   XMInput
 };

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 18:24:54
+ * @LastEditTime: 2022-06-06 11:53:00
  * @Description: ui
  */
 
@@ -50,6 +50,25 @@ export default class Ui extends Component {
                   setTimeout(() => {
                     msg.emit("app:hideToast");
                   }, 6000);
+                }}
+              />
+              <XMButton
+                text="messageBox"
+                type="primary"
+                onClick={() => {
+                  msg.emit("app:messageBox", {
+                    isVisible: true,
+                    title: "标题",
+                    content: "确定确定确定确定确定确定",
+                    confirmText: "确定",
+                    cancelText: "取消",
+                    confirmFn: () => {
+                      console.log("🚀🚀🚀wimi======>>>confirmFn");
+                    },
+                    cancelFn: () => {
+                      console.log("🚀🚀🚀wimi======>>>cancelFn");
+                    }
+                  });
                 }}
               />
             </>
