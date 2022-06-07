@@ -2,15 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-29 11:30:22
+ * @LastEditTime: 2022-06-07 15:08:10
  * @Description: 登录
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { View, Text } from "react-native";
 import { logo } from "@/images";
-import { XMButton, XMImage, isAndroid, msg, XMSafeAreaView, XMInput, XMSendCodeButton, XMImageViewer } from "@/common";
-import { px2dp, color_FFFFFF, color_000000 } from "@/styles";
+import { XMButton, XMImage, XMSafeAreaView, XMInput, XMSendCodeButton } from "@/common";
+import { customerStyleSheet, color_FFFFFF, color_000000 } from "@/styles";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as userActions from "@/store/actions/user.actions";
@@ -26,7 +26,6 @@ class Login extends Component {
   componentDidMount() {}
 
   render() {
-    console.log("🚀🚀🚀wimi======>>>this.props", this.props);
     return (
       <XMSafeAreaView style={styles.container}>
         <XMImage width={100} height={100} source={logo} style={styles.logoImg} />
@@ -67,17 +66,7 @@ class Login extends Component {
           />
         </View>
 
-        <XMButton
-          text="登录"
-          type="primary"
-          style={{
-            width: px2dp(638),
-            height: px2dp(88),
-            borderRadius: px2dp(44),
-            marginTop: px2dp(80)
-          }}
-          onClick={() => this.login()}
-        />
+        <XMButton text="登录" type="primary" style={styles.btn} onClick={() => this.login()} />
       </XMSafeAreaView>
     );
   }
@@ -98,23 +87,29 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
-const styles = StyleSheet.create({
+const styles = customerStyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     backgroundColor: color_FFFFFF
   },
   logoImg: {
-    marginTop: px2dp(180)
+    marginTop: 180
   },
   title: {
-    fontSize: px2dp(44),
+    fontSize: 44,
     fontWeight: "bold",
     color: color_000000,
-    marginTop: px2dp(32)
+    marginTop: 32
   },
   inputWrap: {
-    width: px2dp(622),
-    marginTop: px2dp(64)
+    width: 622,
+    marginTop: 64
+  },
+  btn: {
+    width: 638,
+    height: 88,
+    borderRadius: 44,
+    marginTop: 80
   }
 });

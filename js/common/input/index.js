@@ -2,24 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-24 18:11:19
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 14:45:00
+ * @LastEditTime: 2022-06-02 20:00:39
  * @Description: input公共组件 模仿u-input
  */
 
 import React, { Component, ReactElement } from "react";
-import { TouchableOpacity, StyleSheet, Text, View, Keyboard, PixelRatio, TextInput } from "react-native";
+import { TouchableOpacity, StyleSheet, View, TextInput } from "react-native";
 
-import {
-  color_primary,
-  color_success,
-  color_warning,
-  color_danger,
-  color_text_regular,
-  border_color_base,
-  color_text_placeholder
-} from "../styles/theme";
+import { color_text_regular, border_color_base, color_text_placeholder } from "../styles/theme";
 import XMIcon from "../icons";
-import { px2dp } from "../styles";
 const noop = () => {};
 
 export default class Input extends Component {

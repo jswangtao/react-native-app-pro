@@ -2,12 +2,12 @@
  * @Author: wangtao
  * @Date: 2021-11-26 18:38:24
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-01-14 14:36:35
+ * @LastEditTime: 2022-06-03 10:00:41
  * @Description: file content
  */
 import React from "react";
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image } from "react-native";
-import { px2dp, mainBgColorWhite, mainBgColorLightGray, fontColorBlack } from "../styles";
+import { px2dp } from "../styles";
 
 const noop = () => {};
 
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: px2dp(95),
-    backgroundColor: mainBgColorWhite,
+    backgroundColor: "#fff",
     paddingVertical: px2dp(12),
     paddingHorizontal: px2dp(32),
     flexDirection: "row",
@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
     paddingLeft: px2dp(32)
   },
   cancel: {
-    color: fontColorBlack,
     fontSize: px2dp(28)
   }
 });

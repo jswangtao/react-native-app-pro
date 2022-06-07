@@ -2,42 +2,30 @@
  * @Author: wangtao
  * @Date: 2022-04-10 17:38:30
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-29 11:32:37
+ * @LastEditTime: 2022-05-30 23:17:33
  * @Description: file content
  */
 import axiosApi from "./AxiosApi.js";
 
-const apiList = {
-  login: {
-    method: "post",
-    url: "passport-app-api/smsLogin"
-  },
-  getUserInfo: {
-    method: "get",
-    url: "user-app-api/api/v1/user/getUserInfo"
-  },
-  getConfigValue: {
-    method: "get",
-    url: "basicdata-api/system/getConfigValue"
-  }
-};
-
 export default {
   login(data) {
     return axiosApi({
-      ...apiList.login,
+      method: "post",
+      url: "passport-app-api/smsLogin",
       data
     });
   },
   getUserInfo(data) {
     return axiosApi({
-      ...apiList.getUserInfo,
+      method: "get",
+      url: "user-app-api/api/v1/user/getUserInfo",
       data
     });
   },
   getConfigValue(data) {
     return axiosApi({
-      ...apiList.getConfigValue,
+      method: "get",
+      url: "basicdata-api/system/getConfigValue",
       data
     });
   }

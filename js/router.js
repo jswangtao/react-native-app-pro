@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 15:43:52
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-27 00:27:30
+ * @LastEditTime: 2022-06-02 18:14:20
  * @Description: 路由管理文件
  */
 import React from "react";
@@ -10,13 +10,14 @@ import { Platform, PixelRatio, StatusBar } from "react-native";
 import { createAppContainer, NavigationActions } from "react-navigation";
 import { createStackNavigator, TransitionSpecs, CardStyleInterpolators } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { BackImageOn, _ } from "@/common";
+import { XMBackOn, _ } from "@/common";
 import { px2dp } from "@/styles";
 import Main from "./pages/main";
 import User from "./pages/user";
 import About from "./pages/about";
 import Login from "./pages/login";
 import Ui from "./pages/ui";
+import Methods from "./pages/methods";
 // 测试页面start
 import Test from "./pages/test";
 import ListViewDemo from "./pages/test/listview";
@@ -115,6 +116,13 @@ const AppNavigator = createStackNavigator(
         ...titleCenter
       }
     },
+    Methods: {
+      screen: Methods,
+      navigationOptions: {
+        headerTitle: "公共方法",
+        ...titleCenter
+      }
+    },
     Ui: {
       screen: Ui,
       ...emptyHeader
@@ -144,7 +152,7 @@ const AppNavigator = createStackNavigator(
             _.getStatusBarHeight() ? { height: px2dp(88) + _.getStatusBarHeight() } : {}
           ),
       headerTintColor: "#000",
-      headerLeft: () => <BackImageOn />,
+      headerLeft: () => <XMBackOn />,
       headerBackTitle: null,
       // 将安卓的跳转动画改成iOS
       transitionSpec: {

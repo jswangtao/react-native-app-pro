@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-29 11:34:44
+ * @LastEditTime: 2022-06-07 15:06:50
  * @Description: storage的key，定义为常量统一存放，定义规则全大写（与普通变量区分，表常量）转全小写，
  * 如：USER: 'user'    APP_TOKEN: 'app_token'
  */

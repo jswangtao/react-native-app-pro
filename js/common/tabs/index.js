@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2021-12-24 11:37:25
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-01-07 16:19:02
+ * @LastEditTime: 2022-06-03 10:12:39
  * @Description: tabs标签
  * 通过设置scrollable，配置tabs组件的内容是否可以左右拖动，一般4个标签以下时，无需拖动，设置为false，5个标签以上，建议可以左右拖动。
     tabs标签的切换，需要绑定current值，在change事件回调中可以得到index，将其赋值给current即可。
@@ -11,19 +11,20 @@
 import React from "react";
 import { View, StyleSheet, Text, ScrollView, TouchableOpacity, Animated, Easing, Dimensions } from "react-native";
 
-import { mainBgColorWhite, px2dp, screenWidth } from "../styles";
+import { px2dp, screenWidth } from "../styles";
+import { color_primary } from "../styles/theme";
 const noop = () => {};
 
 export default class Tabs extends React.Component {
   static defaultProps = {
-    list: [{ name: "全部" }],
+    list: [{ name: "全部", code: null }],
     scrollable: false, //通过设置scrollable，配置tabs组件的内容是否可以左右拖动，一般4个标签以下时，无需拖动，设置为false，5个标签以上，建议可以左右拖动。
     duration: 200, // 移动定时 单位ms
     current: 0, // 当前选中标签的索引
-    lineColor: "#BB934B", //滑块颜色
+    lineColor: color_primary, //滑块颜色
     lineWidth: 40, //滑块宽度
     lineHeight: 6, //滑块高度
-    activeStyle: { color: "#BB934B" }, //菜单选择中时的样式
+    activeStyle: { color: color_primary }, //菜单选择中时的样式
     inactiveStyle: { color: "#666666", lineHeight: px2dp(80) }, //菜单非选中时的样式
     itemStyle: {}, //菜单item的样式
     onClick: noop, //点击标签时触发  item: 传入的其他值 index: 标签索引值
@@ -233,7 +234,7 @@ export default class Tabs extends React.Component {
 const styles = StyleSheet.create({
   container: {
     width: screenWidth,
-    backgroundColor: mainBgColorWhite
+    backgroundColor: "#fff"
   },
   scrollContainer: {
     flex: 1

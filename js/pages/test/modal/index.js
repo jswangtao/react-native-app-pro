@@ -23,7 +23,7 @@ export default class ReturnModal extends React.Component {
       <Modal animationType="slide" transparent visible onRequestClose={() => {}} onShow={() => {}}>
         <TouchableOpacity style={styles.mask} onPress={() => {}} />
         <View style={[styles.container]}>
-          <View style={[styles.contentContainer]}></View>
+          <View style={[styles.contentContainer]} />
         </View>
       </Modal>
     );
