@@ -3,13 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "lint-fix": "eslint js --fix --ext .js --ext .jsx --ext .ts --ext .tsx",
+    "add-commit": "npm run add && npm run commit",
+    "add": "git add .",
+    "commit": "git-cz",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "react-native start --reset-cache",
     "images": "node ./js/images/auto.js",
     "init": "node ./bin/init.js",
     "test": "jest",
-    "lint": "eslint ."
+    "prepare": "husky install"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
@@ -19,7 +23,7 @@
     "immutable": "^4.0.0",
     "mitt": "^3.0.0",
     "react": "17.0.2",
-    "react-native": "0.68.0",
+    "react-native": "0.68.2",
     "react-native-gesture-handler": "2.1.1",
     "react-native-image-zoom-viewer": "^3.0.1",
     "react-native-reanimated": "^2.6.0",
@@ -37,14 +41,30 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
+    "@commitlint/config-conventional": "^17.0.2",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",
+    "commitizen": "^4.2.4",
+    "commitlint": "^17.0.2",
+    "commitlint-config-cz": "^0.13.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.1",
     "jest": "^26.6.3",
+    "lint-staged": "^12.5.0",
     "metro-react-native-babel-preset": "^0.67.0",
+    "prettier": "^2.6.2",
     "react-test-renderer": "17.0.2"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   }
 }

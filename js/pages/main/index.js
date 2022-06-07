@@ -2,16 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-30 12:24:37
+ * @LastEditTime: 2022-06-07 15:24:58
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { logo } from "@/images";
-import { msg, XMIcon, AsyncStorage, cache, XMButton } from "@/common";
-import { color_2A64F4, color_CCCCCC } from "@/styles";
-import api from "@/api";
+import {} from "@/images";
+import { XMIcon, AsyncStorage, cache, XMButton } from "@/common";
+import { screenWidth, color_2A64F4, color_CCCCCC } from "@/styles";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as basicActions from "@/store/actions/basic.actions";
@@ -64,7 +63,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f2f2f2",
-    justifyContent: "center",
-    width: 220
+    justifyContent: "center"
+  },
+  wrap: {
+    width: screenWidth
   }
 });

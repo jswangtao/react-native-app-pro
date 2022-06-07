@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-28 20:51:55
+ * @LastEditTime: 2022-06-02 18:14:53
  * @Description: 个人中心
  */
 
@@ -35,6 +35,16 @@ export default class User extends Component {
           onClick={() => {
             msg.emit("router:goToNext", {
               routeName: "Ui"
+            });
+          }}
+        />
+        <XMButton
+          text="公共方法"
+          type="primary"
+          style={{ marginBottom: 10 }}
+          onClick={() => {
+            msg.emit("router:goToNext", {
+              routeName: "Methods"
             });
           }}
         />

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2021-03-05 11:47:17
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-01-26 11:59:54
+ * @LastEditTime: 2022-06-02 18:36:12
  * @Description: 仿elementUI upload
  */
 import React from "react";
@@ -260,13 +260,13 @@ export default class Upload extends React.Component {
           });
           onChange(fileList);
         } else {
-          msg.emit("app:tip", { text: res.msg });
+          msg.emit("app:toast", { text: res.msg });
           msg.emit("app:selfTip", { isVisible: false, text: "", icon: "" });
         }
       })
-      .catch(err => {
+      .catch(() => {
         // 请求失败
-        // msg.emit('app:tip', { text: '上传出错，请重试' });
+        // msg.emit('app:toast', { text: '上传出错，请重试' });
         msg.emit("app:selfTip", { isVisible: false, text: "", icon: "" });
       })
       .finally(() => {
@@ -299,12 +299,12 @@ export default class Upload extends React.Component {
           });
           onChange(fileList);
         } else {
-          msg.emit("app:tip", { text: res.msg });
+          msg.emit("app:toast", { text: res.msg });
         }
       })
-      .catch(err => {
+      .catch(() => {
         // 请求失败
-        msg.emit("app:tip", { text: "上传出错，请重试" });
+        msg.emit("app:toast", { text: "上传出错，请重试" });
       })
       .finally(() => {
         msg.emit("app:selfTip", { isVisible: false, text: "", icon: "" });

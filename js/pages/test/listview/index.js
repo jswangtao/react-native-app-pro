@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-09-15 14:36:39
  * @LastEditors: 汪滔
- * @LastEditTime: 2020-10-12 17:28:57
+ * @LastEditTime: 2022-05-25 15:38:29
  * @Description: listview
  */
 
@@ -10,7 +10,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { screenWidth, px2dp } from "@/styles";
 import { msg, XMListView, XMEmpty, XMImage } from "@/common";
-import { empty03 } from "@/images";
+import { empty01 } from "@/images";
 
 export default class GoodsDetail extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ export default class GoodsDetail extends Component {
           dataPropsName="data.goods"
           renderRow={(item, index) => this._renderItem(item, index)}
           renderHeader={() => <></>}
-          renderEmpty={() => <XMEmpty emptyImg={empty03} boxStyle={{ marginTop: px2dp(180) }} desc="暂无商品" />}
+          renderEmpty={() => <XMEmpty emptyImg={empty01} boxStyle={{ marginTop: px2dp(180) }} desc="暂无商品" />}
           columnWrapperStyle={styles.bigBox}
           style={{}}
           numColumns={2}
