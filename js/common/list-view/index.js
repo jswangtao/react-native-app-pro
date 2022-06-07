@@ -2,29 +2,24 @@
  * @Author: wangtao
  * @Date: 2020-09-04 11:05:35
  * @LastEditors: 汪滔
- * @LastEditTime: 2020-10-12 17:55:50
- * @Description: 暴力封装ListView,闲着无聊改进之前的XmList
+ * @LastEditTime: 2022-06-02 20:01:47
+ * @Description:
  */
 
-import React from 'react';
-import {
-  FlatList,
-  View,
-  RefreshControl,
+import React from "react";
+import { FlatList, View, RefreshControl } from "react-native";
 
-} from 'react-native';
-
-import { fromJS, is } from 'immutable';
-import { fetchGet, fetchPost } from '../../api/AxiosApi';
-import noop from '../noop';
-import NoMore from './no-more';
-import Loading from '../loading';
-import IsLoading from './is-loading';
-
-const onTop = require('./images/onTop.png');
+import { fromJS, is } from "immutable";
+import axiosApi from "../../api/AxiosApi";
+import noop from "../noop";
+import NoMore from "./no-more";
+import Loading from "../loading";
+import Empty from "../empty";
+import { px2dp } from "../styles";
 
 export default class XMListView extends React.PureComponent {
   // 当前的pageNum
+  // eslint-disable-next-line react/sort-comp
   _pageNum;
 
   // 大分页的pageNum
@@ -35,11 +30,11 @@ export default class XMListView extends React.PureComponent {
 
   static defaultProps = {
     // 请求的url
-    url: '',
+    url: "",
     // 请求方式
-    methods: '',
+    method: "",
     // 从返回对象中取数据的属性,避免在公共组件中写死这种代码context.esGoodsInfoPage.content
-    dataPropsName: '',
+    dataPropsName: "",
     // 样式
     style: {},
     columnWrapperStyle: {},
@@ -67,7 +62,7 @@ export default class XMListView extends React.PureComponent {
     // 收到数据后的回调
     onDataReached: noop,
     // row数据中的主键，用于生成行key
-    keyProps: 'id',
+    keyProps: "id",
     // 多余的参数，state等变量
     extraData: {},
     // 每行的列数
@@ -79,7 +74,11 @@ export default class XMListView extends React.PureComponent {
     // 返回滑动数据
     returnScroll: null,
     // 没有更多文本
-    noMoreText: '没有更多了',
+    noMoreText: "没有更多了",
+    // 正在加载更多
+    loadingTilte: "正在加载更多",
+    // 手动刷新时触发回调
+    onRefresh: noop
   };
 
   constructor(props) {
@@ -104,6 +103,8 @@ export default class XMListView extends React.PureComponent {
       onTopButShow: false,
       // 滑动距离
       scrollTop: 0,
+      // 是否报错
+      isLoadingError: false
     };
   }
 
@@ -114,8 +115,8 @@ export default class XMListView extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('nextProps===', nextProps);
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    console.log("nextProps===", nextProps);
     if (!is(fromJS(nextProps.params), fromJS(this.props.params))) {
       this._init(nextProps);
       // this.refs.listRef.scrollToItem({index:0,viewPosition:0});
@@ -123,19 +124,19 @@ export default class XMListView extends React.PureComponent {
     } else if (nextProps.dataSource && nextProps.dataSource.length > 0) {
       this.setState({
         dataSource: nextProps.dataSource,
-        noMore: true,
+        noMore: true
       });
     }
   }
 
   // 根据滑动距离判断是否显示置顶按钮
-  onScroll(event) {
+  onScroll = event => {
     this.setState({
       onTopButShow: event.nativeEvent.contentOffset.y >= 200,
-      scrollTop: event.nativeEvent.contentOffset.y,
+      scrollTop: event.nativeEvent.contentOffset.y
     });
     this.props.returnScroll && this.props.returnScroll(event);
-  }
+  };
 
   // 置顶
   onTop = () => {
@@ -150,11 +151,10 @@ export default class XMListView extends React.PureComponent {
       columnWrapperStyle,
       renderHeader,
       renderRow,
-      renderEmpty,
       pageSize,
       keyProps,
       extraData,
-      style,
+      style
     } = this.props;
     if (this.state.isFirstLoading) {
       return <Loading />;
@@ -177,14 +177,17 @@ export default class XMListView extends React.PureComponent {
     }
 
     // 如果数据不为空
-    return [
+    return (
       <FlatList
         style={style}
-        ref={(ref) => (this.listRef = ref)}
+        ref={ref => (this.listRef = ref)}
+        showsVerticalScrollIndicator={false}
         data={dataSource}
-        onScroll={() => this.onScroll}
-        renderItem={({ item, index }) => renderRow(item, extraData, index, otherPropsObject)}
-        keyExtractor={(item, index) => `${item[keyProps]}-${index}`}
+        onScroll={e => this.onScroll(e)}
+        renderItem={({ item, index }) => renderRow(item, index, extraData, otherPropsObject)}
+        keyExtractor={(item, index) => {
+          return item[keyProps] ? `${item[keyProps]}-${index}` : `${index}`;
+        }}
         horizontal={horizontal}
         numColumns={numColumns}
         initialNumToRender={pageSize}
@@ -193,104 +196,81 @@ export default class XMListView extends React.PureComponent {
         onEndReached={this._handlePagination}
         ListFooterComponent={this._renderFooter}
         ListHeaderComponent={renderHeader && renderHeader()}
-        ListEmptyComponent={
-          !this.state.isFirstLoading && renderEmpty && renderEmpty()
-        }
+        ListEmptyComponent={this._renderEmpty}
         extraData={extraData}
         // getItemLayout={(data, index) => ( {length: lineHeight, offset: lineHeight * index, index} )}
         {...columnProps}
-        refreshControl={(
+        refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
             onRefresh={() => this._onRefresh()}
-            tintColor="#BA914A"
-            colors={['#BA914A']}
+            tintColor="#2A64F4"
+            colors={["#2A64F4"]}
           />
-        )}
-      />,
-      // this.state.onTopButShow && (
-      //   <TouchableOpacity
-      //     activeOpacity={0.8}
-      //     style={[
-      //       {
-      //         position: 'absolute',
-      //         bottom: 38,
-      //         right: 12,
-      //         zIndex: 10,
-      //         backgroundColor: 'rgba(255,255,255,.9)',
-      //         borderWidth: 3 / PixelRatio.get(),
-      //         borderColor: '#e2e2e2',
-      //         borderStyle: 'solid',
-      //         alignItems: 'center',
-      //         justifyContent: 'space-around',
-      //         borderRadius: 20,
-      //         height: 40,
-      //         width: 40,
-      //         paddingVertical: 5,
-      //       },
-      //       this.props.topButStyle,
-      //     ]}
-      //     onPress={() => this.onTop()}>
-      //     <Image
-      //       style={{width: 15, height: 15, tintColor: '#999'}}
-      //       source={onTop}
-      //     />
-      //     <Text style={{fontSize: 10}}>顶部</Text>
-      //   </TouchableOpacity>
-      // ),
-    ];
+        }
+      />
+    );
   }
 
   /**
    * 初始化数据
    */
-  _init = async (props) => {
+  _init = async props => {
     // 之前设置为true 禁止加载数据的锁解开
     this._isLoadingMore = true;
     this.setState({
       noMore: false,
       refreshing: true,
-      isLoadingFlag: true,
+      isLoadingFlag: true
     });
     this._pageNum = 1;
 
     props = props || this.props;
-    const { url, otherProps, methods } = props;
-    if (__DEV__) console.log(props, 'props');
+    const { url, otherProps, method } = props;
+    if (__DEV__) {
+      console.log(props, "props");
+    }
     // 如果url不为空，fetch去访问
-    if (url !== '') {
-      const res = await (methods === 'GET'
-        ? fetchGet(url, this._getParams(props))
-        : fetchPost(url, this._getParams(props)));
-      if (__DEV__) console.log('listView', res);
+    if (url !== "") {
+      let res;
+      try {
+        // res = await (method === "GET"
+        //   ? fetchGet(url, this._getParams(props), { cancelDuplicated: true })
+        //   : fetchPost(url, this._getParams(props), { cancelDuplicated: true }));
+        res = await axiosApi({
+          method,
+          url,
+          data: this._getParams(props)
+        });
+      } catch (error) {
+        console.log("🚀🚀🚀wimi======>>>error", error);
+        this.setState({
+          isLoadingFlag: false,
+          isFirstLoading: false,
+          refreshing: false,
+          isLoadingError: true,
+          noMore: this.props.dataSource.length < this.props.pageSize
+        });
+        return;
+      }
+
+      if (__DEV__) {
+        // console.log('listView', res);
+      }
       const { context } = res;
       let dataList;
-      if (this.props.dataPropsName) {
-        // dataPropsName若存在,则遍历属性名取嵌套的数据
-        dataList = res;
-        const propNmArr = this.props.dataPropsName.split('.');
-        propNmArr.forEach((propNm) => {
-          dataList = dataList[propNm];
-        });
-      } else {
-        // dataPropsName若不存在,按照原有方式取值,兼容老接口
-        dataList = (context
-            && ((context.esGoodsInfoPage && context.esGoodsInfoPage.content)
-              || context.content
-              || (context.goodsInfos && context.goodsInfos.content)
-              || (context.couponViews && context.couponViews.content)
-              || (context.esGoodsInfoResponse
-                && context.esGoodsInfoResponse.esGoodsInfoPage.content)
-              || (context.couponCodeVos && context.couponCodeVos.content)
-              || context.storeLocalVOList))
-          || [];
-      }
+      // dataPropsName若存在,则遍历属性名取嵌套的数据
+      dataList = res;
+      const propNmArr = this.props.dataPropsName.split(".");
+      propNmArr.forEach(propNm => {
+        dataList = dataList[propNm];
+      });
       const otherPropsObject = {};
       if (otherProps && otherProps.length > 0 && context) {
-        otherProps.forEach((item) => {
+        otherProps.forEach(item => {
           let propTmp = context;
-          const itemPropArr = item.split('.');
-          itemPropArr.forEach((propNm) => {
+          const itemPropArr = item.split(".");
+          itemPropArr.forEach(propNm => {
             propTmp = propTmp[propNm];
           });
           otherPropsObject[item] = propTmp || {};
@@ -298,7 +278,7 @@ export default class XMListView extends React.PureComponent {
       }
 
       this._isLoadingMore = false;
-      dataList = dataList.map((data) => {
+      dataList = dataList.map(data => {
         data._otherProps = otherPropsObject;
         return data;
       });
@@ -307,21 +287,23 @@ export default class XMListView extends React.PureComponent {
           isFirstLoading: false,
           isLoadingFlag: false,
           refreshing: false,
+          isLoadingError: false,
           dataSource: dataList,
           noMore: dataList.length < this.props.pageSize,
-          otherPropsObject,
+          otherPropsObject
         },
         () => {
           // 通知父组件数据
           props.onDataReached && props.onDataReached(res);
-        },
+        }
       );
     } else {
       this.setState({
         isLoadingFlag: false,
         isFirstLoading: false,
         refreshing: false,
-        noMore: this.props.dataSource.length < this.props.pageSize,
+        isLoadingError: false,
+        noMore: this.props.dataSource.length < this.props.pageSize
       });
     }
   };
@@ -341,44 +323,35 @@ export default class XMListView extends React.PureComponent {
 
     this._isLoadingMore = true;
     this.setState({
-      isLoadingFlag: true,
+      isLoadingFlag: true
     });
     this._pageNum++;
 
-    const { url, otherProps, methods } = this.props;
+    const { url, otherProps, method } = this.props;
 
-    const res = await (methods === 'GET'
-      ? fetchGet(url, this._getParams())
-      : fetchPost(url, this._getParams()));
-    if (__DEV__) console.log('listView1', res);
+    const res = await axiosApi({
+      method,
+      url,
+      data: this._getParams()
+    });
+    if (__DEV__) {
+      console.log("listView1", res);
+    }
     const { context } = res;
     let dataList;
-    if (this.props.dataPropsName) {
-      // dataPropsName若存在,则遍历属性名取嵌套的数据
-      dataList = res;
-      const propNmArr = this.props.dataPropsName.split('.');
-      propNmArr.forEach((propNm) => {
-        dataList = dataList[propNm];
-      });
-    } else {
-      // dataPropsName若不存在,按照原有方式取值,兼容老接口
-      dataList = (context
-          && ((context.esGoodsInfoPage && context.esGoodsInfoPage.content)
-            || context.content
-            || (context.goodsInfos && context.goodsInfos.content)
-            || (context.couponViews && context.couponViews.content)
-            || (context.esGoodsInfoResponse
-              && context.esGoodsInfoResponse.esGoodsInfoPage.content)
-            || (context.couponCodeVos && context.couponCodeVos.content)))
-        || [];
-    }
+    // dataPropsName若存在,则遍历属性名取嵌套的数据
+    dataList = res;
+    const propNmArr = this.props.dataPropsName.split(".");
+    propNmArr.forEach(propNm => {
+      dataList = dataList[propNm];
+    });
 
     const otherPropsObject = {};
     if (otherProps && otherProps.length > 0 && context) {
-      otherProps.forEach((item) => {
+      otherProps.forEach(item => {
         let propTmp = context;
-        const itemPropArr = item.split('.');
-        itemPropArr.forEach((propNm) => {
+        const itemPropArr = item.split(".");
+        itemPropArr.forEach(propNm => {
           propTmp = propTmp[propNm];
         });
         otherPropsObject[item] = propTmp || {};
@@ -389,31 +362,29 @@ export default class XMListView extends React.PureComponent {
       // show error
       this._pageNum--;
       this.setState({
-        noMore: true,
+        noMore: true
       });
       return;
     }
 
     this._isLoadingMore = false;
     this.setState({
-      isLoadingFlag: false,
+      isLoadingFlag: false
     });
-    dataList = dataList.map((data) => {
+    dataList = dataList.map(data => {
       data._otherProps = otherPropsObject;
       return data;
     });
     this.setState(
-      (state) => ({
+      state => ({
         // dataSource: [...this.state.dataSource, ...dataList],
         dataSource: state.dataSource.concat(dataList),
         noMore: dataList.length < this.props.pageSize,
-        otherPropsObject: fromJS(state.otherPropsObject)
-          .mergeDeep(fromJS(otherPropsObject))
-          .toJS(),
+        otherPropsObject: fromJS(state.otherPropsObject).mergeDeep(fromJS(otherPropsObject)).toJS()
       }),
       () => {
         this.props.onDataReached && this.props.onDataReached(res);
-      },
+      }
     );
   };
 
@@ -422,12 +393,11 @@ export default class XMListView extends React.PureComponent {
    */
   _getParams(props) {
     const { pageSize, params } = props || this.props;
-    console.log('🚀🚀🚀wimi======>>>pageSize', pageSize, params, this.props);
 
     return {
       ...params,
       pageNo: this._pageNum,
-      pageSize,
+      pageSize
       // webFlag: true
     };
   }
@@ -438,14 +408,43 @@ export default class XMListView extends React.PureComponent {
   _renderFooter = () => (
     <View>
       {this.props.renderFooter ? this.props.renderFooter() : null}
-      {this.state.isLoadingFlag && !this.state.noMore && <IsLoading />}
+      {this.state.isLoadingFlag && !this.state.noMore && <Loading text={this.props.loadingTilte} />}
       {this.state.noMore && this.state.dataSource.length > 0 ? (
-        <NoMore text={this.props.noMoreText ? this.props.noMoreText : '没有更多了'} />
+        <NoMore text={this.props.noMoreText ? this.props.noMoreText : "没有更多了"} />
       ) : null}
     </View>
   );
 
+  _renderEmpty = () => {
+    const { renderEmpty } = this.props;
+    return !this.state.isFirstLoading && !this.state.isLoadingError ? (
+      renderEmpty ? (
+        renderEmpty()
+      ) : (
+        <Empty
+          style={{
+            marginVertical: px2dp(180)
+          }}
+        />
+      )
+    ) : (
+      <Empty
+        image={require("./images/network_error.png")}
+        desc="网络列表加载失败~"
+        style={{
+          marginVertical: px2dp(180)
+        }}
+      />
+    );
+  };
+
   _onRefresh() {
     this._init(this.props);
+    this.props.onRefresh && this.props.onRefresh();
   }
+
+  _scrollToOffset = params => {
+    console.log("🚀🚀🚀wimi======>>>params", params);
+    this.listRef.scrollToOffset(params);
+  };
 }

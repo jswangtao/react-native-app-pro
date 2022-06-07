@@ -2,16 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-30 14:42:34
+ * @LastEditTime: 2022-06-07 15:00:08
  * @Description: 登录
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { View, Text } from "react-native";
 import { logo } from "@/images";
-import { XMButton, XMImage, isAndroid, msg, XMSafeAreaView, XMInput, XMSendCodeButton, XMImageViewer } from "@/common";
-import { px2dp, color_FFFFFF, color_000000 } from "@/styles";
-import api from "@/api";
+import { XMButton, XMImage, XMSafeAreaView, XMInput, XMSendCodeButton } from "@/common";
+import { customerStyleSheet, color_FFFFFF, color_000000 } from "@/styles";
 import { observer, inject } from "mobx-react";
 @inject("store")
 @observer
@@ -56,17 +55,7 @@ class Login extends Component {
           />
         </View>
 
-        <XMButton
-          text="登录"
-          type="primary"
-          style={{
-            width: px2dp(638),
-            height: px2dp(88),
-            borderRadius: px2dp(44),
-            marginTop: px2dp(80)
-          }}
-          onClick={() => this.login()}
-        />
+        <XMButton text="登录" type="primary" style={styles.btn} onClick={() => this.login()} />
       </XMSafeAreaView>
     );
   }
@@ -79,23 +68,29 @@ class Login extends Component {
 
 export default Login;
 
-const styles = StyleSheet.create({
+const styles = customerStyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     backgroundColor: color_FFFFFF
   },
   logoImg: {
-    marginTop: px2dp(180)
+    marginTop: 180
   },
   title: {
-    fontSize: px2dp(44),
+    fontSize: 44,
     fontWeight: "bold",
     color: color_000000,
-    marginTop: px2dp(32)
+    marginTop: 32
   },
   inputWrap: {
-    width: px2dp(622),
-    marginTop: px2dp(64)
+    width: 622,
+    marginTop: 64
+  },
+  btn: {
+    width: 638,
+    height: 88,
+    borderRadius: 44,
+    marginTop: 80
   }
 });

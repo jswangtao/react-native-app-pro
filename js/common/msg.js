@@ -6,7 +6,7 @@
  * @Description: file content
  */
 
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * 消息中心
  * usage
@@ -19,7 +19,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
  *  //解绑
  *  msg.off('hello')
  */
-const mitt = require('mitt');
+const mitt = require("mitt");
 
 const msg = new (mitt.default || mitt)();
 exports.default = msg;

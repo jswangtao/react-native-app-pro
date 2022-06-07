@@ -2,7 +2,7 @@
  * @Author: kanglang
  * @Date: 2020-11-24 13:25:37
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-30 14:18:59
+ * @LastEditTime: 2022-06-07 14:56:40
  * @Description: 异步存储方法
  * 未回调方法 调用时需要async await
  */
@@ -61,10 +61,7 @@ export default {
   clearUserStorage: () => {
     try {
       AsyncStorage.removeItem(cache.TOKEN_ID);
-      AsyncStorage.removeItem(cache.USER_BASE_INFO);
-      AsyncStorage.removeItem(cache.ROLE_LIST);
-      AsyncStorage.removeItem(cache.ROLE);
-      AsyncStorage.removeItem(cache.ENTERPRISE_INFO);
+      AsyncStorage.removeItem(cache.USER_INFO);
     } catch (e) {
       console.log(e);
     }

@@ -49,5 +49,5 @@ export default {
   // 不允许输入中文
   noChinese: /^[^\u4e00-\u9fa5]{1,20}$/,
   // 密码为6-16位字母或数字密码
-  password: /^[0-9a-zA-Z]{6,16}$/,
+  password: /^[0-9a-zA-Z]{6,16}$/
 };

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-30 20:02:03
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-13 00:11:03
+ * @LastEditTime: 2022-06-02 22:01:18
  * @Description: 工具
  */
 import { Dimensions, Platform, NativeModules, StatusBar } from "react-native";

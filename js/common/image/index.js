@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Animated, Easing, StyleSheet, Platform, TouchableOpacity, Text } from "react-native";
+import { View, Image, Animated, Easing, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { px2dp } from "../styles";
 import XMImageViewer from "../image-viewer";
 const noop = () => {};
@@ -54,15 +54,15 @@ export default class XMImage extends React.Component {
           <Image
             source={source}
             style={{ width, height }}
-            onLoadStart={this.onLoadStart}
-            onLoadEnd={this.onLoadEnd}
+            onLoadStart={this._onLoadStart}
+            onLoadEnd={this._onLoadEnd}
             onLoad={this.handleImageLoaded}
             onError={this.handleImageErrored}
             resizeMode={resizeMode}
           />
         </TouchableOpacity>
-        {loadStatus === "pending" && this.renderPending()}
-        {loadStatus === "error" && this.renderError()}
+        {loadStatus === "pending" && this._renderPending()}
+        {loadStatus === "error" && this._renderError()}
         {this._renderPreView()}
       </View>
     );
@@ -94,7 +94,7 @@ export default class XMImage extends React.Component {
   /**
    * 图片资源开始加载
    */
-  onLoadStart = () => {
+  _onLoadStart = () => {
     // 配置加载动画
     if (this.props.type !== "animated") return;
     this.backgroundColorAnimated = Animated.sequence([
@@ -113,14 +113,14 @@ export default class XMImage extends React.Component {
     ]);
     // 开启循环动画
     this.backgroundColorAnimated.start(() => {
-      this.state.loadStatus === "pending" && this.onLoadStart();
+      this.state.loadStatus === "pending" && this._onLoadStart();
     });
   };
 
   /**
    * 加载结束
    */
-  onLoadEnd = () => {
+  _onLoadEnd = () => {
     // if (undefined !== this.backgroundColorAnimated) this.backgroundColorAnimated.stop();
   };
 
@@ -147,7 +147,7 @@ export default class XMImage extends React.Component {
   /**
    * 渲染加载中界面
    */
-  renderPending = () => {
+  _renderPending = () => {
     const { width, height } = this.props;
     return (
       <Animated.View
@@ -179,7 +179,7 @@ export default class XMImage extends React.Component {
   /**
    * 渲染加载失败界面
    */
-  renderError = () => {
+  _renderError = () => {
     let { width, height, defaultSource, emptyDesc } = this.props;
     let iconSize = {
       width: width / 2,

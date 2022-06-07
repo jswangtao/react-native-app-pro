@@ -2,15 +2,15 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-30 14:45:37
+ * @LastEditTime: 2022-06-06 11:55:07
  * @Description: 首页
  */
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { logo } from "@/images";
-import { msg, XMIcon, XMButton, AsyncStorage, cache } from "@/common";
-import { color_2A64F4, color_CCCCCC } from "@/styles";
+import {} from "@/images";
+import { msg, XMIcon, XMButton } from "@/common";
+import { color_2A64F4, color_CCCCCC, screenWidth } from "@/styles";
 import api from "@/api";
 
 import { observer, inject } from "mobx-react";
@@ -25,29 +25,68 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userBaseInfo: {}
+      disabled: true
     };
   }
-
   componentDidMount() {}
-
   render() {
+    return <View style={styles.container}>{this._renderView()}</View>;
+  }
+
+  _renderItem = item => {
     return (
-      <View style={styles.container}>
-        <Text>store中的user:{this.props.store.userStore.userBaseInfo.name}</Text>
-        <Text>AsyncStorage中的user:{this.state.userBaseInfo.name}</Text>
+      <View style={{ height: 100, backgroundColor: "pink", marginTop: 24 }}>
+        <Text>{item.name}</Text>
+      </View>
+    );
+  };
+
+  _renderView = () => {
+    return (
+      <>
         <XMButton
-          text="get+"
-          type="primary"
+          text="测试页面"
           onClick={() => {
-            AsyncStorage.getItem(cache.USER_BASE_INFO).then(res => {
-              this.setState({ userBaseInfo: res || {} });
+            msg.emit("app:messageBox", {
+              isVisible: true,
+              title: "标题",
+              content: "确定确定确定确定确定确定",
+              confirmText: "确定",
+              cancelText: "取消",
+              confirmFn: () => {
+                console.log("🚀🚀🚀wimi======>>>confirmFn");
+              },
+              cancelFn: () => {
+                console.log("🚀🚀🚀wimi======>>>cancelFn");
+              }
             });
           }}
         />
-      </View>
+      </>
     );
-  }
+  };
+
+  test = () => {
+    console.log("🚀🚀🚀wimi======>>>test");
+    return new Promise(reslove => {
+      setTimeout(() => {
+        reslove(1);
+      }, 3000);
+    });
+  };
+
+  // 获取客服电话
+  getCustomService = () => {
+    const params = {
+      code: "ydxlmkfdh"
+    };
+    api.user.getConfigValue(params).then(res => {
+      console.log("🚀🚀🚀wimi======>>>res", res);
+      if (res.success) {
+        console.log("🚀🚀🚀wimi======>>>res", res);
+      }
+    });
+  };
 }
 
 export default Main;
@@ -55,7 +94,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f2f2f2",
-    justifyContent: "center",
-    width: 220
+    justifyContent: "center"
+  },
+  wrap: {
+    width: screenWidth
   }
 });
