@@ -5,13 +5,9 @@
  * @LastEditTime: 2022-06-02 21:25:19
  * @Description: XMOverlay
  */
-/**
- * overlay
- * @type {ReactNative|exports|module.exports}
- */
 import React, { PureComponent } from "react";
 import { View, StyleSheet } from "react-native";
-import { screenHeight, screenWidth } from "../styles";
+import { screenHeight, screenWidth } from "../../styles";
 
 export default class XMOverlay extends PureComponent {
   static defaultProps = {

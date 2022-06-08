@@ -7,7 +7,7 @@
  */
 import React, { Component } from "react";
 import { Text, View, StyleSheet, Animated, Easing } from "react-native";
-import { screenWidth, screenHeight } from "../styles";
+import { screenWidth, screenHeight } from "../../styles";
 
 export default class Loading extends Component {
   static defaultProps = {
