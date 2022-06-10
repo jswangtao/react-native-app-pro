@@ -8,7 +8,7 @@
 
 import React, { PureComponent } from "react";
 import { SafeAreaView, StatusBar } from "react-native";
-import { isAndroid } from "../styles";
+import { isAndroid } from "../../styles";
 
 export default class XMSafeAreaView extends PureComponent {
   render() {

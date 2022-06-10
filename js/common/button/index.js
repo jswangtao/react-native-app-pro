@@ -16,7 +16,7 @@ import {
   color_danger,
   color_white,
   border_color_base
-} from "../styles/theme";
+} from "../../styles/theme";
 import XMIcon from "../icons";
 const noop = () => {};
 /**

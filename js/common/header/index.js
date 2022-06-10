@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, PixelRatio } from "react-native";
 import msg from "../msg";
-import { screenWidth, px2dp } from "../styles";
+import { screenWidth, px2dp } from "../../styles";
 import XMBackOn from "../back-on";
 import { getStatusBarHeight } from "../util";
 

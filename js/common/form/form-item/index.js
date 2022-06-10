@@ -8,7 +8,7 @@
 import React, { PureComponent } from "react";
 import { PixelRatio, StyleSheet, Text, View } from "react-native";
 
-import { screenWidth } from "../../styles";
+import { screenWidth } from "../../../styles";
 
 export default class XMFormItem extends PureComponent {
   constructor(props) {

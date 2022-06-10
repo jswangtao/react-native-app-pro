@@ -3,8 +3,7 @@
     "experimentalDecorators": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["js/*"],
-      "@/styles": ["js/common/styles"]
+      "@/*": ["js/*"]
     }
   },
   "exclude": ["node_modules"]

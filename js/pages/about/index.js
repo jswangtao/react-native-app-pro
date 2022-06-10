@@ -8,11 +8,16 @@
 
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
-
-export default class About extends Component {
+import { connect } from "react-redux";
+import { AsyncStorage, cache, XMButton } from "@/common";
+import { bindActionCreators } from "redux";
+import * as basicActions from "@/store/actions/basic.actions";
+class About extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userBaseInfo: {}
+    };
   }
 
   componentDidMount() {}
@@ -20,11 +25,31 @@ export default class About extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>this is About</Text>
+        <Text>store中的user:{this.props.user.userBaseInfo.name}</Text>
+        <Text>AsyncStorage中的user:{this.state.userBaseInfo.name}</Text>
+        <XMButton
+          text="get+"
+          type="primary"
+          onClick={() => {
+            AsyncStorage.getItem(cache.USER_BASE_INFO).then(res => {
+              this.setState({ userBaseInfo: res || {} });
+            });
+          }}
+        />
       </View>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+const mapDispatchToProps = dispatch => ({
+  ...bindActionCreators(basicActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(About);
 
 const styles = StyleSheet.create({
   container: {

@@ -5,7 +5,7 @@
 
 import React, { Component } from "react";
 import { StyleSheet, Modal, Animated, TouchableOpacity } from "react-native";
-import { screenHeight, screenWidth } from "../styles";
+import { screenHeight, screenWidth } from "../../styles";
 
 export default class XMModal extends Component {
   static defaultProps = {
