@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Image, Animated, Easing, StyleSheet, TouchableOpacity, Text } from "react-native";
-import { px2dp } from "../styles";
+import { px2dp } from "../../styles";
 import XMImageViewer from "../image-viewer";
 const noop = () => {};
 const loadingError = require("./loading_error.png");

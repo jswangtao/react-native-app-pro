@@ -8,7 +8,7 @@
 
 import React, { PureComponent } from "react";
 import { TouchableOpacity, Image } from "react-native";
-import { px2dp } from "../styles";
+import { px2dp } from "../../styles";
 import msg from "../msg";
 
 export default class XMBackOn extends PureComponent {

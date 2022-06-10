@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-08 23:21:03
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-07 15:05:04
+ * @LastEditTime: 2022-06-10 17:04:57
  * @Description: file content
  */
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
         alias: {
           //别名的配置
           "@/common": "./js/common",
-          "@/styles": "./js/common/styles",
+          "@/styles": "./js/styles",
           "@/images": "./js/images",
           "@/api": "./js/api",
           "@/store": "./js/store"
