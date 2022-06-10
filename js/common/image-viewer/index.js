@@ -8,7 +8,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TouchableOpacity, Modal, ActivityIndicator, Text, Image } from "react-native";
 import ImageViewer from "react-native-image-zoom-viewer";
-import { px2dp, isAndroid, screenWidth } from "../styles";
+import { px2dp, isAndroid, screenWidth } from "../../styles";
 import * as _ from "../util";
 const noop = () => {};
 export default class XMImageViewer extends Component {

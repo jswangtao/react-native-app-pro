@@ -7,7 +7,7 @@
  */
 import React from "react";
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image } from "react-native";
-import { px2dp } from "../styles";
+import { px2dp } from "../../styles";
 
 const noop = () => {};
 

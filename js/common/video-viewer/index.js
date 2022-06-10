@@ -8,7 +8,7 @@
 import React, { PureComponent } from "react";
 import { View, StyleSheet, TouchableOpacity, Image, Modal } from "react-native";
 import Video from "react-native-video";
-import { screenWidth, screenHeight, px2dp, isAndroid } from "../styles";
+import { screenWidth, screenHeight, px2dp, isAndroid } from "../../styles";
 import * as _ from "../util";
 import { noop } from "../noop";
 

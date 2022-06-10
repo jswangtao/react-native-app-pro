@@ -15,7 +15,7 @@ import noop from "../noop";
 import NoMore from "./no-more";
 import Loading from "../loading";
 import Empty from "../empty";
-import { px2dp } from "../styles";
+import { px2dp } from "../../styles";
 
 export default class XMListView extends React.PureComponent {
   // 当前的pageNum

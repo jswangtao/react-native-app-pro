@@ -2,7 +2,11 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
+<<<<<<< HEAD
  * @LastEditTime: 2022-06-07 14:44:11
+=======
+ * @LastEditTime: 2022-06-07 15:29:20
+>>>>>>> react-navigation-4.x
  * @Description: storage的key，定义为常量统一存放，定义规则全大写（与普通变量区分，表常量）转全小写，
  * 如：USER: 'user'    APP_TOKEN: 'app_token'
  */

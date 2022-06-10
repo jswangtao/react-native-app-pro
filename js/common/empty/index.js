@@ -9,7 +9,7 @@ import React from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import { noop } from "../noop";
 
-import { px2dp } from "../styles";
+import { px2dp } from "../../styles";
 
 /**
  * 列表为空
