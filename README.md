@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-12 17:33:47
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-01 17:24:24
+ * @LastEditTime: 2022-06-12 23:32:26
  * @Description: file content
 -->
 
@@ -14,15 +14,16 @@
 
 官网 0.68 版本依赖的基础环境，值得注意的是 jdk 要 11 以上
 [其他环境参考 0.68 版本的官网](https://reactnative.dev/docs/environment-setup)
-node v14.18.2 建议 14 以上
 jdk v11.0.13 必须 11 以上
+node v16.13.1 建议 16 以上
+npm v8.1.2 建议 8 以上
 
 ### 启动项目
 
 1. 下载依赖
 
 ```
-yarn
+npm i
 cd ios && pod install
 ```
 
