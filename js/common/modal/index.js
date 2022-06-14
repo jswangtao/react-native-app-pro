@@ -1,6 +1,6 @@
 /**
  * 因为自带的modal导致全局toast看不到，所以经常用view写的，也可以用基于modal写的
- *
+ * 即可拥有原生modal,也有view自定义modal
  */
 
 import React, { Component } from "react";
@@ -15,7 +15,7 @@ export default class XMModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      y: new Animated.Value(screenHeight),
+      y: new Animated.Value(screenHeight + 100),
       isShow: props.visible
     };
   }
@@ -90,7 +90,7 @@ export default class XMModal extends Component {
       // 随时间变化而执行的动画类型
       this.state.y, // 动画中的变量值
       {
-        toValue: screenHeight,
+        toValue: screenHeight + 100,
         duration: 300,
         useNativeDriver: true
       }

@@ -2,13 +2,13 @@
  * @Author: wangtao
  * @Date: 2020-06-29 11:01:03
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-06 11:11:40
+ * @LastEditTime: 2022-06-14 18:17:33
  * @Description: tip组件
  */
 
 import React, { PureComponent } from "react";
 
-import { View, Text, StyleSheet, BackHandler } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import XMOverlay from "../overlay";
 import Loading from "../loading";
@@ -61,14 +61,6 @@ export default class XMToast extends PureComponent {
     return {
       visible: false
     };
-  }
-
-  componentDidMount() {
-    BackHandler.addEventListener("hardwareBackPress", this._onBackAndroid);
-  }
-
-  componentWillUnmount() {
-    BackHandler.removeEventListener("hardwareBackPress", this._onBackAndroid);
   }
 
   render() {

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 22:03:36
+ * @LastEditTime: 2022-06-14 18:12:21
  * @Description: 登录弹框
  */
 
@@ -10,7 +10,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { logo } from "@/images";
 import { XMButton, XMImage, XMIcon, _, XMInput, XMSendCodeButton, msg, XMModal } from "@/common";
-import { px2dp, color_FFFFFF, color_000000, screenWidth, screenHeight } from "@/styles";
+import { px2dp, color_FFFFFF, color_000000 } from "@/styles";
 
 export default class LoginModal extends Component {
   constructor(props) {
@@ -116,8 +116,11 @@ export default class LoginModal extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: screenWidth,
-    height: screenHeight,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     alignItems: "center",
     backgroundColor: color_FFFFFF,
     zIndex: 999

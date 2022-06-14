@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-02 18:14:53
+ * @LastEditTime: 2022-06-14 18:14:14
  * @Description: 个人中心
  */
 
@@ -61,6 +61,13 @@ export default class User extends Component {
           style={{ marginTop: 20 }}
           onClick={() => {
             msg.emit("router:goToNext", { routeName: "About" });
+          }}
+        />
+        <XMButton
+          text="弹框去登录"
+          style={{ marginTop: 20 }}
+          onClick={() => {
+            msg.emit("app:loginModal", true);
           }}
         />
         <XMButton
