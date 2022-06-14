@@ -2,33 +2,33 @@
  * @Author: wangtao
  * @Date: 2021-12-24 11:37:25
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-14 17:15:27
- * @Description: tabs标签
- * 通过设置scrollable，配置tabs组件的内容是否可以左右拖动，一般4个标签以下时，无需拖动，设置为false，5个标签以上，建议可以左右拖动。
-    tabs标签的切换，需要绑定current值，在change事件回调中可以得到index，将其赋值给current即可。
+ * @LastEditTime: 2022-06-14 18:19:01
+ * @Description: Subsection 分段器
+ *  Subsection标签的切换，需要绑定current值，在change事件回调中可以得到index，将其赋值给current即可。
     具体的标签，通过list参数配置，该参数要求为数组，元素为对象，对象要有name属性，见示例：
  */
+import { color_primary } from "@/styles/theme";
 import React from "react";
 import { View, StyleSheet, Text, ScrollView, TouchableOpacity, Animated, Easing, Dimensions } from "react-native";
 
-import { px2dp, screenWidth } from "../../styles";
-import { color_primary } from "../../styles/theme";
+import { px2dp } from "../../styles";
 const noop = () => {};
 
-export default class Tabs extends React.Component {
+export default class Subsection extends React.Component {
   static defaultProps = {
-    list: [{ name: "全部", code: null }],
-    scrollable: false, //通过设置scrollable，配置tabs组件的内容是否可以左右拖动，一般4个标签以下时，无需拖动，设置为false，5个标签以上，建议可以左右拖动。
+    list: [{ name: "全部" }],
     duration: 200, // 移动定时 单位ms
     current: 0, // 当前选中标签的索引
-    lineColor: color_primary, //滑块颜色
-    lineWidth: 40, //滑块宽度
-    lineHeight: 6, //滑块高度
-    activeStyle: { color: color_primary }, //菜单选择中时的样式
-    inactiveStyle: { color: "#666666", lineHeight: px2dp(80) }, //菜单非选中时的样式
+    buttonColor: "#fff", //滑块颜色
+    subsectionColor: color_primary, //滑块颜色
+    buttonHeight: px2dp(70), //滑块高度
+    activeStyle: { color: "#000", fontWeight: "bold" }, //菜单选择中时的样式
+    inactiveStyle: { color: "#444", lineHeight: px2dp(80) }, //菜单非选中时的样式
+    style: {}, //菜单容器的样式
     itemStyle: {}, //菜单item的样式
     onClick: noop, //点击标签时触发  item: 传入的其他值 index: 标签索引值
-    onChange: noop //标签索引改变时触发  item: 传入的其他值 index: 标签索引值
+    onChange: noop, //标签索引改变时触发  item: 传入的其他值 index: 标签索引值
+    mode: "button"
   };
 
   constructor(props) {
@@ -49,22 +49,63 @@ export default class Tabs extends React.Component {
   }
 
   render() {
-    const { list, scrollable, lineWidth, lineColor, lineHeight, activeStyle, inactiveStyle, itemStyle } = this.props;
+    const { list, buttonColor, subsectionColor, buttonHeight, activeStyle, inactiveStyle, style, itemStyle, mode } =
+      this.props;
     const { innerCurrent } = this.state;
     return (
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          mode === "button" && { paddingHorizontal: 4 },
+          style,
+          mode !== "button" && {
+            borderRadius: 8,
+            borderWidth: 1,
+            borderColor: subsectionColor
+          }
+        ]}
+      >
         <ScrollView
-          contentContainerStyle={!scrollable && { flex: 1 }}
+          contentContainerStyle={{ flex: 1 }}
           horizontal
           showsHorizontalScrollIndicator={false}
-          scrollEnabled={scrollable}
+          scrollEnabled={false}
           ref={el => (this.scrollRef = el)}
         >
           <View style={styles.navWrap} ref={el => (this.navWrap = el)}>
+            <View
+              style={[
+                styles.navScrollWrap,
+                mode === "button" && {
+                  paddingVertical: (inactiveStyle.lineHeight - buttonHeight) / 2
+                }
+              ]}
+            >
+              <Animated.View
+                style={[
+                  styles.navLine,
+                  { transform: [{ translateX: this.spinValue }] },
+                  {
+                    width: `${100 / list.length}%`,
+                    backgroundColor: mode === "button" ? buttonColor : subsectionColor,
+                    height: mode === "button" ? buttonHeight : inactiveStyle.lineHeight,
+                    borderRadius: mode === "button" ? 8 : 0
+                  }
+                ]}
+              />
+            </View>
             {list.map((item, index) => {
               return (
                 <TouchableOpacity
-                  style={[styles.navItem, itemStyle, scrollable ? { flex: 0 } : { flex: 1 }]}
+                  style={[
+                    styles.navItem,
+                    itemStyle,
+                    { flex: 1 },
+                    mode !== "button" && {
+                      borderColor: index === 0 ? 0 : subsectionColor,
+                      borderLeftWidth: 1
+                    }
+                  ]}
                   ref={el => (this[`navItem${index}`] = el)}
                   key={index}
                   activeOpacity={1}
@@ -77,6 +118,7 @@ export default class Tabs extends React.Component {
                       styles.navTxt,
                       inactiveStyle,
                       innerCurrent === index && activeStyle,
+                      innerCurrent === index && mode !== "button" && { color: "#fff" },
                       item.disabled && { color: "#c8c9cc" }
                     ]}
                   >
@@ -85,18 +127,6 @@ export default class Tabs extends React.Component {
                 </TouchableOpacity>
               );
             })}
-            <Animated.View
-              style={[
-                styles.navLine,
-                { transform: [{ translateX: this.spinValue }] },
-                {
-                  width: px2dp(lineWidth),
-                  backgroundColor: lineColor,
-                  height: px2dp(lineHeight),
-                  borderRadius: px2dp(lineHeight) / 2
-                }
-              ]}
-            />
           </View>
         </ScrollView>
       </View>
@@ -149,10 +179,7 @@ export default class Tabs extends React.Component {
     }
     // 获取滑块该移动的位置
     let lineOffsetLeft = list.slice(0, innerCurrent).reduce((total, curr) => total + curr.rect.width, 0);
-    let { lineWidth } = this.props; // 拷贝副本，防止间接修改props中的值
-    this.lineOffsetLeft = lineOffsetLeft + (tabItem.rect.width - px2dp(lineWidth)) / 2;
-
-    console.log("🚀🚀🚀wimi======>>>2222", tabItem);
+    this.lineOffsetLeft = lineOffsetLeft;
 
     // 第一次移动滑块，无需过渡时间
     this.animation(this.lineOffsetLeft, firstTime ? 0 : parseInt(duration));
@@ -166,10 +193,8 @@ export default class Tabs extends React.Component {
 
   // 设置滑块的位置
   animation = (x, duration = 0) => {
-    console.log("🚀🚀🚀wimi======>>>animation", x);
-
     Animated.timing(this.spinValue, {
-      toValue: x, // 最终值 为1，这里表示最大旋转 360度
+      toValue: x,
       duration: duration,
       easing: Easing.linear,
       useNativeDriver: true
@@ -235,8 +260,9 @@ export default class Tabs extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: screenWidth,
-    backgroundColor: "#fff"
+    width: "100%",
+    backgroundColor: "#F5F5F5",
+    overflow: "hidden"
   },
   scrollContainer: {
     flex: 1
@@ -257,8 +283,13 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   navLine: {
+    flex: 1
+  },
+  navScrollWrap: {
     position: "absolute",
-    bottom: 0,
-    left: 0
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%"
   }
 });

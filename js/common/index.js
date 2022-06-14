@@ -31,6 +31,7 @@ import XMModal from "./modal"; // 模态框
 import XMSearchBar from "./search-bar"; // 搜索框
 import XMTabs from "./tabs"; // tabs
 import XMMessageBox from "./message-box"; // message-box
+import XMSubsection from "./subsection"; // message-box
 export {
   msg,
   _,
@@ -57,5 +58,6 @@ export {
   XMSearchBar,
   XMTabs,
   XMMessageBox,
+  XMSubsection,
   XMInput
 };
