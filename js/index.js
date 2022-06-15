@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-14 17:49:26
+ * @LastEditTime: 2022-06-14 19:06:35
  * @Description: 主入口
  */
 
@@ -10,7 +10,7 @@ import React, { Component } from "react";
 import { View, StatusBar } from "react-native";
 
 import { NavigationActions, StackActions } from "react-navigation";
-import { msg, XMMessageBox, XMToast } from "@/common";
+import { msg, XMMessageBox, XMToast, XMH5Page } from "@/common";
 import { AppContainer } from "./router";
 import setModuleGlobal from "./module-global-setting";
 import LoginModal from "./pages/login/login-modal";
@@ -45,8 +45,14 @@ export default class App extends Component {
       isMessageBoxCancelText: "",
       isMessageBoxConfirmFn: null,
       isMessageBoxCancelFn: null,
-      isMessageBoxRenderContent: noop
+      isMessageBoxRenderContent: noop,
       // 可交互弹框是否显示end
+
+      // H5Page start
+      isH5PageShow: false,
+      isH5PageTitle: "",
+      isH5PageContent: ""
+      // H5Page end
     };
   }
 
@@ -90,6 +96,8 @@ export default class App extends Component {
           cancelFn={this.state.isMessageBoxCancelFn}
           renderContent={this.state.isMessageBoxRenderContent}
         />
+        {/* 全局的message */}
+        <XMH5Page visible={this.state.isH5PageShow} title={this.state.isH5PageTitle} url={this.state.isH5PageUrl} />
       </View>
     );
   }
@@ -113,6 +121,7 @@ export default class App extends Component {
     msg.on("router:refreshRoutes", this._refreshRoutes); // 刷新指定多个页面
     msg.on("app:loginModal", this._handleLoginModal); // 弹出登录弹框提示
     msg.on("app:messageBox", this._handleMessageBox); // 可交互的弹框
+    msg.on("app:h5", this._handleH5); // 弹出h5
   };
 
   /**
@@ -134,6 +143,7 @@ export default class App extends Component {
     msg.off("router:refreshRoutes", this._refreshRoutes);
     msg.off("app:loginModal", this._handleLoginModal);
     msg.off("app:messageBox", this._handleMessageBox);
+    msg.off("app:h5", this._handleH5);
   };
 
   /**
@@ -348,6 +358,15 @@ export default class App extends Component {
       isMessageBoxConfirmFn: confirmFn,
       isMessageBoxCancelFn: cancelFn,
       isMessageBoxRenderContent: renderContent
+    });
+  };
+
+  // h5
+  _handleH5 = ({ isVisible, title, url }) => {
+    this.setState({
+      isH5PageShow: isVisible,
+      isH5PageTitle: title,
+      isH5PageUrl: url
     });
   };
 }

@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-26 14:07:06
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-03 10:10:07
+ * @LastEditTime: 2022-06-14 18:37:22
  * @Description: file content
  */
 import msg from "./msg"; // 全局通信
@@ -31,7 +31,8 @@ import XMModal from "./modal"; // 模态框
 import XMSearchBar from "./search-bar"; // 搜索框
 import XMTabs from "./tabs"; // tabs
 import XMMessageBox from "./message-box"; // message-box
-import XMSubsection from "./subsection"; // message-box
+import XMSubsection from "./subsection"; // XMSubsection
+import XMH5Page from "./h5-page"; // XMH5Page
 export {
   msg,
   _,
@@ -59,5 +60,6 @@ export {
   XMTabs,
   XMMessageBox,
   XMSubsection,
+  XMH5Page,
   XMInput
 };

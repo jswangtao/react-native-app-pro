@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-12 23:35:53
+ * @LastEditTime: 2022-06-14 19:06:04
  * @Description: 首页
  */
 
@@ -44,18 +44,10 @@ export default class Main extends Component {
         <XMButton
           text="测试页面"
           onClick={() => {
-            msg.emit("app:messageBox", {
+            msg.emit("app:h5", {
               isVisible: true,
-              title: "标题",
-              content: "确定确定确定确定确定确定",
-              confirmText: "确定",
-              cancelText: "取消",
-              confirmFn: () => {
-                console.log("🚀🚀🚀wimi======>>>confirmFn");
-              },
-              cancelFn: () => {
-                console.log("🚀🚀🚀wimi======>>>cancelFn");
-              }
+              url: "https://support.qq.com/product/411971",
+              title: "test"
             });
           }}
         />
