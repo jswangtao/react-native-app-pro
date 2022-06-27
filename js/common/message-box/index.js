@@ -13,7 +13,7 @@ import { screenWidth, px2dp } from "../../styles";
 
 import msg from "../msg";
 import { noop } from "../noop";
-import { border_color_base, color_primary, color_text_primary } from "../../styles/theme";
+import { border_color_base, color_primary, color_text_primary } from "../theme";
 
 /**
  * 公共MessageBox组件

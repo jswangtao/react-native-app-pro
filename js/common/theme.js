@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2022-04-10 23:09:21
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-06 10:48:44
+ * @LastEditTime: 2022-06-20 16:18:40
  * @Description: 主题色，主要是UI库用的，如果业务请用index中的值
  */
 export const color_primary = "#2A64F4";

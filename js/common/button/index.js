@@ -9,14 +9,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity, StyleSheet, Text, View, Keyboard, PixelRatio, ActivityIndicator } from "react-native";
 
-import {
-  color_primary,
-  color_success,
-  color_warning,
-  color_danger,
-  color_white,
-  border_color_base
-} from "../../styles/theme";
+import { color_primary, color_success, color_warning, color_danger, color_white, border_color_base } from "../theme";
 import XMIcon from "../icons";
 const noop = () => {};
 /**

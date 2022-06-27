@@ -7,7 +7,7 @@
  *  Subsection标签的切换，需要绑定current值，在change事件回调中可以得到index，将其赋值给current即可。
     具体的标签，通过list参数配置，该参数要求为数组，元素为对象，对象要有name属性，见示例：
  */
-import { color_primary } from "@/styles/theme";
+import { color_primary } from "@/common/theme";
 import React from "react";
 import { View, StyleSheet, Text, ScrollView, TouchableOpacity, Animated, Easing, Dimensions } from "react-native";
 

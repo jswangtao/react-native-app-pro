@@ -12,7 +12,7 @@ import React from "react";
 import { View, StyleSheet, Text, ScrollView, TouchableOpacity, Animated, Easing, Dimensions } from "react-native";
 
 import { px2dp, screenWidth } from "../../styles";
-import { color_primary } from "../../styles/theme";
+import { color_primary } from "../theme";
 const noop = () => {};
 
 export default class Tabs extends React.Component {
