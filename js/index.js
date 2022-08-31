@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-06-14 19:06:35
+ * @LastEditTime: 2022-08-31 09:45:49
  * @Description: 主入口
  */
 
@@ -12,12 +12,12 @@ import { View, StatusBar } from "react-native";
 import { NavigationActions, StackActions } from "react-navigation";
 import { msg, XMMessageBox, XMToast, XMH5Page } from "@/common";
 import { AppContainer } from "./router";
-import setModuleGlobal from "./module-global-setting";
+import setModuleGlobalSetting from "./module-global-setting";
 import LoginModal from "./pages/login/login-modal";
 import { noop } from "./common/noop";
 
 // 设置react-native组件全局默认属性
-setModuleGlobal();
+setModuleGlobalSetting();
 
 export default class App extends Component {
   constructor(props) {
