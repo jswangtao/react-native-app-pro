@@ -2,7 +2,7 @@
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
  * @LastEditors: 汪滔
- * @LastEditTime: 2022-08-31 09:45:49
+ * @LastEditTime: 2022-10-07 10:48:31
  * @Description: 主入口
  */
 
@@ -62,6 +62,7 @@ export default class App extends Component {
 
   componentWillUnmount() {
     this._unRegister();
+    // test
   }
 
   render() {
