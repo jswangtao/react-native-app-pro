@@ -1,13 +1,13 @@
 /*
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
- * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-15 00:08:30
+ * @LastEditors: wangtao
+ * @LastEditTime: 2022-10-30 15:05:23
  * @Description: 首页
  */
 
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 import {} from "@/images";
 import { msg, Icon, XMButton } from "@/common";
 import { color_2A64F4, color_CCCCCC } from "@/styles";
@@ -31,19 +31,15 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <XMButton text="默认按钮" type="primary" icon="icon_setting" onClick={this.test} />
-        <Icon name={"icon_setting"} size={24} color={"#999"}>
-          支持IconFont
-        </Icon>
+        <Button title="test" onPress={this.test}></Button>
       </View>
     );
   }
 
   test = () => {
-    return new Promise(reslove => {
-      setTimeout(() => {
-        reslove(1);
-      }, 3000);
+    console.log("🚀🚀🚀wimi======>>>w222");
+    msg.emit("router: goToNext", {
+      routeName: "About"
     });
   };
 

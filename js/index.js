@@ -1,15 +1,14 @@
 /*
  * @Author: wangtao
  * @Date: 2020-07-11 07:16:44
- * @LastEditors: 汪滔
- * @LastEditTime: 2022-04-12 17:27:14
+ * @LastEditors: wangtao
+ * @LastEditTime: 2022-10-30 15:46:35
  * @Description: 主入口
  */
 
 import React, { Component } from "react";
 import { View, StatusBar } from "react-native";
-
-import { NavigationActions, StackActions } from "react-navigation";
+import { StackActions } from "@react-navigation/native";
 import { msg, Tip } from "@/common";
 import { AppContainer } from "./router";
 
@@ -103,10 +102,7 @@ export default class App extends Component {
     }
     const { routeName, ...others } = route;
 
-    const navigateAction = NavigationActions.navigate({
-      routeName,
-      params: others
-    });
+    const navigateAction = StackActions.push(routeName, others);
     this.nav.dispatch(navigateAction);
   };
 
@@ -119,13 +115,13 @@ export default class App extends Component {
     if (__DEV__) {
       console.log("back.....", route);
     }
-    let backAction = NavigationActions.back();
+    let backAction = StackActions.pop();
     if (route) {
       const { key } = route;
       if (__DEV__) {
         console.log("key...", key);
       }
-      backAction = NavigationActions.back({
+      backAction = StackActions.pop({
         key
       });
     }
@@ -140,9 +136,8 @@ export default class App extends Component {
    * @private
    */
   _backToTop = () => {
-    const { routes } = this.nav.state.nav;
     if (__DEV__) {
-      console.log("backToTop...", routes);
+      console.log("backToTop...");
     }
     this.nav.dispatch({
       type: "backToTop"

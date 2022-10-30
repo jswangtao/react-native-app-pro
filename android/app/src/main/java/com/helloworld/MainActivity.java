@@ -1,10 +1,23 @@
+/*
+ * @Author: wangtao
+ * @Date: 2022-04-08 23:21:03
+ * @LastEditors: wangtao
+ * @LastEditTime: 2022-10-30 14:46:03
+ * @Description: file content
+ */
 package com.helloworld;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
-
+import android.os.Bundle;
 public class MainActivity extends ReactActivity {
+
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
+  }
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule

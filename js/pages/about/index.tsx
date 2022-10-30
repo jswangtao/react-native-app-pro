@@ -1,13 +1,14 @@
 /*
  * @Author: wangtao
  * @Date: 2020-06-28 15:43:56
- * @LastEditors: 汪滔
- * @LastEditTime: 2022-02-19 20:28:44
+ * @LastEditors: wangtao
+ * @LastEditTime: 2022-10-30 15:07:30
  * @Description: 关于
  */
 
+import { msg } from "@/common";
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 
 export default class About extends Component {
   constructor(props) {
@@ -20,10 +21,18 @@ export default class About extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>this is About</Text>
+        <Button title="test" onPress={this.test}></Button>
       </View>
     );
   }
+
+  test = () => {
+    console.log("🚀🚀🚀wimi======>>>w222");
+    // msg.emit("router: goToNext", {
+    //   routeName: "Tab"
+    // });
+    msg.emit("router: backToTop");
+  };
 }
 
 const styles = StyleSheet.create({
