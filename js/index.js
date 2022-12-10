@@ -1,14 +1,6 @@
-/*
- * @Author: wangtao
- * @Date: 2020-07-11 07:16:44
- * @LastEditors: wangtao
- * @LastEditTime: 2022-10-30 15:46:35
- * @Description: 主入口
- */
-
 import React, { Component } from "react";
 import { View, StatusBar } from "react-native";
-import { StackActions } from "@react-navigation/native";
+import { CommonActions, StackActions } from "@react-navigation/native";
 import { msg, Tip } from "@/common";
 import { AppContainer } from "./router";
 
@@ -183,7 +175,7 @@ export default class App extends Component {
     const resetAction = StackActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: route.routeName }) // 要跳转到的页面名字
+        CommonActions.navigate({ routeName: route.routeName }) // 要跳转到的页面名字
       ]
     });
 
@@ -246,7 +238,7 @@ export default class App extends Component {
     if (__DEV__) {
       console.log("key...", key);
     }
-    const setParamsAction = NavigationActions.setParams({
+    const setParamsAction = CommonActions.setParams({
       params,
       key
     });

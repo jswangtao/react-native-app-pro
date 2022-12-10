@@ -31,6 +31,7 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Icon name={"home1"} size={24} color={color_2A64F4} />
         <Button title="test" onPress={this.test}></Button>
       </View>
     );

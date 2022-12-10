@@ -5,9 +5,8 @@
  * @LastEditTime: 2022-10-30 16:04:06
  * @Description: file content
  */
-import React, { ReactElement } from "react";
-import { StackRouter } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
+import createNativeStackNavigator from "../navigators/createNativeStackNavigator";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { TRoutes } from "./types";
 
@@ -40,7 +39,7 @@ export const createTabRouter = (routes: TRoutes) => {
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       {routes.map((route, key) => {
         return (
-          <Tab.Screen name={route.name} key={key}>
+          <Tab.Screen name={route.name} key={key} options={route.options}>
             {props => {
               if (!React.isValidElement(route.component)) {
                 return null;
